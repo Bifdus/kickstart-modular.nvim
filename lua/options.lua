@@ -43,6 +43,7 @@ vim.opt.timeoutlen = 300
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.smarttab = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -58,5 +59,22 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Set tab spacing
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.breakindent = true
+vim.opt.backspace = { 'start', 'eol', 'indent' }
+vim.opt.splitkeep = 'cursor'
+
+-- Set relative line numbers
+vim.o.relativenumber = true
+
+-- Title of file
+vim.opt.title = true
 
 -- vim: ts=2 sts=2 sw=2 et
