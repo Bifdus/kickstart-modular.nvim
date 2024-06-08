@@ -27,7 +27,15 @@ require('lazy').setup({
 
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
-
+  {
+    dir = vim.fn.expand '~/.local/share/nvim/site/pack/themes/start/dracula_pro',
+    as = 'dracula_pro',
+    config = function()
+      --vim.cmd 'packadd! dracula_pro'
+      vim.cmd 'syntax enable'
+      vim.cmd 'colorscheme dracula_pro_van_helsing'
+    end,
+  },
   require 'kickstart/plugins/gitsigns',
 
   require 'kickstart/plugins/which-key',
