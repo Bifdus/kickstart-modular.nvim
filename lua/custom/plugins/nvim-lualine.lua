@@ -8,7 +8,7 @@ return {
           theme = 'dracula', -- you can choose a specific theme here
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
-          disabled_filetypes = {},
+          disabled_filetypes = { 'neo-tree' },
         },
         sections = {
           lualine_a = { 'mode' },

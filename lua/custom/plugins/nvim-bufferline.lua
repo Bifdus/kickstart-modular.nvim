@@ -8,7 +8,7 @@ return {
           offsets = {
             {
               filetype = 'neo-tree',
-              text = 'Explorer',
+              text = 'Neo-tree',
               highlight = 'Directory',
               text_align = 'left',
             },
