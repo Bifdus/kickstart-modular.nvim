@@ -14,6 +14,7 @@ return {
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
       { 'folke/neodev.nvim', opts = {} },
+      'pmizio/typescript-tools.nvim',
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -168,7 +169,7 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
-
+        pyright = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -183,6 +184,7 @@ return {
             },
           },
         },
+        phpactor = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -198,6 +200,9 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'pyright',
+        'phpactor',
+        'typescript-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -212,6 +217,11 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      }
+      -- typescript-tools.nvim
+      require('typescript-tools').setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
       }
     end,
   },
