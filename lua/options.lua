@@ -70,6 +70,7 @@ vim.opt.ignorecase = true
 vim.opt.breakindent = true
 vim.opt.backspace = { 'start', 'eol', 'indent' }
 vim.opt.splitkeep = 'cursor'
+vim.opt.cmdheight = 0
 
 -- Set relative line numbers
 vim.o.relativenumber = true
