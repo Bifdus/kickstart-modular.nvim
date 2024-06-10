@@ -14,9 +14,9 @@ return {
       { '[B', '<cmd>BufferLineMovePrev<cr>', desc = 'Move buffer prev' },
       { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move buffer next' },
     },
-    version = '*',
-    config = function()
-      require('bufferline').setup {
+    opts = {
+      version = '*',
+      opts = {
         options = {
           offsets = {
             {
@@ -28,7 +28,7 @@ return {
           },
           dependencies = 'nvim-tree-web-devicons',
         },
-      }
-    end,
+      },
+    },
   },
 }
