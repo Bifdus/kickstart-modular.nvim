@@ -18,7 +18,7 @@ return {
         },
         center = {
           { icon = '  ', desc = 'Find file                        ', key = 'f', key_format = ' %s', action = 'Telescope find_files' },
-          { icon = '  ', desc = 'File browser                     ', key = 'b', key_format = ' %s', action = 'NeotreeReveal' },
+          { icon = '  ', desc = 'File browser                     ', key = 'b', key_format = ' %s', action = 'Neotree reveal' },
           { icon = '  ', desc = 'Live Grep (find in file)        ', key = 'g', key_format = ' %s', action = 'Telescope live_grep' },
           { icon = '  ', desc = 'Recently opened files            ', key = 'r', key_format = ' %s', action = 'Telescope oldfiles' },
           {
