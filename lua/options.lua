@@ -63,6 +63,7 @@ vim.opt.scrolloff = 10
 -- Set tab spacing
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.hlsearch = true
