@@ -23,6 +23,12 @@ vim.opt.clipboard = 'unnamedplus'
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- Code collapse
+vim.opt.foldenable = false
+vim.opt.foldlevel = 49
+vim.opt.foldlevelstart = 49
+vim.opt.foldcolumn = '0'
+
 -- Save undo history
 vim.opt.undofile = true
 
