@@ -4,6 +4,11 @@ return {
     event = 'VimEnter',
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
     opts = {
+      hide = {
+        statusline = false,
+        tabline = false,
+        winbar = false,
+      },
       theme = 'doom',
       config = {
         header = {
