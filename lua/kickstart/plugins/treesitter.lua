@@ -15,6 +15,7 @@ return {
       },
       fold = { true },
       indent = { enable = true, disable = { 'ruby' } },
+      dependencies = { 'windwp/nvim-ts-autotag' },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`

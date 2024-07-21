@@ -175,7 +175,7 @@ return {
           enable_decompilation_support = true,
           filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props', 'csx', 'targets' },
         },
-
+        jdtls = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
