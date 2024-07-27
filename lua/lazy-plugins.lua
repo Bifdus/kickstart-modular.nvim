@@ -32,8 +32,34 @@ require('lazy').setup({
     as = 'dracula_pro',
     config = function()
       --vim.cmd 'packadd! dracula_pro'
+
       vim.cmd 'syntax enable'
       vim.cmd 'colorscheme dracula_pro_van_helsing'
+
+      -- RainbowDelimiter highlight groups using Dracula Pro colors
+      vim.cmd [[
+        highlight link RainbowDelimiterRed DraculaPink
+        highlight link RainbowDelimiterYellow DraculaYellow
+        highlight link RainbowDelimiterBlue DraculaPink
+        highlight link RainbowDelimiterOrange DraculaOrange
+        highlight link RainbowDelimiterGreen DraculaGreen
+        highlight link RainbowDelimiterViolet DraculaPurple
+        highlight link RainbowDelimiterCyan DraculaCyan
+      ]]
+
+      -- Autocommand to apply these settings whenever the colorscheme changes
+      vim.cmd [[
+        augroup RainbowDelimiters
+          autocmd!
+          autocmd ColorScheme dracula_pro highlight link RainbowDelimiterRed DraculaPink
+          autocmd ColorScheme dracula_pro highlight link RainbowDelimiterYellow DraculaYellow
+          autocmd ColorScheme dracula_pro highlight link RainbowDelimiterBlue DraculaPink
+          autocmd ColorScheme dracula_pro highlight link RainbowDelimiterOrange DraculaOrange
+          autocmd ColorScheme dracula_pro highlight link RainbowDelimiterGreen DraculaGreen
+          autocmd ColorScheme dracula_pro highlight link RainbowDelimiterViolet DraculaPurple
+          autocmd ColorScheme dracula_pro highlight link RainbowDelimiterCyan DraculaCyan
+        augroup END
+      ]]
     end,
   },
   require 'kickstart/plugins/gitsigns',
