@@ -17,8 +17,8 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup {
         mappings = {
-          add = 'gas',
-          delete = 'gds',
+          add = 'gsa',
+          delete = 'gsd',
           find = 'gsf',
           find_left = 'gsF',
           highlight = 'gsh',
