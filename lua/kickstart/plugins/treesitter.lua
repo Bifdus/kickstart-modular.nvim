@@ -38,6 +38,7 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter', lazy = true },
     config = function()
       require('treesitter-context').setup {
+        exclude = { 'comment' },
         throttle = true,
       }
     end,
