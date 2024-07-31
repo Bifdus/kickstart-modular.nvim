@@ -128,6 +128,10 @@ return {
             })
           end
 
+          if client and client.name == 'clangd' then
+            map('<leader>lh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch Source/Header')
+          end
+
           -- The following autocommand is used to enable inlay hints in your
           -- code, if the language server you are using supports them
           --
@@ -191,6 +195,15 @@ return {
           },
         },
         phpactor = {},
+        clangd = {
+          filetypes = {
+            'c',
+            'cpp',
+            'objc',
+            'objcpp',
+            'cuda',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
