@@ -2,10 +2,12 @@ return {
   {
     'brenoprata10/nvim-highlight-colors',
     event = { 'BufReadPre', 'BufNewFile' },
-    config = {
-      enabled = true,
-      opts = {},
+    opts = {
+      enable_short_hex = false,
     },
+    config = function(_, opts)
+      require('nvim-highlight-colors').setup(opts)
+    end,
     keys = {
       {
         '<leader>tC',
