@@ -35,7 +35,7 @@ return {
             action = 'lua require("custom.functions.utils").open_config_folder()',
           },
           -- TODO: Install auto session and enable this.
-          { icon = '  ', desc = 'Open Last session                ', key = 's', key_format = ' %s', action = 'SessionLoad' },
+          { icon = '  ', desc = 'Open Last session                ', key = 'o', key_format = ' %s', action = 'SessionRestore' },
         },
         packages = { enable = true },
       },
