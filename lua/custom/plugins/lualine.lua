@@ -12,7 +12,13 @@ return {
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch' },
-        lualine_c = { 'filename' },
+        lualine_c = {
+          {
+            'filename',
+            file_status = true,
+            path = 4,
+          },
+        },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },
