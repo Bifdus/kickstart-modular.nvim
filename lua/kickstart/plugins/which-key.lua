@@ -28,6 +28,10 @@ return {
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>l', group = '[L]azy' },
+        { '<leader><tab>', group = 'Tabs' },
+        { '<leader>x', group = 'Trouble Diagnostics' },
+        { '<leader>q', group = 'Quit Options' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       }
     end,
