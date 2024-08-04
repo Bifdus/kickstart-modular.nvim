@@ -83,6 +83,15 @@ return {
           --  Similar to document symbols, except searches over your entire project.
           map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
+          -- Fuzzy find all references for the function/variable under the cursor
+          map('<leader>sr', require('telescope.builtin').lsp_references, '[S]earch [r]eferences')
+
+          -- Fuzzy find all incoming calls for the function under the cursor
+          map('<leader>si', require('telescope.builtin').lsp_incoming_calls, '[S]earch [i]ncoming calls')
+
+          -- Fuzzy find all outgoing calls for the function under the cursor
+          map('<leader>so', require('telescope.builtin').lsp_outgoing_calls, '[S]earch [o]utgoing calls')
+
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -219,7 +228,6 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'typescript-language-server',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -234,11 +242,6 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
-      }
-      -- typescript-tools.nvim
-      require('typescript-tools').setup {
-        --on_attach = on_attach,
-        capabilities = capabilities,
       }
     end,
   },
