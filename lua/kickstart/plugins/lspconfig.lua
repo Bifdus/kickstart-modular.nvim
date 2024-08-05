@@ -203,7 +203,11 @@ return {
             },
           },
         },
-        phpactor = {},
+        phpactor = {
+          filetypes = {
+            'php',
+          },
+        },
         clangd = {
           filetypes = {
             'c',
