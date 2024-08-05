@@ -180,6 +180,7 @@ return {
             },
           },
         },
+        sqlls = { 'sql', 'mysql' },
         omnisharp = {
           enable_roslyn_analysers = true,
           enable_import_completion = true,
