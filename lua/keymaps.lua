@@ -73,6 +73,10 @@ vim.keymap.set('n', '<leader><tab>n', '<cmd>tabnew<cr>', { desc = 'New Tab' })
 vim.keymap.set('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
 vim.keymap.set('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
+
+-- Run Lua code
+vim.keymap.set('n', '<leader>l', '<cmd>.lua<CR>', { desc = 'Run current line as Lua code' })
+vim.keymap.set('v', '<leader>l', [[<Esc><cmd>'<,'>lua<CR>]], { desc = 'Run selected lines as Lua code' })
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`
 
