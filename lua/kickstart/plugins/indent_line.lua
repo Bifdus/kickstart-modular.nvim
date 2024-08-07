@@ -11,6 +11,9 @@ return {
           'dashboard-nvim',
         },
       },
+      scope = {
+        enabled = false,
+      },
     },
   },
 }
