@@ -15,6 +15,7 @@ return {
         'luadoc',
         'markdown',
         'php',
+        'phpdoc',
         'python',
         'sql',
         'vim',
