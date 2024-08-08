@@ -16,7 +16,7 @@ return {
           {
             'filename',
             file_status = true,
-            path = 4,
+            path = 3,
           },
         },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
