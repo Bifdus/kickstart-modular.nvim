@@ -53,6 +53,7 @@ vim.keymap.set('n', '<leader>w-', '<C-W>v', { desc = 'Split Window Below', remap
 vim.keymap.set('n', '<leader>w|', '<C-W>s', { desc = 'Split Window Right', remap = true })
 vim.keymap.set('n', '<leader>-', '<C-W>v', { desc = 'Split Window Below', remap = true })
 vim.keymap.set('n', '<leader>|', '<C-W>s', { desc = 'Split Window Right', remap = true })
+vim.keymap.set('n', '<leader>wc', '<cmd>windo diffthis<cr>', { desc = '[c]ompare [w]indows' })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
