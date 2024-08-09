@@ -11,6 +11,8 @@ return {
         'diff',
         'html',
         'json',
+        'javascript',
+        'typescript',
         'lua',
         'luadoc',
         'markdown',
