@@ -28,7 +28,9 @@ require('lazy').setup({
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
   {
-    dir = vim.fn.expand '~/.local/share/nvim/site/pack/themes/start/dracula_pro',
+
+    dir = vim.fn.has 'linux' and vim.fn.expand '~/.local/share/nvim/site/pack/themes/start/dracula_pro'
+      or vim.fn.expand 'C:/Users/z004syfa/Documents/Dracula/themes/nvim',
     as = 'dracula_pro',
     config = function()
       --vim.cmd 'packadd! dracula_pro'
