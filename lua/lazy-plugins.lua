@@ -30,7 +30,7 @@ require('lazy').setup({
   {
 
     dir = vim.fn.has 'linux' and vim.fn.expand '~/.local/share/nvim/site/pack/themes/start/dracula_pro'
-      or vim.fn.expand 'C:/Users/z004syfa/Documents/Dracula/themes/nvim',
+      or vim.fn.expand 'C:/Users/z004syfa/Documents/dracula_pro_2.1/themes/vim',
     as = 'dracula_pro',
     config = function()
       --vim.cmd 'packadd! dracula_pro'
