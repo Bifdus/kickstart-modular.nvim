@@ -25,6 +25,7 @@ return {
           return vim.fn.executable 'make' == 1
         end,
       },
+      'debugloop/telescope-undo.nvim',
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
@@ -60,6 +61,7 @@ return {
           },
         },
         extensions = {
+          undo = {},
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
@@ -87,6 +89,7 @@ return {
       vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch existing buffers' })
       vim.keymap.set('n', '<leader>ss', builtin.lsp_document_symbols, { desc = '[S]earch [S]ymbols' })
       vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = '[S]earch [J]umps' })
+      vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>')
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
