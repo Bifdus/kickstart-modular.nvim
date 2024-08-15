@@ -73,6 +73,13 @@ vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous
 -- Run Lua code
 vim.keymap.set('n', '<leader>lr', '<cmd>.lua<CR>', { desc = 'Run current line as Lua code' })
 vim.keymap.set('v', '<leader>lR', [[<Esc><cmd>'<,'>lua<CR>]], { desc = 'Run selected lines as Lua code' })
+
+-- Iswap
+vim.keymap.set('n', '<leader>is', ':ISwapWith<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>in', ':ISwapNodeWith<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ih', ':ISwapNode<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>io', ':ISwap<CR>', { noremap = true, silent = true })
+
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`
 
