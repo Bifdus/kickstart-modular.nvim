@@ -25,6 +25,7 @@ return {
           return vim.fn.executable 'make' == 1
         end,
       },
+      'Myzel394/jsonfly.nvim',
       'debugloop/telescope-undo.nvim',
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
@@ -61,9 +62,25 @@ return {
           },
         },
         extensions = {
-          undo = {},
+          undo = {
+            mappings = {
+              i = {
+                ['<cr>'] = require('telescope-undo.actions').restore,
+              },
+            },
+          },
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
+          },
+          jsonfly = {
+            mirror = true,
+            layout_strategy = 'vertical',
+            layout_config = {
+              mirror = true,
+              preview_height = 0.65,
+              prompt_position = 'top',
+            },
+            key_exact_length = true,
           },
         },
       }
@@ -71,6 +88,8 @@ return {
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'jsonfly')
+      pcall(require('telescope').load_extension, 'undo')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -89,7 +108,8 @@ return {
       vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch existing buffers' })
       vim.keymap.set('n', '<leader>ss', builtin.lsp_document_symbols, { desc = '[S]earch [S]ymbols' })
       vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = '[S]earch [J]umps' })
-      vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>')
+      vim.keymap.set('n', '<leader>su', '<cmd>Telescope undo<cr>')
+      vim.keymap.set('n', '<leader>sj', '<cmd>Telescope jsonfly<cr>', { desc = '[s]earch [j]son' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()

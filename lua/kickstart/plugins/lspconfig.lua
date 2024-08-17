@@ -191,6 +191,9 @@ return {
             },
           },
         },
+        jsonls = {
+          filetypes = { 'json' },
+        },
         sqlls = { 'sql', 'mysql' },
         omnisharp = {
           enable_roslyn_analysers = true,
