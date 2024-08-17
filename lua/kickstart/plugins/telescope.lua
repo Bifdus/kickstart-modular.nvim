@@ -73,14 +73,13 @@ return {
             require('telescope.themes').get_dropdown(),
           },
           jsonfly = {
-            mirror = true,
-            layout_strategy = 'vertical',
+            subkeys_display = 'waterfall',
+            layout_strategy = 'horizontal',
             layout_config = {
-              mirror = true,
-              preview_height = 0.65,
+              mirror = false,
               prompt_position = 'top',
+              preview_width = 0.4,
             },
-            key_exact_length = true,
           },
         },
       }
