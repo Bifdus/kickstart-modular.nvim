@@ -12,11 +12,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagn
 vim.keymap.set('n', '<leader>qq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
+-- Disable in lazygit and ignore key in which key
 vim.keymap.set('t', '<Esc><Esc>', function()
   local buf_name = vim.api.nvim_buf_get_name(0)
   if buf_name:match 'lazygit' then
