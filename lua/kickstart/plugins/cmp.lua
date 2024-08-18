@@ -62,6 +62,42 @@ return {
         mapping = cmp.mapping.preset.insert {
           -- Select the [n]ext item
           ['<C-n>'] = cmp.mapping.select_next_item(),
+
+          -- Disable default mapping for down and up
+          ['<Down>'] = cmp.mapping {
+            i = function(fallback)
+              if cmp.visible() then
+                cmp.close()
+              end
+              fallback()
+            end,
+          },
+
+          ['<Up>'] = cmp.mapping {
+            i = function(fallback)
+              if cmp.visible() then
+                cmp.close()
+              end
+              fallback()
+            end,
+          },
+          ['<Left>'] = cmp.mapping {
+            i = function(fallback)
+              if cmp.visible() then
+                cmp.close()
+              end
+              fallback()
+            end,
+          },
+
+          ['<Right>'] = cmp.mapping {
+            i = function(fallback)
+              if cmp.visible() then
+                cmp.close()
+              end
+              fallback()
+            end,
+          },
           -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
 
