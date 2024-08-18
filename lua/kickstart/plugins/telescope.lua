@@ -53,7 +53,6 @@ return {
         -- },
         defaults = {
           path_display = { 'truncate' },
-          layout_config = { preview_width = 0.6 },
         },
         pickers = {
           find_help = {
