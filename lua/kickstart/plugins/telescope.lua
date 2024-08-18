@@ -53,6 +53,7 @@ return {
         -- },
         defaults = {
           path_display = { 'truncate' },
+          layout_config = { preview_width = 0.6 },
         },
         pickers = {
           find_help = {
@@ -117,8 +118,8 @@ return {
           winblend = 10,
           previewer = false,
           layout_config = {
-            width = 0.7,
-            height = 0.6,
+            width = 0.87,
+            height = 0.80,
           },
         })
       end, { desc = '[/] Fuzzily search in current buffer' })

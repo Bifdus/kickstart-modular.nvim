@@ -17,7 +17,14 @@ vim.keymap.set('n', '<leader>qq', vim.diagnostic.setloclist, { desc = 'Open diag
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc><Esc>', function()
+  local buf_name = vim.api.nvim_buf_get_name(0)
+  if buf_name:match 'lazygit' then
+    return '<Esc>'
+  else
+    return '<C-\\><C-n>'
+  end
+end, { expr = true, nowait = true, desc = 'which_key_ignore' })
 
 --checking for key mappings
 vim.api.nvim_set_keymap('n', '<C-w>s', ':vsplit<CR>', { noremap = true, silent = true })
