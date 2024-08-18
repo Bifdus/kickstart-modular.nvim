@@ -22,6 +22,8 @@ vim.keymap.set('t', '<Esc><Esc>', function()
   end
 end, { expr = true, nowait = true, desc = 'which_key_ignore' })
 
+-- Test Tab toggle
+vim.api.nvim_set_keymap('n', '<leader>tt', ':lua require("custom.functions.utils").toggle_open_mode()<CR>', { noremap = true, silent = true })
 --checking for key mappings
 vim.api.nvim_set_keymap('n', '<C-w>s', ':vsplit<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w>v', ':split<CR>', { noremap = true, silent = true })
@@ -82,6 +84,17 @@ vim.keymap.set('n', '<leader>is', ':ISwapWith<CR>', { noremap = true, silent = t
 vim.keymap.set('n', '<leader>in', ':ISwapNodeWith<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>ih', ':ISwapNode<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>io', ':ISwap<CR>', { noremap = true, silent = true })
+
+-- Spectre find and replace
+vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
+  desc = 'Toggle Spectre',
+})
+vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+  desc = 'Search current word',
+})
+vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+  desc = 'Search on current file',
+})
 
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`
