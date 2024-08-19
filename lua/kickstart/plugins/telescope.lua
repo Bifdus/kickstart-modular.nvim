@@ -66,6 +66,7 @@ return {
             mappings = {
               i = {
                 ['<cr>'] = require('telescope-undo.actions').restore,
+                ['<C-y>'] = require('telescope-undo.actions').yank_deletions,
               },
             },
           },
