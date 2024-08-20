@@ -11,13 +11,7 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    {
-      '\\',
-      function()
-        require('neo-tree.command').execute { toggle = true, dir = vim.uv.cwd() }
-      end,
-      { desc = 'NeoTree reveal' },
-    },
+    { '\\', '<CMD>Neotree reveal<CR>', { desc = 'NeoTree reveal', silent = true } },
   },
   opts = {
     filesystem = {
