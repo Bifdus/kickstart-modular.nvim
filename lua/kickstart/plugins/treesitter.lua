@@ -61,9 +61,13 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter', lazy = true },
     config = function()
       require('treesitter-context').setup {
-        multiline_threshold = 1,
-        throttle = true,
+        max_lines = 15,
+        trim_scope = 'inner',
+        -- multiline_threshold = 1,
+        -- throttle = true,
       }
+
+      vim.keymap.set('n', '<leader>tc', '<CMD>TSContextToggle<CR>', { desc = '[t]oggle treesitter [c]ontext', silent = true })
     end,
   },
   {
