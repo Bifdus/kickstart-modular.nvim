@@ -195,7 +195,7 @@ return {
         jsonls = {
           filetypes = { 'json' },
         },
-        sqlls = { 'sql', 'mysql' },
+        sqlls = { filetypes = { 'sql', 'mysql' } },
         omnisharp = {
           enable_roslyn_analysers = true,
           enable_import_completion = true,
