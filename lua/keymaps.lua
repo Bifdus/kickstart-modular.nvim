@@ -22,8 +22,6 @@ vim.keymap.set('t', '<Esc><Esc>', function()
   end
 end, { expr = true, nowait = true, desc = 'which_key_ignore' })
 
--- Test Tab toggle
-vim.api.nvim_set_keymap('n', '<leader>tt', ':lua require("custom.functions.utils").toggle_open_mode()<CR>', { noremap = true, silent = true })
 --checking for key mappings
 vim.api.nvim_set_keymap('n', '<C-w>s', ':vsplit<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w>v', ':split<CR>', { noremap = true, silent = true })
