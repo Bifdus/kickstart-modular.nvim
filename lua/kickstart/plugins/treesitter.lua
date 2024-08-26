@@ -75,6 +75,26 @@ return {
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
+      require('treesitter-context').setup(opts.context)
+
+      require('rainbow-delimiters.setup').setup {
+        strategy = {
+          -- [''] = rainbow_delimiters.strategy['global'],
+          -- commonlisp = rainbow_delimiters.strategy['local'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          latex = 'rainbow-blocks',
+          tsx = 'rainbow-parens',
+        },
+        highlight = {
+          'EldritchBlue',
+          'EldritchPink',
+          'EldritchPurple',
+          'EldritchGreen',
+        },
+        blacklist = { 'c', 'cpp' },
+      }
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
