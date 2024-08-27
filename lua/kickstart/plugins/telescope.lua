@@ -31,15 +31,15 @@ return {
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-      {
-        {
-          'ahmedkhalf/project.nvim', -- NOTE: add projects with :AddProject
-          event = 'VeryLazy',
-          config = function()
-            require('project_nvim').setup { manual_mode = true, silent_chdir = false, scope_chdir = 'win' }
-          end,
-        },
-      },
+      -- {
+      --   {
+      --     'ahmedkhalf/project.nvim', -- NOTE: add projects with :AddProject
+      --     event = 'VeryLazy',
+      --     config = function()
+      --       require('project_nvim').setup { manual_mode = true, silent_chdir = false, scope_chdir = 'win' }
+      --     end,
+      --   },
+      -- },
     },
     config = function()
       require('telescope').setup {
@@ -52,7 +52,7 @@ return {
         --   },
         -- },
         defaults = {
-          path_display = { 'truncate' },
+          path_display = { 'absolute' },
         },
         pickers = {
           find_help = {
@@ -102,8 +102,8 @@ return {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sR', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>sr', builtin.lsp_references, { desc = '[S]earch [r]eferences' })
-      vim.keymap.set('n', '<leader>sr', builtin.lsp_incoming_calls, { desc = '[S]earch [i]ncoming calls' })
-      vim.keymap.set('n', '<leader>sr', builtin.lsp_outgoing_calls, { desc = '[S]earch [o]utgoing calls' })
+      -- vim.keymap.set('n', '<leader>si', builtin.lsp_incoming_calls, { desc = '[S]earch [i]ncoming calls' })
+      -- vim.keymap.set('n', '<leader>so', builtin.lsp_outgoing_calls, { desc = '[S]earch [o]utgoing calls' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch existing buffers' })
       vim.keymap.set('n', '<leader>ss', builtin.lsp_document_symbols, { desc = '[S]earch [S]ymbols' })
