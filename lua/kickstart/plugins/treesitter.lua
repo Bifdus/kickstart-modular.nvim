@@ -31,6 +31,7 @@ return {
         'vimdoc',
         'regex',
         'latex',
+        'markdown_inline',
       },
       auto_install = true,
       highlight = {
