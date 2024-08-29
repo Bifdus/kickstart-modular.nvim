@@ -7,6 +7,7 @@ return {
       'nvim-treesitter/playground',
       'HiPhish/rainbow-delimiters.nvim',
       { 'nvim-treesitter/nvim-treesitter-context', lazy = true, event = 'VeryLazy' },
+      'nvim-treesitter/nvim-treesitter-textobjects',
     },
     opts = {
       ensure_installed = {
@@ -62,9 +63,87 @@ return {
           show_help = '?',
         },
       },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ['aa'] = '@parameter.outer',
+            ['ia'] = '@parameter.inner',
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ac'] = '@call.outer',
+            ['ic'] = '@call.inner',
+            ['al'] = '@loop.outer',
+            ['il'] = '@loop.inner',
+            ['in'] = '@number.inner',
+            ['an'] = '@number.inner', -- There is no number.outer
+            ['ib'] = '@block.inner',
+            ['ab'] = '@block.outer',
+            ['ir'] = '@return.inner',
+            ['ar'] = '@return.outer',
+            ['iv'] = '@conditional.inner',
+            ['av'] = '@conditional.outer',
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true, -- whether to set jumps in the jumplist
+          goto_next_start = {
+            [']a'] = '@parameter.inner',
+            [']m'] = '@function.outer',
+            [']]'] = '@class.outer',
+            [']l'] = '@loop.outer',
+            [']b'] = '@block.outer',
+            [']r'] = '@return.outer',
+            [']n'] = '@number.inner',
+            [']v'] = '@conditional.inner',
+          },
+          goto_next_end = {
+            [']A'] = '@parameter.outer',
+            [']M'] = '@function.outer',
+            [']['] = '@class.outer',
+            [']L'] = '@loop.outer',
+            [']B'] = '@block.outer',
+            [']R'] = '@return.outer',
+            [']N'] = '@number.inner',
+            [']V'] = '@conditional.inner',
+          },
+          goto_previous_start = {
+            ['[a'] = '@parameter.inner',
+            ['[m'] = '@function.outer',
+            ['[['] = '@class.outer',
+            ['[l'] = '@loop.outer',
+            ['[b'] = '@block.outer',
+            ['[r'] = '@return.outer',
+            ['[n'] = '@number.inner',
+            ['[v'] = '@conditional.outer',
+          },
+          goto_previous_end = {
+            ['[A'] = '@parameter.outer',
+            ['[M'] = '@function.outer',
+            ['[]'] = '@class.outer',
+            ['[L'] = '@loop.outer',
+            ['[B'] = '@block.outer',
+            ['[R'] = '@return.outer',
+            ['[N'] = '@number.inner',
+            ['[V'] = '@conditional.outer',
+          },
+        },
+        swap = {
+          enable = true,
+          swap_previous = {
+            ['<leader>A'] = '@parameter.inner',
+          },
+          swap_next = {
+            ['<leader>a'] = '@parameter.inner',
+          },
+        },
+      },
       context = {
         enable = true,
-        max_lines = 15,
+        max_lines = 1,
         trim_scope = 'inner',
       },
       -- Autoinstall languages that are not installed
