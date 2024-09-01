@@ -102,11 +102,6 @@ return {
     },
   },
   -- Better typescript lsp
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {},
-  },
   -- Python venv selector
   {
     'linux-cultist/venv-selector.nvim',
