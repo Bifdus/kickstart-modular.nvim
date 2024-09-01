@@ -3,7 +3,6 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     dependencies = {
-      'windwp/nvim-ts-autotag',
       'nvim-treesitter/playground',
       'HiPhish/rainbow-delimiters.nvim',
       { 'nvim-treesitter/nvim-treesitter-context', lazy = true, event = 'VeryLazy' },

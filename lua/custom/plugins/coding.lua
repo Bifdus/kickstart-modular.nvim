@@ -178,4 +178,16 @@ return {
       { '=P', '<Plug>(YankyPutBeforeFilter)', desc = 'Put Before Applying a Filter' },
     },
   },
+  {
+    'windwp/nvim-ts-autotag',
+    ft = {
+      'javascript',
+      'javascriptreact',
+      'typescript',
+      'typescriptreact',
+    },
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end,
+  },
 }
