@@ -140,24 +140,55 @@ return {
   -- Returns you to last place in file when reopening
   { 'ethanholz/nvim-lastplace', opts = {} },
   -- Highlight colors in place
+  -- {
+  --   'brenoprata10/nvim-highlight-colors',
+  --   event = { 'BufReadPre', 'BufNewFile' },
+  --   opts = {
+  --     enable_short_hex = false,
+  --   },
+  --   config = function(_, opts)
+  --     require('nvim-highlight-colors').setup(opts)
+  --   end,
+  --   keys = {
+  --     {
+  --       '<leader>tC',
+  --       function()
+  --         require('nvim-highlight-colors').toggle()
+  --       end,
+  --       desc = '[T]oggle highlight [c]olors',
+  --     },
+  --   },
+  -- },
   {
-    'brenoprata10/nvim-highlight-colors',
-    event = { 'BufReadPre', 'BufNewFile' },
-    opts = {
-      enable_short_hex = false,
-    },
-    config = function(_, opts)
-      require('nvim-highlight-colors').setup(opts)
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup {
+        '*',
+        user_default_options = {
+          RGB = true,
+          RRGGBB = true,
+          names = true,
+          RRGGBBAA = true,
+          rgb_fn = true,
+          hsl_fn = true,
+          css = true,
+          css_fn = true,
+          tailwind = true,
+          mode = 'background',
+        },
+        lua = {
+          -- This regex matches `--primary: 10, 50%, 25%` and converts it to `hsl(10, 50%, 25%)`
+          custom_patterns = {
+            -- Match CSS variable format like `--primary: 10, 50%, 25%`
+            [ [[--[\w-]+:\s*([\d.]+),\s*([\d.]+)%,\s*([\d.]+)%]] ] = function(c)
+              -- Extract the HSL components
+              local h, s, l = c:match '(%d+%.?%d*),%s*(%d+%.?%d*)%%,%s*(%d+%.?%d*)%%'
+              return h and 'hsl(' .. h .. ', ' .. s .. '%, ' .. l .. '%)'
+            end,
+          },
+        },
+      }
     end,
-    keys = {
-      {
-        '<leader>tC',
-        function()
-          require('nvim-highlight-colors').toggle()
-        end,
-        desc = '[T]oggle highlight [c]olors',
-      },
-    },
   },
   -- Swap textobjects
   {
