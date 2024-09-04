@@ -140,7 +140,8 @@ return {
   -- Returns you to last place in file when reopening
   { 'ethanholz/nvim-lastplace', opts = {} },
   {
-    'brenoprata10/nvim-highlight-colors',
+    'Bifdus/nvim-highlight-colors',
+    branch = 'shadcn-css-vars', -- This is the regexp branch, use this for the new version
     config = function()
       require('nvim-highlight-colors').setup {
         ---Render style
