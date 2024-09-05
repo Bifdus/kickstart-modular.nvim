@@ -1,11 +1,6 @@
 return {
-  -- Smooth Scrolling
   -- animations
   {
-    'karb94/neoscroll.nvim',
-    config = function()
-      require('neoscroll').setup {
-        easing = 'quadratic',
     'echasnovski/mini.animate',
     event = 'VeryLazy',
     opts = function(_, opts)
