@@ -1,10 +1,16 @@
 return {
   -- Smooth Scrolling
+  -- animations
   {
     'karb94/neoscroll.nvim',
     config = function()
       require('neoscroll').setup {
         easing = 'quadratic',
+    'echasnovski/mini.animate',
+    event = 'VeryLazy',
+    opts = function(_, opts)
+      opts.scroll = {
+        enable = false,
       }
     end,
   },
@@ -170,6 +176,8 @@ return {
         ---Set custom colors
         ---Label must be properly escaped with '%' to adhere to `string.gmatch`
         --- :help string.gmatch
+        exclude_filetypes = { 'php', 'python', 'c', 'cpp' },
+        exclude_buftypes = { 'terminal', 'nofile', 'quickfix', 'prompt' },
       }
     end,
   },
