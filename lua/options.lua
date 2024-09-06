@@ -3,6 +3,13 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- sets filetype to bigfile when larger than 1.5mb
+-- disables some plugins to help with speed
+vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+
+-- configure lazygit theme based on active colorscheme
+vim.g.lazygit_config = true
+
 vim.opt.termguicolors = true
 
 -- Make line numbers default
@@ -87,8 +94,37 @@ vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.breakindent = true
 vim.opt.backspace = { 'start', 'eol', 'indent' }
+vim.opt.smoothscroll = true -- enable smooth scrolling
 --vim.opt.splitkeep = 'cursor'
+-- remove command bar
+vim.opt.laststatus = 0
+vim.opt.showcmd = false
 vim.opt.cmdheight = 0
+vim.opt.helpheight = 0 -- Disable help window resizing
+
+vim.opt.listchars = {
+  tab = '  ',
+  extends = '⟫',
+  precedes = '⟪',
+  conceal = '',
+  nbsp = '␣',
+  trail = '·',
+}
+vim.opt.fillchars = {
+  foldopen = '', -- 󰅀 
+  foldclose = '', -- 󰅂 
+  fold = ' ', -- ⸱
+  foldsep = ' ',
+  diff = '╱',
+  eob = ' ',
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft = '┫',
+  vertright = '┣',
+  verthoriz = '╋',
+}
 
 -- Set relative line numbers
 vim.o.relativenumber = true
