@@ -5,7 +5,6 @@ return {
     dependencies = {
       'nvim-treesitter/playground',
       'HiPhish/rainbow-delimiters.nvim',
-      { 'nvim-treesitter/nvim-treesitter-context', lazy = true, event = 'VeryLazy' },
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
@@ -142,11 +141,6 @@ return {
           },
         },
       },
-      context = {
-        enable = true,
-        max_lines = 1,
-        trim_scope = 'inner',
-      },
       -- Autoinstall languages that are not installed
     },
     config = function(_, opts)
@@ -156,7 +150,6 @@ return {
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
-      require('treesitter-context').setup(opts.context)
 
       require('rainbow-delimiters.setup').setup {
         strategy = {
