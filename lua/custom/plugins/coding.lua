@@ -288,23 +288,18 @@ return {
       require('zen-mode').setup {
         window = {
           backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-          width = 0.8, -- width of the Zen window
+          width = function()
+            local min_width = 0.4
+            local max_width = math.floor(vim.o.columns * 0.70)
+            return math.max(min_width, max_width)
+          end,
           height = 1, -- height of the Zen window
-          -- by default, no options are changed for the Zen window
-          -- uncomment any of the options below, or add other vim.wo options you want to apply
           options = {
-            -- signcolumn = "no", -- disable signcolumn
-            -- number = false, -- disable number column
-            -- relativenumber = false, -- disable relative numbers
-            -- cursorline = false, -- disable cursorline
-            -- cursorcolumn = false, -- disable cursor column
-            -- foldcolumn = "0", -- disable fold column
-            -- list = false, -- disable whitespace characters
+            relativenumber = true, -- disable relative numbers
           },
         },
+
         plugins = {
-          -- disable some global vim options (vim.o...)
-          -- comment the lines to not apply the options
           options = {
             enabled = true,
             ruler = false, -- disables the ruler text in the cmd line area
@@ -315,12 +310,12 @@ return {
           --   enabled = EcoVim.plugins.zen.alacritty_enabled or false,
           --   font = '14', -- font size
           -- },
+          neotree = { enabled = true },
         },
         -- callback where you can add custom code when the Zen window opens
         on_open = function()
           require('gitsigns.actions').toggle_current_line_blame()
           vim.cmd 'IBLDisable'
-          vim.opt.relativenumber = false
           vim.opt.signcolumn = 'no'
           require('gitsigns.actions').refresh()
         end,
