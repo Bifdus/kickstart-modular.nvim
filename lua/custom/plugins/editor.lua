@@ -1,14 +1,4 @@
 return {
-  -- animations
-  {
-    'echasnovski/mini.animate',
-    event = 'VeryLazy',
-    opts = function(_, opts)
-      opts.scroll = {
-        enable = false,
-      }
-    end,
-  },
   -- Improved jumps
   {
     'folke/flash.nvim',
@@ -143,12 +133,25 @@ return {
   { 'ethanholz/nvim-lastplace', opts = {} },
   {
     'uga-rosa/ccc.nvim',
-    config = function()
-      require('ccc').setup {
+    opts = {
+      highlighter = {
         auto_enable = true,
-        lsp = true
-      }
-    end,
+        lsp = true,
+        filetypes = {
+          'html',
+          'lua',
+          'css',
+          'scss',
+          'sass',
+          'less',
+          'stylus',
+          'javascript',
+          'tmux',
+          'typescript',
+        },
+        excludes = { 'lazy', 'mason', 'help', 'neo-tree' },
+      },
+    },
   },
   -- Swap textobjects
   {
