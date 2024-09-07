@@ -87,7 +87,7 @@ return {
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
-    enabled = not vim.g.started_by_firenvim,
+    enabled = true,
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       'MunifTanjim/nui.nvim',
@@ -159,6 +159,16 @@ return {
             },
           },
           view = 'mini',
+        },
+        {
+          filter = {
+            event = 'notify',
+            any = {
+              { find = '# Config Change Detected. Reloading' },
+              { find = '/warn' },
+            },
+          },
+          opts = { skip = true },
         },
       },
     },
