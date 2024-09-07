@@ -119,6 +119,17 @@ return {
             map('<leader>lh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch Source/Header')
           end
 
+          if client and client.name == 'tailwindcss' then
+            -- Test Tailwind
+            local opts = { noremap = true, silent = true }
+            map('n', '<leader>Tc', '<cmd>TailwindConcealToggle<CR>', opts)
+            map('n', '<leader>Th', '<cmd>TailwindColorToggle<CR>', opts)
+            map('n', '<leader>Ts', '<cmd>TailwindSort<CR>', opts)
+            map('x', '<leader>s', '<cmd>TailwindSortSelection<CR>', opts)
+            map('n', '<leader>tn', '<cmd>TailwindNextClass<CR>', opts)
+            map('n', '<leader>tN', '<cmd>TailwindPrevClass<CR>', opts)
+          end
+
           -- The following autocommand is used to enable inlay hints in your
           -- The following code creates a keymap to toggle inlay hints in your
           -- code, if the language server you are using supports them
