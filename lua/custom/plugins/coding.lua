@@ -103,7 +103,16 @@ return {
   },
   -- Quick log lines with smart variable identification
 
-  { 'chrisgrieser/nvim-chainsaw', opts = {} },
+  {
+    'chrisgrieser/nvim-chainsaw',
+    opts = {
+      logStatements = {
+        variableLog = {
+          nvim_lua = 'vim.notify("%s %s", vim.inspect(%s))',
+        },
+      },
+    },
+  },
   -- Comments, with context
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
