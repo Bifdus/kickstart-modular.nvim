@@ -69,8 +69,8 @@ return {
           lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
+            ['ap'] = '@parameter.outer',
+            ['ip'] = '@parameter.inner',
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
             ['ac'] = '@call.outer',
@@ -79,12 +79,12 @@ return {
             ['il'] = '@loop.inner',
             ['in'] = '@number.inner',
             ['an'] = '@number.inner', -- There is no number.outer
-            ['ib'] = '@block.inner',
             ['ab'] = '@block.outer',
-            ['ir'] = '@return.inner',
+            ['ib'] = '@block.inner',
             ['ar'] = '@return.outer',
-            ['iv'] = '@conditional.inner',
+            ['ir'] = '@return.inner',
             ['av'] = '@conditional.outer',
+            ['iv'] = '@conditional.inner',
           },
         },
         move = {
@@ -170,7 +170,6 @@ return {
         blacklist = { 'c', 'cpp' },
       }
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      vim.keymap.set('n', '<leader>tc', '<CMD>TSContextToggle<CR>', { desc = '[t]oggle treesitter [c]ontext', silent = true })
       vim.keymap.set('n', '<leader>tH', '<CMD>TSPlaygroundToggle<CR>', { desc = '[t]oggle treesitter playground [h]ighlight groups', silent = true })
     end,
   },
