@@ -101,6 +101,9 @@ return {
       },
     },
   },
+  -- Quick log lines with smart variable identification
+
+  { 'chrisgrieser/nvim-chainsaw', opts = {} },
   -- Comments, with context
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
