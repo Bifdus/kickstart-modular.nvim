@@ -1,5 +1,17 @@
 return {
-  { -- Highlight, edit, and navigate code
+  -----------------------------------------------------------------------------
+  -- Vimscript syntax / highlight pugin
+  {
+    'fei6409/log-highlight.nvim',
+    config = function()
+      require('log-highlight').setup {
+        extension = { 'log', 'txt' },
+      }
+    end,
+  },
+  -----------------------------------------------------------------------------
+  -- Highlight, edit, navigate code
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     dependencies = {
