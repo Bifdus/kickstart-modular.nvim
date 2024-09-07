@@ -18,6 +18,15 @@ return {
       lang = 'python3',
     },
   },
+  {
+    'roobert/f-string-toggle.nvim',
+    config = function()
+      require('f-string-toggle').setup {
+        key_binding = '<leader>f',
+        key_binding_desc = 'Toggle f-string',
+      }
+    end,
+  },
   -- Support for D2 Language
   { 'terrastruct/d2-vim', ft = { 'd2' } },
   -- Git UI
@@ -84,11 +93,11 @@ return {
         '<cmd>Trouble symbols toggle focus=false<CR>',
         desc = 'Symbols (Trouble)',
       },
-      {
-        '<leader>cl',
-        '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
-        desc = 'LSP Definitions / references / ... (Trouble)',
-      },
+      -- {
+      --   '<leader>cl',
+      --   '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
+      --   desc = 'LSP Definitions / references / ... (Trouble)',
+      -- },
       {
         '<leader>xL',
         '<cmd>Trouble loclist toggle<CR>',

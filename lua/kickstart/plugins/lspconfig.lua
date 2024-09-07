@@ -80,6 +80,7 @@ return {
           map('K', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
           map('gh', '<cmd>Lspsaga lsp_finder<CR>', 'LSP Finder')
           map('gp', '<cmd>Lspsaga peek_definition<CR>', 'Peek Definition')
+          map('go', '<cmd>Lspsaga outline<CR>', 'Goto outline')
 
           -- Telescope mappings
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
