@@ -8,19 +8,13 @@ return {
       modes = {
         char = {
           enabled = true,
-          char_actions = function(motion)
-            return {
-              [','] = 'next',
-              [';'] = 'prev',
-              [motion:lower()] = 'next',
-              [motion:upper()] = 'prev',
-            }
-          end,
         },
       },
     },
     -- stylua: ignore
     keys = {
+      {';', mode ={'n', 'x', 'o'}, false},
+      {',', mode ={'n', 'x', 'o'}, false},
       {
         '?',
         mode = { 'n', 'x', 'o' },

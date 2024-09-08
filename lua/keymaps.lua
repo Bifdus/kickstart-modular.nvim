@@ -8,6 +8,51 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Disable default s functionality as it conflicts with mini surround
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 vim.keymap.set({ 'n', 'x' }, 'S', '<Nop>')
+-- Janky fix, couldn't get flash unbinds to work
+vim.keymap.set({ 'n', 'x', 'o' }, ';', '<Nop>')
+vim.keymap.set({ 'n', 'x', 'o' }, ',', '<Nop>')
+
+-- Source nvim file to reload without quitting
+vim.keymap.set('n', '<leader>sv', function()
+  vim.cmd [[
+      update $MYVIMRC
+      source $MYVIMRC
+    ]]
+  vim.notify('Nvim config successfully reloaded!', vim.log.levels.INFO, { title = 'nvim-config' })
+end, {
+  silent = true,
+  desc = 'source vim init.lua',
+})
+
+-- Reselect the text that has just been pasted, see also https://stackoverflow.com/a/4317090/6064933.
+vim.keymap.set('n', '<leader>v', "printf('`[%s`]', getregtype()[0])", {
+  expr = true,
+  desc = 'reselect last pasted area',
+})
+
+-- Always use very magic mode for searching
+vim.keymap.set('n', '/', [[/\v]])
+
+-- Change text without putting it into the vim register,
+-- see https://stackoverflow.com/q/54255/6064933
+vim.keymap.set('n', 'c', '"_c')
+vim.keymap.set('n', 'C', '"_C')
+vim.keymap.set('n', 'cc', '"_cc')
+vim.keymap.set('x', 'c', '"_c')
+
+-- Remove trailing whitespace characters
+vim.keymap.set('n', '<leader><space>', '<cmd>StripTrailingWhitespace<cr>', { desc = 'remove trailing space' })
+
+-- Replace visual selection with text in register, but not contaminate the register,
+-- see also https://stackoverflow.com/q/10723700/6064933.
+vim.keymap.set('x', 'p', '"_c<Esc>p')
+
+-- insert semicolon at the end of line when in insert mode
+vim.keymap.set('i', '<A-;>', '<Esc>miA;<Esc>`ii')
+
+-- Moves through display-lines, unless count is provided
+vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = 'Down' })
+vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = 'Up' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -26,15 +71,21 @@ vim.keymap.set('t', '<Esc><Esc>', function()
   end
 end, { expr = true, nowait = true, desc = 'which_key_ignore' })
 
+-- TODO: Configure Lazygit current file history (see lazyvim.lazygit)
+vim.keymap.set('n', '<leader>lf', function()
+  local git_path = vim.api.nvim_buf_get_name(0)
+  require 'custom.functions.lazygit' { args = { '-f', vim.trim(git_path) } }
+end, { desc = 'Lazygit Current File History' })
+
 --checking for key mappings
 vim.api.nvim_set_keymap('n', '<C-w>s', ':vsplit<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w>v', ':split<CR>', { noremap = true, silent = true })
 
 -- Repurpose hjkl for window switching
-vim.keymap.set('n', 'h', '<c-w>h', { noremap = true })
-vim.keymap.set('n', 'l', '<c-w>l', { noremap = true })
-vim.keymap.set('n', 'k', '<c-w>k', { noremap = true })
-vim.keymap.set('n', 'j', '<c-w>j', { noremap = true })
+vim.keymap.set('n', 'l', '<c-w>h', { noremap = true })
+vim.keymap.set('n', 'h', '<c-w>l', { noremap = true })
+vim.keymap.set('n', 'j', '<c-w>k', { noremap = true })
+vim.keymap.set('n', 'k', '<c-w>j', { noremap = true })
 
 -- Shift tab to dedent
 vim.keymap.set('i', '<S-Tab>', '<C-d>', { noremap = true, silent = true })

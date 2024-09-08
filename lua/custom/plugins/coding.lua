@@ -238,8 +238,8 @@ return {
       require('venv-selector').setup()
     end,
     keys = {
-      { '<leader>vs', '<cmd>VenvSelect<cr>' },
-      { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
+      { '<leader>cvs', '<cmd>VenvSelect<cr>' },
+      { '<leader>cvc', '<cmd>VenvSelectCached<cr>' },
     },
   },
   -- Support for latex
