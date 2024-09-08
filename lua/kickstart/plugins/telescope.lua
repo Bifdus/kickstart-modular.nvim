@@ -15,8 +15,36 @@ return {
       'Myzel394/jsonfly.nvim',
       'debugloop/telescope-undo.nvim',
       { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
+      {
+        'johmsalas/text-case.nvim',
+        -- lazy = false,
+        config = function()
+          require('textcase').setup {
+            -- Set `default_keymappings_enabled` to false if you don't want automatic keymappings to be registered.
+            default_keymappings_enabled = true,
+            prefix = 'gu',
+            substitude_command_name = nil,
+            enabled_methods = {
+              'to_upper_case',
+              'to_lower_case',
+              'to_camel_case',
+              'to_snake_case',
+              -- "to_dash_case",
+              'to_title_dash_case',
+              'to_constant_case',
+              'to_dot_case',
+              'to_phrase_case',
+              'to_pascal_case',
+              'to_title_case',
+              'to_path_case',
+              'to_upper_phrase_case',
+              'to_lower_phrase_case',
+            },
+          }
+        end,
+        cmd = { 'TextCaseOpenTelescope', 'Subs' },
+        keys = { 'gu' },
+      },
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
@@ -60,6 +88,7 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'jsonfly')
       pcall(require('telescope').load_extension, 'undo')
+      pcall(require('telescope').load_extension 'textcase')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -80,6 +109,9 @@ return {
       vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = '[S]earch [J]umps' })
       vim.keymap.set('n', '<leader>su', '<cmd>Telescope undo<cr>')
       vim.keymap.set('n', '<leader>sj', '<cmd>Telescope jsonfly<cr>', { desc = '[s]earch [j]son' })
+
+      vim.api.nvim_set_keymap('n', 'gu.', '<cmd>TextCaseOpenTelescope<CR>', { desc = 'Telescope' })
+      vim.api.nvim_set_keymap('v', 'gu.', '<cmd>TextCaseOpenTelescope<CR>', { desc = 'Telescope' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
