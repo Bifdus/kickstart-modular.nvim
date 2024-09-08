@@ -55,7 +55,7 @@ return {
       -- },
       {
         '<leader>tf',
-        mode = { 'c' },
+        mode = { 'n' },
         function()
           require('flash').toggle()
         end,
@@ -169,13 +169,13 @@ return {
     end,
   },
   -- Switch between windows easily
-  {
-    'yorickpeterse/nvim-window',
-    keys = {
-      { '<leader><space>', "<cmd>lua require('nvim-window').pick()<cr>", desc = 'nvim-window: Jump to window' },
-    },
-    config = true,
-  },
+  -- {
+  --   'yorickpeterse/nvim-window',
+  --   keys = {
+  --     { '<leader><space>', "<cmd>lua require('nvim-window').pick()<cr>", desc = 'nvim-window: Jump to window' },
+  --   },
+  --   config = true,
+  -- },
   -- Auto save sessions
   {
     'rmagatti/auto-session',

@@ -30,17 +30,17 @@ end, { expr = true, nowait = true, desc = 'which_key_ignore' })
 vim.api.nvim_set_keymap('n', '<C-w>s', ':vsplit<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w>v', ':split<CR>', { noremap = true, silent = true })
 
+-- Repurpose hjkl for window switching
+vim.keymap.set('n', 'h', '<c-w>h', { noremap = true })
+vim.keymap.set('n', 'l', '<c-w>l', { noremap = true })
+vim.keymap.set('n', 'k', '<c-w>k', { noremap = true })
+vim.keymap.set('n', 'j', '<c-w>j', { noremap = true })
+
 -- Shift tab to dedent
 vim.keymap.set('i', '<S-Tab>', '<C-d>', { noremap = true, silent = true })
 
 -- save file
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
-
--- Testing new keymaps
-vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
-vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
 
 -- Quit
 vim.keymap.set('n', '<leader>qa', '<cmd>qa<cr>', { desc = 'Quit All' })
