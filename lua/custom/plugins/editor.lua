@@ -29,14 +29,14 @@ return {
         end,
         desc = 'Flash',
       },
-      {
-        'S',
-        mode = { 'n', 'x', 'o' },
-        function()
-          require('flash').treesitter_search()
-        end,
-        desc = 'Flash Treesitter',
-      },
+      -- {
+      --   'T',
+      --   mode = { 'n', 'x', 'o' },
+      --   function()
+      --     require('flash').treesitter_search()
+      --   end,
+      --   desc = 'Flash Treesitter',
+      -- },
       {
         'r',
         mode = 'o',
@@ -45,14 +45,14 @@ return {
         end,
         desc = 'Remote Flash',
       },
-      {
-        'R',
-        mode = { 'o', 'x' },
-        function()
-          require('flash').treesitter_search()
-        end,
-        desc = 'Treesitter Search',
-      },
+      -- {
+      --   'R',
+      --   mode = { 'o', 'x' },
+      --   function()
+      --     require('flash').treesitter_search()
+      --   end,
+      --   desc = 'Treesitter Search',
+      -- },
       {
         '<leader>tf',
         mode = { 'c' },

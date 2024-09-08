@@ -39,6 +39,11 @@ return {
           F12 = '<F12>',
         },
       },
+      triggers = {
+        { '<auto>', mode = 'nixsotc' },
+        -- Required as of which key 3 for surround mappings to show
+        { 's', mode = { 'n' } },
+      },
       -- Document existing key chains
       spec = {
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },

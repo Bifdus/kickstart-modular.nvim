@@ -24,7 +24,10 @@ return {
           highlight = 'sh',
           replace = 'sr',
           update_n_lines = 'sn',
+          suffix_last = '',
+          suffix_next = '',
         },
+        search_method = 'cover_or_next',
       }
 
       require('mini.move').setup {
