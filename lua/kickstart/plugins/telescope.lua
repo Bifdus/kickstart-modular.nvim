@@ -53,9 +53,15 @@ return {
           path_display = { 'absolute' },
         },
         pickers = {
-          find_help = {
+          help_tags = {
             mappings = {
-              i = { ['CR'] = 'select_vertical' },
+              i = {
+                ['<CR>'] = function(prompt_bufnr)
+                  local selection = require('telescope.actions.state').get_selected_entry()
+                  require('telescope.actions').close(prompt_bufnr)
+                  vim.cmd('vertical help ' .. selection.value)
+                end,
+              },
             },
           },
         },
