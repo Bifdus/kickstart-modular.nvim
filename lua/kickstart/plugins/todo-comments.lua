@@ -2,9 +2,29 @@
 return {
   {
     'folke/todo-comments.nvim',
-    event = 'VimEnter',
+    lazy = false,
+    event = 'BufEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {},
+    opts = {
+      signs = true,
+      sign_priority = 8,
+      keywords = {
+        FIX = {
+          alt = { 'FIX', 'BUG', 'ISSUE' },
+        },
+        WARN = { alt = { 'WARNING' } },
+        PERF = { alt = { 'OPT', 'OPTIMIZE' } },
+      },
+      highlight = {
+        before = '',
+        keyword = 'wide',
+        after = 'fg',
+        pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
+        comments_only = true,
+        max_line_len = 400,
+        exclude = {},
+      },
+    },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et

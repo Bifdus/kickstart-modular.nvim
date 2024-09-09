@@ -22,7 +22,7 @@ return {
           find = 'sf',
           find_left = 'sF',
           highlight = 'sh',
-          replace = 'sr',
+          replace = 'sc',
           update_n_lines = 'sn',
           suffix_last = '',
           suffix_next = '',
