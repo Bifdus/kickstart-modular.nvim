@@ -40,9 +40,6 @@ vim.keymap.set('n', 'C', '"_C')
 vim.keymap.set('n', 'cc', '"_cc')
 vim.keymap.set('x', 'c', '"_c')
 
--- Remove trailing whitespace characters
-vim.keymap.set('n', '<leader><space>', '<cmd>StripTrailingWhitespace<cr>', { desc = 'remove trailing space' })
-
 -- Replace visual selection with text in register, but not contaminate the register,
 -- see also https://stackoverflow.com/q/10723700/6064933.
 vim.keymap.set('x', 'p', '"_c<Esc>p')
@@ -123,12 +120,14 @@ vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous
 vim.keymap.set('n', '<leader>lr', '<cmd>.lua<CR>', { desc = 'Run current line as Lua code' })
 vim.keymap.set('v', '<leader>lR', [[<Esc><cmd>'<,'>lua<CR>]], { desc = 'Run selected lines as Lua code' })
 
--- Iswap
+-----------------------------------------------------------------------------
+-- Iswap - swap parameters or textobjects
 vim.keymap.set('n', '<leader>is', ':ISwapWith<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>in', ':ISwapNodeWith<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>ih', ':ISwapNode<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>io', ':ISwap<CR>', { noremap = true, silent = true })
 
+-----------------------------------------------------------------------------
 -- Spectre find and replace
 vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
   desc = 'Toggle Spectre',
@@ -140,7 +139,7 @@ vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search(
   desc = 'Search on current file',
 })
 
-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 -- Chainsaw logging Plugin
 
 -- log the name & value of the variable under the cursor
@@ -185,7 +184,7 @@ vim.keymap.set('n', '<leader>clc', '<cmd>lua require("chainsaw").clearLog()<CR>'
 -- remove all log statements created by chainsaw
 vim.keymap.set('n', '<leader>clr', '<cmd>lua require("chainsaw").removeLogs()<CR>', { noremap = true, silent = true, desc = '[c]hainsaw [l]og [r]emove' })
 
-----------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 
 -- Surrounding add to visual select
 vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
