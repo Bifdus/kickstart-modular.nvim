@@ -74,10 +74,6 @@ vim.keymap.set('n', '<leader>lf', function()
   require 'custom.functions.lazygit' { args = { '-f', vim.trim(git_path) } }
 end, { desc = 'Lazygit Current File History' })
 
---checking for key mappings
-vim.api.nvim_set_keymap('n', '<C-w>s', ':vsplit<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-w>v', ':split<CR>', { noremap = true, silent = true })
-
 -- Repurpose hjkl for window switching
 vim.keymap.set('n', 'l', '<c-w>h', { noremap = true })
 vim.keymap.set('n', 'h', '<c-w>l', { noremap = true })
@@ -188,6 +184,18 @@ vim.keymap.set('n', '<leader>clr', '<cmd>lua require("chainsaw").removeLogs()<CR
 
 -- Surrounding add to visual select
 vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+
+-----------------------------------------------------------------------------
+-- Cycle through todo comments
+vim.keymap.set('n', ']t', function()
+  require('todo-comments').jump_next()
+end, { silent = true, desc = 'Next Todo' })
+vim.keymap.set('n', '[t', function()
+  require('todo-comments').jump_prev()
+end, { silent = true, desc = 'Previous Todo' })
+
+-- FIX: - Implement this
+-- vim.keymap.set('n', '[t', "<cmd>lua", { silent = true, desc = 'Telescope TODOS' })
 
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`
