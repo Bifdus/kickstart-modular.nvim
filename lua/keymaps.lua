@@ -196,6 +196,7 @@ end, { silent = true, desc = 'Previous Todo' })
 
 -- FIX: - Implement this
 -- vim.keymap.set('n', '[t', "<cmd>lua", { silent = true, desc = 'Telescope TODOS' })
+--
 
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`
