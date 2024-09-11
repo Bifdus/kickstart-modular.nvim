@@ -120,8 +120,8 @@ return {
             map('<leader>lh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch Source/Header')
           end
 
+          -- Tailwind Keymaps
           if client and client.name == 'tailwindcss' then
-            -- Test Tailwind
             local opts = { noremap = true, silent = true }
             map('n', '<leader>Tc', '<cmd>TailwindConcealToggle<CR>', opts)
             map('n', '<leader>Th', '<cmd>TailwindColorToggle<CR>', opts)
@@ -129,6 +129,13 @@ return {
             map('x', '<leader>s', '<cmd>TailwindSortSelection<CR>', opts)
             map('n', '<leader>tn', '<cmd>TailwindNextClass<CR>', opts)
             map('n', '<leader>tN', '<cmd>TailwindPrevClass<CR>', opts)
+          end
+
+          -- Phpactor keymaps
+          if client and client.name == 'phpactor' then
+            map('<leader>pm', '<cmd>PhpactorContextMenu<CR>', 'PHPActor Context Menu')
+            map('<leader>pn', '<cmd>PhpactorClassNew<CR>', 'PHPActor New Class')
+            -- Add more PHPActor-specific mappings as needed
           end
 
           -- The following autocommand is used to enable inlay hints in your
@@ -200,9 +207,21 @@ return {
           },
         },
         phpactor = {
+
           filetypes = {
             'php',
           },
+          init_options = function()
+            return {
+              ['language_server_phpstan.enabled'] = false,
+              ['language_server_psalm.enabled'] = false,
+              ['symfony.enabled'] = true,
+              ['symfony.app_dir'] = 'apps',
+              ['symfony.src_dir'] = 'lib',
+              ['symfony.var_dir'] = 'cache',
+              ['composer.autoloader_path'] = vim.fn.getcwd() .. '/vendor/autoload.php',
+            }
+          end,
         },
         clangd = {
           filetypes = {
