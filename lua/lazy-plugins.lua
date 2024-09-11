@@ -33,11 +33,19 @@ require('lazy').setup({
       vim.cmd 'syntax enable'
       vim.cmd 'colorscheme dracula_pro_van_helsing'
       -- Colors for rainbow highlights
+      -- vim.cmd [[
+      -- highlight EldritchBlue guifg=#04d1f9 ctermfg=12,
+      -- highlight EldritchPink guifg=#f265b5 ctermfg=2,
+      -- highlight EldritchPurple guifg=#7081d0 ctermfg=5,
+      -- highlight EldritchGreen guifg=#37f499 ctermfg=6
+      -- ]]
+
       vim.cmd [[
-      highlight EldritchBlue guifg=#04d1f9 ctermfg=12,
-      highlight EldritchPink guifg=#f265b5 ctermfg=2,
-      highlight EldritchPurple guifg=#7081d0 ctermfg=5,
-      highlight EldritchGreen guifg=#37f499 ctermfg=6
+      highlight EldritchBlue guifg=#00ffb9 ctermfg=12,
+      highlight EldritchPink guifg=#b4a8ff ctermfg=2,
+      highlight EldritchPurple guifg=#FFD732 ctermfg=5,
+      highlight EldritchGreen guifg=#C5FFEF ctermfg=6
+      highlight EldritchRed guifg=#FF7687 ctermfg=7
       ]]
     end,
   },

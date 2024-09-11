@@ -173,13 +173,13 @@ return {
         query = {
           [''] = 'rainbow-delimiters',
           latex = 'rainbow-blocks',
-          tsx = 'rainbow-parens',
         },
         highlight = {
           'EldritchBlue',
           'EldritchPink',
           'EldritchPurple',
           'EldritchGreen',
+          'EldritchRed',
         },
         blacklist = { 'c', 'cpp' },
       }
