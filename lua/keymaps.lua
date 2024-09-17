@@ -61,7 +61,7 @@ vim.keymap.set('n', '<leader>qq', vim.diagnostic.setloclist, { desc = 'Open diag
 -- Disable in lazygit and ignore key in which key
 vim.keymap.set('t', '<Esc><Esc>', function()
   local buf_name = vim.api.nvim_buf_get_name(0)
-  if buf_name:match 'lazygit' then
+  if buf_name:match 'lazygit' or buf_name:match 'yazi' then
     return '<Esc>'
   else
     return '<C-\\><C-n>'
