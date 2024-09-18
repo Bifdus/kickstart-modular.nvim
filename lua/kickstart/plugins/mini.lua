@@ -56,7 +56,7 @@ return {
         },
       }
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'dashboard', 'yazi' },
+        pattern = { 'dashboard', 'yazi', 'help' },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,
