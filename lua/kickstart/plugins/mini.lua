@@ -46,13 +46,21 @@ return {
 
       require('mini.indentscope').setup {
         symbol = '│',
-        options = { try_as_border = true },
-        draw = {
-          animation = function()
-            return 0
-          end,
+        options = {
+          try_as_border = true,
+          draw = {
+            animation = function()
+              return 0
+            end,
+          },
         },
       }
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { 'dashboard', 'yazi' },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
