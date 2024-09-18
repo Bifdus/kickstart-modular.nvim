@@ -1,4 +1,6 @@
 return {
+
+  -----------------------------------------------------------------------------
   -- Leetcode Problems
   {
     'kawre/leetcode.nvim',
@@ -27,8 +29,12 @@ return {
       }
     end,
   },
+
+  -----------------------------------------------------------------------------
   -- Support for D2 Language
   { 'terrastruct/d2-vim', ft = { 'd2' } },
+
+  -----------------------------------------------------------------------------
   -- Git UI
   {
     'kdheepak/lazygit.nvim',
@@ -110,6 +116,9 @@ return {
       { '<Leader>gci', '<cmd>GitConflictChooseTheirs<CR>', desc = 'choose incoming' },
     },
   },
+
+  -----------------------------------------------------------------------------
+  --- Better Visual for help files
   {
     'OXY2DEV/helpview.nvim',
     lazy = false, -- Recommended
@@ -145,7 +154,9 @@ return {
       },
     },
   },
-  -- Diagnostics
+
+  -----------------------------------------------------------------------------
+  -- LSP Diagnostics and quickfix
   {
     'folke/trouble.nvim',
     event = 'VeryLazy',
@@ -185,8 +196,9 @@ return {
       },
     },
   },
-  -- Quick log lines with smart variable identification
 
+  -----------------------------------------------------------------------------
+  -- Quick log lines with smart variable identification, only python, lua and JS
   {
     'chrisgrieser/nvim-chainsaw',
     opts = {
@@ -197,15 +209,16 @@ return {
       },
     },
   },
+
+  -----------------------------------------------------------------------------
   -- Comments, with context
   {
     'numToStr/Comment.nvim',
     dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
-		-- stylua: ignore
-		keys = {
-			{ '<Leader>V', '<Plug>(comment_toggle_blockwise_current)', mode = 'n', desc = 'Comment' },
-			{ '<Leader>V', '<Plug>(comment_toggle_blockwise_visual)', mode = 'x', desc = 'Comment' },
-		},
+    keys = {
+      { '<Leader>V', '<Plug>(comment_toggle_blockwise_current)', mode = 'n', desc = 'Comment' },
+      { '<Leader>V', '<Plug>(comment_toggle_blockwise_visual)', mode = 'x', desc = 'Comment' },
+    },
     opts = function(_, opts)
       local ok, tcc = pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
       if ok then
@@ -213,6 +226,8 @@ return {
       end
     end,
   },
+
+  -----------------------------------------------------------------------------
   -- Tailwind extra lsp tools
   {
     'luckasRanarison/tailwind-tools.nvim',
@@ -225,6 +240,8 @@ return {
     },
     opts = {},
   },
+
+  -----------------------------------------------------------------------------
   -- Better typescript lsp
   {
     'pmizio/typescript-tools.nvim',
@@ -249,6 +266,8 @@ return {
       require('typescript-tools').setup(opts)
     end,
   },
+
+  -----------------------------------------------------------------------------
   -- Lsp Saga
   {
     'nvimdev/lspsaga.nvim',
@@ -296,6 +315,8 @@ return {
       'nvim-tree/nvim-web-devicons', -- optional
     },
   },
+
+  -----------------------------------------------------------------------------
   -- Python venv selector
   {
     'linux-cultist/venv-selector.nvim',
@@ -315,6 +336,8 @@ return {
       { '<leader>cvc', '<cmd>VenvSelectCached<cr>' },
     },
   },
+
+  -----------------------------------------------------------------------------
   -- Support for latex
   {
     'lervag/vimtex',
@@ -324,6 +347,8 @@ return {
       vim.g.vimtex_view_method = 'zathura'
     end,
   },
+
+  -----------------------------------------------------------------------------
   -- Devdocs
   {
     'luckasRanarison/nvim-devdocs',
@@ -338,6 +363,8 @@ return {
     },
     opts = {},
   },
+
+  -----------------------------------------------------------------------------
   -- Improved yanking
   {
     'gbprod/yanky.nvim',
@@ -380,6 +407,7 @@ return {
     end,
   },
 
+  -----------------------------------------------------------------------------
   -- VS Code like winbar
   {
     'utilyre/barbecue.nvim',

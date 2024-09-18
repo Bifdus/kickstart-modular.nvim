@@ -1,4 +1,6 @@
 return {
+
+  -----------------------------------------------------------------------------
   -- Improved jumps
   {
     'folke/flash.nvim',
@@ -57,6 +59,8 @@ return {
       },
     },
   },
+
+  -----------------------------------------------------------------------------
   -- Marks
   {
     'ThePrimeagen/harpoon',
@@ -123,6 +127,7 @@ return {
     end,
   },
 
+  -----------------------------------------------------------------------------
   -- Returns you to last place in file when reopening
   { 'ethanholz/nvim-lastplace', opts = {} },
   {
@@ -147,11 +152,15 @@ return {
       },
     },
   },
+
+  -----------------------------------------------------------------------------
   -- Swap textobjects
   {
     'mizlan/iswap.nvim',
     event = 'VeryLazy',
   },
+
+  -----------------------------------------------------------------------------
   -- Preview Markdown
   {
     'iamcco/markdown-preview.nvim',
@@ -163,6 +172,7 @@ return {
     end,
   },
 
+  -----------------------------------------------------------------------------
   -- Auto save sessions
   {
     'rmagatti/auto-session',
@@ -177,6 +187,8 @@ return {
       }
     end,
   },
+
+  -----------------------------------------------------------------------------
   -- View CSV files
   {
     'theKnightsOfRohan/csvlens.nvim',
@@ -186,13 +198,19 @@ return {
     config = true,
     opts = {},
   },
+
+  -----------------------------------------------------------------------------
   -- Auto set tab and shiftwidth based on current file
   { 'tpope/vim-sleuth' },
+
+  -----------------------------------------------------------------------------
   -- Find and replace
   {
     'nvim-pack/nvim-spectre',
     opts = {},
   },
+
+  -----------------------------------------------------------------------------
   -- Terminal window
   {
     'akinsho/toggleterm.nvim',
@@ -214,6 +232,8 @@ return {
       shell = vim.o.shell,
     },
   },
+
+  -----------------------------------------------------------------------------
   -- Folds
   {
     'kevinhwang91/nvim-ufo',
@@ -260,12 +280,14 @@ return {
       require('ufo').setup(opts)
     end,
   },
+
+  -----------------------------------------------------------------------------
+  -- File Browser
   {
     {
       'mikavilpas/yazi.nvim',
       event = 'VeryLazy',
       keys = {
-        -- 👇 in this section, choose your own keymappings!
         {
           '\\',
           '<cmd>Yazi<cr>',
@@ -288,7 +310,7 @@ return {
       ---@type YaziConfig
       opts = {
         -- if you want to open yazi instead of netrw, see below for more info
-        open_for_directories = false,
+        open_for_directories = true,
         keymaps = {
           show_help = '<f1>',
         },
