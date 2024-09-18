@@ -47,6 +47,38 @@ return {
     },
   },
   {
+    'sindrets/diffview.nvim',
+    event = 'BufRead',
+    keys = {
+      { '<Leader>gd', '<cmd>DiffviewFileHistory %<CR>', desc = 'Diff File' },
+      { '<Leader>gv', '<cmd>DiffviewOpen<CR>', desc = 'Diff View' },
+    },
+    config = function()
+      require('diffview').setup {
+        keymaps = {
+          view = {
+            ['j'] = false,
+            ['k'] = false,
+            ['l'] = false,
+            ['h'] = false,
+          },
+          file_panel = {
+            ['j'] = false,
+            ['k'] = false,
+            ['l'] = false,
+            ['h'] = false,
+          },
+          file_history_panel = {
+            ['j'] = false,
+            ['k'] = false,
+            ['l'] = false,
+            ['h'] = false,
+          },
+        },
+      }
+    end,
+  },
+  {
     'tris203/precognition.nvim',
     event = 'VeryLazy',
     opts = { startVisible = false },
