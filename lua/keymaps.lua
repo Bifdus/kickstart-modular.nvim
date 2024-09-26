@@ -185,7 +185,7 @@ vim.keymap.set('n', '<leader>clr', '<cmd>lua require("chainsaw").removeLogs()<CR
 -----------------------------------------------------------------------------
 
 -- Surrounding add to visual select
-vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+-- vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
 
 -----------------------------------------------------------------------------
 -- Cycle through todo comments

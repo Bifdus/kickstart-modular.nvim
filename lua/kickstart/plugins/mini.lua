@@ -8,7 +8,7 @@ return {
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      -- require('mini.ai').setup { n_lines = 500 }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
@@ -46,13 +46,17 @@ return {
 
       require('mini.indentscope').setup {
         symbol = '│',
+        draw = {
+          animation = function()
+            return 0
+          end,
+        },
         options = {
           try_as_border = true,
-          draw = {
-            animation = function()
-              return 0
-            end,
-          },
+        },
+        mappings = {
+          object_scope = '',
+          object_scope_with_border = '',
         },
       }
       vim.api.nvim_create_autocmd('FileType', {
