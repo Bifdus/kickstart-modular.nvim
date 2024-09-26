@@ -3,7 +3,9 @@
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- NOTE: The below mapping has been added to multicursor to avoid conflicts.
+-- vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Disable default s functionality as it conflicts with mini surround
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')

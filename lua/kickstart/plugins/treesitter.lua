@@ -146,7 +146,7 @@ return {
           },
         },
         swap = {
-          enable = true,
+          enable = false,
           swap_previous = {
             ['<leader>A'] = '@parameter.inner',
           },
