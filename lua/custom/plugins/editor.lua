@@ -410,16 +410,48 @@ return {
     config = function()
       -- Setup orgmode
       require('orgmode').setup {
+        calendar = { round_min_with_hours = true, min_big_step = 15, min_small_step = 1 },
+        org_log_repeat = 'time',
+        org_id_method = 'ts',
+        org_agenda_span = 'week',
         org_agenda_files = '~/orgfiles/**/*',
         org_default_notes_file = '~/orgfiles/refile.org',
+        mappings = {
+          global = {
+            org_agenda = { '<leader>oa', desc = 'Orgmode Agenda' },
+            org_capture = { '<leader>oc', desc = 'Orgmode Capture' },
+          },
+        },
       }
-
-      -- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
-      -- add ~org~ to ignore_install
-      -- require('nvim-treesitter.configs').setup({
-      --   ensure_installed = 'all',
-      --   ignore_install = { 'org' },
-      -- })
+    end,
+  },
+  {
+    'akinsho/org-bullets.nvim',
+    config = function()
+      require('org-bullets').setup {
+        concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible
+        symbols = {
+          -- list symbol
+          list = '•',
+          -- headlines can be a list
+          headlines = { '◉', '○', '✸', '✿' },
+          checkboxes = {
+            half = { '', '@org.checkbox.halfchecked' },
+            done = { '✓', '@org.keyword.done' },
+            todo = { '˟', '@org.keyword.todo' },
+          },
+        },
+      }
+    end,
+  },
+  {
+    'lukas-reineke/headlines.nvim',
+    config = function()
+      require('headlines').setup {
+        org = {
+          headline_highlights = { 'Headline1', 'Headline2' },
+        },
+      }
     end,
   },
 }

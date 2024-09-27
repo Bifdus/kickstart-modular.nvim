@@ -16,6 +16,21 @@ return {
       'debugloop/telescope-undo.nvim',
       { 'nvim-telescope/telescope-ui-select.nvim' },
       {
+        'nvim-orgmode/telescope-orgmode.nvim',
+        event = 'VeryLazy',
+        dependencies = {
+          'nvim-orgmode/orgmode',
+          'nvim-telescope/telescope.nvim',
+        },
+        config = function()
+          require('telescope').load_extension 'orgmode'
+
+          vim.keymap.set('n', '<leader>so', require('telescope').extensions.orgmode.refile_heading)
+          vim.keymap.set('n', '<leader>sH', require('telescope').extensions.orgmode.search_headings)
+          vim.keymap.set('n', '<leader>li', require('telescope').extensions.orgmode.insert_link)
+        end,
+      },
+      {
         'johmsalas/text-case.nvim',
         -- lazy = false,
         config = function()
@@ -86,6 +101,7 @@ return {
               preview_width = 0.4,
             },
           },
+          orgmode = {},
         },
       }
 

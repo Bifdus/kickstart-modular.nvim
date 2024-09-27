@@ -39,6 +39,11 @@ require('lazy').setup({
       -- highlight EldritchPurple guifg=#7081d0 ctermfg=5,
       -- highlight EldritchGreen guifg=#37f499 ctermfg=6
       -- ]]
+      --
+      vim.cmd [[highlight Headline1 guibg=#1e2718]]
+      vim.cmd [[highlight Headline2 guibg=#21262d]]
+      vim.cmd [[highlight CodeBlock guibg=#1c1c1c]]
+      vim.cmd [[highlight Dash guibg=#D19A66 gui=bold]]
 
       vim.cmd [[
       highlight EldritchBlue guifg=#00ffb9 ctermfg=12,

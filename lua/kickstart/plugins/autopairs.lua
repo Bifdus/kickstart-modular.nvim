@@ -7,7 +7,7 @@ return {
   event = 'InsertEnter',
   keys = {
     {
-      '<leader>ta',
+      '<leader>tp',
       function()
         require('nvim-autopairs').toggle()
       end,

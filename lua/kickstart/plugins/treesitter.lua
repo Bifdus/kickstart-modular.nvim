@@ -38,6 +38,7 @@ return {
         'lua',
         'luadoc',
         'markdown',
+        'org',
         'php',
         'phpdoc',
         'python',
@@ -49,12 +50,14 @@ return {
         'markdown_inline',
       },
       auto_install = true,
+      -- ignore_install = { 'org' },
       highlight = {
         enable = true,
+        disable = { 'org' },
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
+        additional_vim_regex_highlighting = { 'ruby', 'org' },
       },
       fold = { true },
       indent = { enable = true, disable = { 'ruby' } },

@@ -139,7 +139,7 @@ return {
     end,
     keys = {
       {
-        '<leader>tp',
+        '<leader>tP',
         function()
           require('precognition').toggle()
         end,
