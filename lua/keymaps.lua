@@ -5,7 +5,7 @@
 --  See `:help hlsearch`
 
 -- NOTE: The below mapping has been added to multicursor to avoid conflicts.
--- vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Disable default s functionality as it conflicts with mini surround
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
