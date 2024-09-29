@@ -8,7 +8,7 @@ if vim.g.neovide then
   vim.g.neovide_profiler = false
   vim.g.neovide_cursor_animation_length = 0.05
   vim.g.neovide_cursor_trail_size = 0.8
-  vim.opt.guifont = { 'FiraCode Nerd Font Mono', ':h14' }
+  vim.opt.guifont = 'FiraCode Nerd Font Mono:h14'
   vim.g.neovide_remember_window_size = true
   vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_bottom = 0
