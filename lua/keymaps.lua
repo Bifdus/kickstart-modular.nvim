@@ -26,6 +26,16 @@ end, {
   desc = 'source vim init.lua',
 })
 
+-- Edit config in new tab
+vim.keymap.set('n', '<leader>ec', function()
+  -- open new tab
+  vim.api.nvim_command 'tabnew'
+  -- open config file
+  vim.api.nvim_command('edit ' .. vim.fn.stdpath 'config' .. '/init.lua')
+  -- change cwd
+  vim.cmd('tcd ' .. vim.fn.stdpath 'config')
+end, { desc = 'Edit Neovim config in a new tab' })
+
 -- Reselect the text that has just been pasted, see also https://stackoverflow.com/a/4317090/6064933.
 vim.keymap.set('n', '<leader>v', "printf('`[%s`]', getregtype()[0])", {
   expr = true,
@@ -106,13 +116,13 @@ vim.keymap.set('n', '<leader>wc', '<cmd>windo diffthis<cr>', { desc = '[c]ompare
 -- vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- tabs
-vim.keymap.set('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
-vim.keymap.set('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = 'Close Other Tabs' })
-vim.keymap.set('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = 'First Tab' })
-vim.keymap.set('n', '<leader><tab>n', '<cmd>tabnew<cr>', { desc = 'New Tab' })
-vim.keymap.set('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
-vim.keymap.set('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
-vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
+vim.keymap.set('n', '<tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
+vim.keymap.set('n', '<tab>o', '<cmd>tabonly<cr>', { desc = 'Close Other Tabs' })
+vim.keymap.set('n', '<tab>f', '<cmd>tabfirst<cr>', { desc = 'First Tab' })
+vim.keymap.set('n', '<tab>N', '<cmd>tabnew<cr>', { desc = 'New Tab' })
+vim.keymap.set('n', '<tab>n', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
+vim.keymap.set('n', '<tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
+vim.keymap.set('n', '<tab>p', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
 -- Run Lua code
 vim.keymap.set('n', '<leader>lr', '<cmd>.lua<CR>', { desc = 'Run current line as Lua code' })
