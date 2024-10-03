@@ -4,7 +4,7 @@
 local M = {}
 
 M.base46 = {
-  theme = 'onedark', -- default theme
+  theme = 'chadracula-evondev', -- default theme
   hl_add = {},
   hl_override = {},
   integrations = { 'notify' },
@@ -22,17 +22,24 @@ M.ui = {
   },
 
   statusline = {
-    theme = 'vscode', -- default/vscode/vscode_colored/minimal
+    theme = 'default', -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = 'default',
-    order = nil,
-    modules = nil,
+    order = { 'mode', 'f', 'git', '%=', 'lsp_msg', '%=', 'lsp', 'cwd', 'xyz', 'abc' },
+    modules = {
+      abc = function()
+        return 'hi'
+      end,
+
+      xyz = 'hi',
+      f = '%F',
+    },
   },
 
   -- lazyload it when there are 1+ buffers
   tabufline = {
-    enabled = false,
+    enabled = true,
     lazyload = true,
     order = { 'treeOffset', 'buffers', 'tabs', 'btns' },
     modules = nil,
