@@ -4,7 +4,7 @@
 local M = {}
 
 M.base46 = {
-  theme = 'chadracula-evondev', -- default theme
+  theme = 'bifdus', -- default theme
   hl_add = {},
   hl_override = {},
   integrations = { 'notify' },
