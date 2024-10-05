@@ -369,7 +369,7 @@ return {
         elseif mc.hasCursors() then
           mc.clearCursors()
         else
-          -- vim.cmd 'nohlsearch'
+          vim.cmd 'nohlsearch'
         end
       end)
 
