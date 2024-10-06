@@ -17,7 +17,7 @@ return {
     dependencies = {
       'nvim-treesitter/playground',
       'HiPhish/rainbow-delimiters.nvim',
-      -- 'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/nvim-treesitter-textobjects',
     },
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -83,7 +83,7 @@ return {
       -- disabling to use mini.ai
       textobjects = {
         select = {
-          enable = false,
+          enable = true,
           lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
