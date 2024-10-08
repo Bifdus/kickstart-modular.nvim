@@ -25,9 +25,9 @@ return {
         config = function()
           require('telescope').load_extension 'orgmode'
 
-          vim.keymap.set('n', '<leader>so', require('telescope').extensions.orgmode.refile_heading)
-          vim.keymap.set('n', '<leader>sH', require('telescope').extensions.orgmode.search_headings)
-          vim.keymap.set('n', '<leader>li', require('telescope').extensions.orgmode.insert_link)
+          vim.keymap.set('n', '<leader>or', require('telescope').extensions.orgmode.refile_heading, { desc = 'Orgmode Refile' })
+          vim.keymap.set('n', '<leader>osh', require('telescope').extensions.orgmode.search_headings, { desc = 'Orgmode Search Headings' })
+          vim.keymap.set('n', '<leader>oil', require('telescope').extensions.orgmode.insert_link, { desc = 'Orgmode Insert Link' })
         end,
       },
       {

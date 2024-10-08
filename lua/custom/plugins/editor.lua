@@ -416,10 +416,33 @@ return {
         org_agenda_span = 'week',
         org_agenda_files = '~/orgfiles/**/*',
         org_default_notes_file = '~/orgfiles/refile.org',
+        win_split_mode = function(name)
+          -- Make sure it's not a scratch buffer by passing false as 2nd argument
+          local bufnr = vim.api.nvim_create_buf(false, false)
+          --- Setting buffer name is required
+          vim.api.nvim_buf_set_name(bufnr, name)
+
+          local fill = 0.8
+          local width = math.floor((vim.o.columns * fill))
+          local height = math.floor((vim.o.lines * fill))
+          local row = math.floor((((vim.o.lines - height) / 2) - 1))
+          local col = math.floor(((vim.o.columns - width) / 2))
+
+          vim.api.nvim_open_win(bufnr, true, {
+            relative = 'editor',
+            width = width,
+            height = height,
+            row = row,
+            col = col,
+            style = 'minimal',
+            border = 'rounded',
+          })
+        end,
+
         mappings = {
           global = {
-            org_agenda = { '<leader>oa', desc = 'Orgmode Agenda' },
-            org_capture = { '<leader>oc', desc = 'Orgmode Capture' },
+            org_agenda = '<leader>oa',
+            org_capture = '<leader>oc',
           },
         },
       }
@@ -444,6 +467,7 @@ return {
       }
     end,
   },
+  --
   {
     'lukas-reineke/headlines.nvim',
     config = function()
@@ -454,6 +478,30 @@ return {
       }
     end,
   },
+  -- Knowledge Base (notes etc)
+  -- {
+  --   'chipsenkbeil/org-roam.nvim',
+  --   ft = { 'org' },
+  --   tag = '0.1.0',
+  --   dependencies = {
+  --     {
+  --       'nvim-orgmode/orgmode',
+  --       tag = '0.3.4',
+  --     },
+  --   },
+  --   config = function()
+  --     require('org-roam').setup {
+  --       directory = '~/orgfiles',
+  --     }
+  --   end,
+  -- },
+  -- Toggle list to checkbox
+  -- {
+  --   'massix/org-checkbox.nvim',
+  --   config = function()
+  --     require('orgcheckbox').setup { lhs = '<leader>oT' }
+  --   end,
+  -- },
 
   -----------------------------------------------------------------------------
   -- Marks
