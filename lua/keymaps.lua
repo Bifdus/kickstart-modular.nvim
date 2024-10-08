@@ -66,7 +66,8 @@ vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true,
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+-- TODO: fix this mapping
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>qq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -209,6 +210,10 @@ end, { silent = true, desc = 'Previous Todo' })
 -- FIX: - Implement this
 -- vim.keymap.set('n', '[t', "<cmd>lua", { silent = true, desc = 'Telescope TODOS' })
 --
+
+-- Neorg Telescope Integrations
+vim.keymap.set('n', '<leader>nsh', '<Plug>(neorg.telescope.search_headings)', { desc = '[N]org [S]earch [H]eadings' })
+vim.keymap.set('n', '<leader>nsg', '<PLug>(neorg.telescope.find_norg_files)', { desc = '[N]org [S]earch [Grep]' })
 
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`

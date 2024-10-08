@@ -16,21 +16,6 @@ return {
       'debugloop/telescope-undo.nvim',
       { 'nvim-telescope/telescope-ui-select.nvim' },
       {
-        'nvim-orgmode/telescope-orgmode.nvim',
-        event = 'VeryLazy',
-        dependencies = {
-          'nvim-orgmode/orgmode',
-          'nvim-telescope/telescope.nvim',
-        },
-        config = function()
-          require('telescope').load_extension 'orgmode'
-
-          vim.keymap.set('n', '<leader>or', require('telescope').extensions.orgmode.refile_heading, { desc = 'Orgmode Refile' })
-          vim.keymap.set('n', '<leader>osh', require('telescope').extensions.orgmode.search_headings, { desc = 'Orgmode Search Headings' })
-          vim.keymap.set('n', '<leader>oil', require('telescope').extensions.orgmode.insert_link, { desc = 'Orgmode Insert Link' })
-        end,
-      },
-      {
         'johmsalas/text-case.nvim',
         -- lazy = false,
         config = function()
@@ -101,7 +86,6 @@ return {
               preview_width = 0.4,
             },
           },
-          orgmode = {},
         },
       }
 

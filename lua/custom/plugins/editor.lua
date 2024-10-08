@@ -350,7 +350,7 @@ return {
       end)
 
       -- Delete the main cursor.
-      vim.keymap.set({ 'n', 'v' }, '<leader>z', mc.deleteCursor)
+      vim.keymap.set({ 'n', 'v' }, '<leader>z', mc.deleteCursor, { desc = 'Delete Cursor' })
 
       vim.keymap.set({ 'n', 'v' }, '<c-q>', function()
         if mc.cursorsEnabled() then
@@ -374,7 +374,7 @@ return {
       end)
 
       -- Align cursor columns.
-      vim.keymap.set('n', '<leader>a', mc.alignCursors)
+      vim.keymap.set('n', '<leader>a', mc.alignCursors, { desc = 'Align Cursors' })
 
       -- Split visual selections by regex.
       vim.keymap.set('v', 'S', mc.splitCursors)
@@ -400,108 +400,35 @@ return {
       vim.api.nvim_set_hl(0, 'MultiCursorDisabledVisual', { link = 'Visual' })
     end,
   },
-
-  -----------------------------------------------------------------------------
-  -- Note taking and todo list
   {
-    'nvim-orgmode/orgmode',
-    event = 'VeryLazy',
-    ft = { 'org' },
+    'nvim-neorg/neorg',
+    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = '*', -- Pin Neorg to the latest stable release
     config = function()
-      -- Setup orgmode
-      require('orgmode').setup {
-        calendar = { round_min_with_hours = true, min_big_step = 15, min_small_step = 1 },
-        org_log_repeat = 'time',
-        org_id_method = 'ts',
-        org_agenda_span = 'week',
-        org_agenda_files = '~/orgfiles/**/*',
-        org_default_notes_file = '~/orgfiles/refile.org',
-        win_split_mode = function(name)
-          -- Make sure it's not a scratch buffer by passing false as 2nd argument
-          local bufnr = vim.api.nvim_create_buf(false, false)
-          --- Setting buffer name is required
-          vim.api.nvim_buf_set_name(bufnr, name)
-
-          local fill = 0.8
-          local width = math.floor((vim.o.columns * fill))
-          local height = math.floor((vim.o.lines * fill))
-          local row = math.floor((((vim.o.lines - height) / 2) - 1))
-          local col = math.floor(((vim.o.columns - width) / 2))
-
-          vim.api.nvim_open_win(bufnr, true, {
-            relative = 'editor',
-            width = width,
-            height = height,
-            row = row,
-            col = col,
-            style = 'minimal',
-            border = 'rounded',
-          })
-        end,
-
-        mappings = {
-          global = {
-            org_agenda = '<leader>oa',
-            org_capture = '<leader>oc',
+      require('neorg').setup {
+        load = {
+          ['core.defaults'] = {},
+          ['core.concealer'] = {},
+          ['core.dirman'] = {
+            config = {
+              workspaces = {
+                notes = '~/notes',
+              },
+              default_workspace = 'notes',
+            },
           },
+          ['core.integrations.nvim-cmp'] = {},
+          ['core.integrations.telescope'] = {},
+          ['core.highlights'] = {},
+          ['core.ui.calendar'] = {},
         },
       }
+
+      vim.wo.foldlevel = 99
+      vim.wo.conceallevel = 2
     end,
+    dependencies = { { 'nvim-lua/plenary.nvim' }, { 'nvim-neorg/neorg-telescope' } },
   },
-  {
-    'akinsho/org-bullets.nvim',
-    config = function()
-      require('org-bullets').setup {
-        concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible
-        symbols = {
-          -- list symbol
-          list = '•',
-          -- headlines can be a list
-          headlines = { '◉', '○', '✸', '✿' },
-          checkboxes = {
-            half = { '', '@org.checkbox.halfchecked' },
-            done = { '✓', '@org.keyword.done' },
-            todo = { '˟', '@org.keyword.todo' },
-          },
-        },
-      }
-    end,
-  },
-  --
-  {
-    'lukas-reineke/headlines.nvim',
-    config = function()
-      require('headlines').setup {
-        org = {
-          headline_highlights = { 'Headline1', 'Headline2' },
-        },
-      }
-    end,
-  },
-  -- Knowledge Base (notes etc)
-  -- {
-  --   'chipsenkbeil/org-roam.nvim',
-  --   ft = { 'org' },
-  --   tag = '0.1.0',
-  --   dependencies = {
-  --     {
-  --       'nvim-orgmode/orgmode',
-  --       tag = '0.3.4',
-  --     },
-  --   },
-  --   config = function()
-  --     require('org-roam').setup {
-  --       directory = '~/orgfiles',
-  --     }
-  --   end,
-  -- },
-  -- Toggle list to checkbox
-  -- {
-  --   'massix/org-checkbox.nvim',
-  --   config = function()
-  --     require('orgcheckbox').setup { lhs = '<leader>oT' }
-  --   end,
-  -- },
 
   -----------------------------------------------------------------------------
   -- Marks
