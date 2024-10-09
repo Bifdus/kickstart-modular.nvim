@@ -41,11 +41,13 @@ require('lazy').setup({
 
       -- Colors for rainbow highlights
       vim.cmd [[
-      highlight EldritchBlue guifg=#00ffb9 ctermfg=12,
-      highlight EldritchPink guifg=#b4a8ff ctermfg=2,
-      highlight EldritchPurple guifg=#ffe479 ctermfg=5,
-      highlight EldritchGreen guifg=#C5FFEF ctermfg=6
-      highlight EldritchRed guifg=#FF7687 ctermfg=7
+        highlight RainbowDelimiterRed    guifg=#FF7687 ctermfg=9,
+        highlight RainbowDelimiterYellow guifg=#f2f200 ctermfg=11,
+        highlight RainbowDelimiterBlue   guifg=#2CCCFF ctermfg=12,
+        highlight RainbowDelimiterOrange guifg=#fcbf7a ctermfg=1,
+        highlight RainbowDelimiterGreen  guifg=#00c790 ctermfg=4,
+        highlight RainbowDelimiterViolet guifg=#BD93F9 ctermfg=5,
+        highlight RainbowDelimiterCyan   guifg=#80FFEA ctermfg=13,
       ]]
     end,
   },

@@ -178,13 +178,15 @@ return {
           [''] = 'rainbow-delimiters',
           latex = 'rainbow-blocks',
         },
-        highlight = {
-          'EldritchBlue',
-          'EldritchPink',
-          'EldritchPurple',
-          'EldritchGreen',
-          'EldritchRed',
-        },
+        -- highlight = {
+        --   'RainbowDelimiterRed   ',
+        --   'RainbowDelimiterYellow',
+        --   'RainbowDelimiterBlue  ',
+        --   'RainbowDelimiterOrange',
+        --   'RainbowDelimiterGreen ',
+        --   'RainbowDelimiterViolet',
+        --   'RainbowDelimiterCyan  ',
+        -- },
         blacklist = { 'c', 'cpp' },
       }
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
