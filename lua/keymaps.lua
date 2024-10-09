@@ -210,6 +210,15 @@ end, { silent = true, desc = 'Previous Todo' })
 -- vim.keymap.set('n', '[t', "<cmd>lua", { silent = true, desc = 'Telescope TODOS' })
 --
 
+-----------------------------------------------------------------------------
+--- Minty color picker
+vim.keymap.set('n', '<leader>pc', function()
+  require('minty.huefy').open()
+end)
+
+vim.keymap.set('n', '<leader>ps', function()
+  require('minty.shades').open()
+end)
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`
 
