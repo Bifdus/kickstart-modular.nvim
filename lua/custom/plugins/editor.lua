@@ -467,17 +467,36 @@ return {
       }
     end,
   },
-  --
   {
     'lukas-reineke/headlines.nvim',
-    config = function()
-      require('headlines').setup {
-        org = {
+    opts = function()
+      local opts = {}
+      for _, ft in ipairs { 'markdown', 'norg', 'rmd', 'org' } do
+        opts[ft] = {
+          -- Disable bullets for now.
+          -- See https://github.com/lukas-reineke/headlines.nvim/issues/66
           headline_highlights = { 'Headline1', 'Headline2' },
-        },
-      }
+
+          bullets = { '◉', '○', '✸', '✿' },
+        }
+        for i = 1, 6 do
+          local hl = 'Headline' .. i
+          vim.api.nvim_set_hl(0, hl, { link = 'Headline', default = true })
+          table.insert(opts[ft].headline_highlights, hl)
+        end
+      end
+      return opts
+    end,
+    ft = { 'markdown', 'norg', 'rmd', 'org' },
+    config = function(_, opts)
+      -- PERF: schedule to prevent headlines slowing down opening a file
+      vim.schedule(function()
+        require('headlines').setup(opts)
+        require('headlines').refresh()
+      end)
     end,
   },
+  --
   -- Knowledge Base (notes etc)
   -- {
   --   'chipsenkbeil/org-roam.nvim',
@@ -515,4 +534,51 @@ return {
   },
   { 'nvchad/volt', lazy = true },
   { 'nvchad/minty', lazy = true },
+  -- {
+  --   'arakkkkk/kanban.nvim',
+  --   -- Optional
+  --   dependencies = {
+  --     'nvim-telescope/telescope.nvim',
+  --   },
+  --
+  --   config = function()
+  --     require('kanban').setup {
+  --       markdown = {
+  --         description_folder = '~/tasks/', -- Path to save the file corresponding to the task.
+  --         list_head = '## ',
+  --       },
+  --     }
+  --   end,
+  -- },
+  --
+  {
+    'epwalsh/obsidian.nvim',
+    version = '*',
+    -- lazy = true,
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- event = {
+    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+    --   -- refer to `:h file-pattern` for more examples
+    --   "BufReadPre path/to/my-vault/*.md",
+    --   "BufNewFile path/to/my-vault/*.md",
+    -- },
+    --
+    dependencies = {
+      -- Required.
+      'nvim-lua/plenary.nvim',
+
+      -- see below for full list of optional dependencies 👇
+    },
+    opts = {
+      workspaces = {
+        {
+          name = 'vault',
+          path = '/mnt/c/Users/Denim Hodgson/Documents/Code',
+        },
+      },
+
+      -- see below for full list of options 👇
+    },
+  },
 }

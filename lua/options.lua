@@ -51,6 +51,8 @@ end)
 -- Enable break indent
 vim.opt.breakindent = true
 
+vim.opt.conceallevel = 2
+
 -- Code collapse
 vim.opt.foldenable = false
 vim.opt.foldlevel = 49

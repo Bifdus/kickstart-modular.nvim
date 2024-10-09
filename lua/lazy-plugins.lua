@@ -32,22 +32,27 @@ require('lazy').setup({
 
       vim.cmd 'syntax enable'
       vim.cmd 'colorscheme dracula_pro_van_helsing'
-      -- Colors for rainbow highlights
-
-      vim.cmd [[highlight Headline1 guibg=#1e2718]]
+      -- Colors for headlines in MD
+      vim.cmd [[highlight Headline1 guibg=#414b59]]
       vim.cmd [[highlight Headline2 guibg=#21262d]]
       vim.cmd [[highlight CodeBlock guibg=#1c1c1c]]
       vim.cmd [[highlight Dash guibg=#D19A66 gui=bold]]
+      vim.cmd [[hi link @markup.heading.1.markdown DraculaPurple ]]
+      vim.cmd [[hi link @markup.heading.2.markdown DraculaOrange ]]
+      vim.cmd [[hi link @markup.heading.3.markdown DraculaGreen ]]
+      vim.cmd [[hi link @markup.heading.4.markdown DraculaRed ]]
+      vim.cmd [[hi link @markup.heading.5.markdown DraculaYellow ]]
+      vim.cmd [[hi link @markup.heading.6.markdown DraculaPurple ]]
 
       -- Colors for rainbow highlights
       vim.cmd [[
-        highlight RainbowDelimiterRed    guifg=#FF7687 ctermfg=9,
-        highlight RainbowDelimiterYellow guifg=#f2f200 ctermfg=11,
-        highlight RainbowDelimiterBlue   guifg=#2CCCFF ctermfg=12,
-        highlight RainbowDelimiterOrange guifg=#fcbf7a ctermfg=1,
-        highlight RainbowDelimiterGreen  guifg=#00c790 ctermfg=4,
-        highlight RainbowDelimiterViolet guifg=#BD93F9 ctermfg=5,
-        highlight RainbowDelimiterCyan   guifg=#80FFEA ctermfg=13,
+        highlight RainbowDelimiterRed    guifg=#FF7687 ctermfg=9
+        highlight RainbowDelimiterYellow guifg=#f2f200 ctermfg=11
+        highlight RainbowDelimiterBlue   guifg=#2CCCFF ctermfg=12
+        highlight RainbowDelimiterOrange guifg=#fcbf7a ctermfg=1
+        highlight RainbowDelimiterGreen  guifg=#00c790 ctermfg=4
+        highlight RainbowDelimiterViolet guifg=#BD93F9 ctermfg=5
+        highlight RainbowDelimiterCyan   guifg=#80FFEA ctermfg=13
       ]]
     end,
   },
