@@ -4,6 +4,21 @@
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 
+-----------------------------------------------------------------------------
+-- NOTE: If you aren't using colemak, comment these out
+
+-- Moves through display-lines, unless count is provided
+vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = 'Down' })
+vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = 'Up' })
+
+-- Repurpose hjkl for window switching
+vim.keymap.set('n', 'l', '<c-w>h', { noremap = true })
+vim.keymap.set('n', 'h', '<c-w>l', { noremap = true })
+vim.keymap.set('n', 'j', '<c-w>k', { noremap = true })
+vim.keymap.set('n', 'k', '<c-w>j', { noremap = true })
+
+-----------------------------------------------------------------------------
+
 -- Disable default s functionality as it conflicts with mini surround
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 vim.keymap.set({ 'n', 'x' }, 'S', '<Nop>')
@@ -56,10 +71,6 @@ vim.keymap.set('x', 'p', '"_c<Esc>p')
 -- insert semicolon at the end of line when in insert mode
 vim.keymap.set('i', '<A-;>', '<Esc>miA;<Esc>`ii')
 
--- Moves through display-lines, unless count is provided
-vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = 'Down' })
-vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = 'Up' })
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -82,12 +93,6 @@ vim.keymap.set('n', '<leader>lf', function()
   local git_path = vim.api.nvim_buf_get_name(0)
   require 'custom.functions.lazygit' { args = { '-f', vim.trim(git_path) } }
 end, { desc = 'Lazygit Current File History' })
-
--- Repurpose hjkl for window switching
-vim.keymap.set('n', 'l', '<c-w>h', { noremap = true })
-vim.keymap.set('n', 'h', '<c-w>l', { noremap = true })
-vim.keymap.set('n', 'j', '<c-w>k', { noremap = true })
-vim.keymap.set('n', 'k', '<c-w>j', { noremap = true })
 
 -- Shift tab to dedent
 vim.keymap.set('i', '<S-Tab>', '<C-d>', { noremap = true, silent = true })
