@@ -5,6 +5,7 @@ return {
   {
     'kawre/leetcode.nvim',
     build = ':TSUpdate html',
+    cmd = 'Leet',
     dependencies = {
       'nvim-telescope/telescope.nvim',
       'nvim-lua/plenary.nvim', -- required by telescope
@@ -233,6 +234,7 @@ return {
     'luckasRanarison/tailwind-tools.nvim',
     name = 'tailwind-tools',
     build = ':UpdateRemotePlugins',
+    ft = { 'html', 'css', 'javascript', 'typescript' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-telescope/telescope.nvim', -- optional
@@ -245,6 +247,7 @@ return {
   -- Better typescript lsp
   {
     'pmizio/typescript-tools.nvim',
+    ft = { 'html', 'css', 'javascript', 'typescript' },
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
       on_attach = function(client, bufnr)
@@ -326,7 +329,8 @@ return {
       'mfussenegger/nvim-dap-python', --optional
       { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     },
-    lazy = false,
+    lazy = true,
+    ft = 'python',
     branch = 'regexp', -- This is the regexp branch, use this for the new version
     config = function()
       require('venv-selector').setup()
