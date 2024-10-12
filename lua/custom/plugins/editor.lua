@@ -65,6 +65,7 @@ return {
   { 'ethanholz/nvim-lastplace', opts = {} },
   {
     'uga-rosa/ccc.nvim',
+    event = { 'BufNewFile' },
     opts = {
       highlighter = {
         auto_enable = true,
@@ -90,16 +91,17 @@ return {
   -- Swap textobjects
   {
     'mizlan/iswap.nvim',
-    event = 'VeryLazy',
+    cmd = { 'ISwap', 'ISwapWith', 'ISwapNode', 'ISwapNodeWith' },
+    -- event = 'VeryLazy',
   },
 
   -----------------------------------------------------------------------------
   -- Preview Markdown
   {
     'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    build = 'cd app && yarn install',
     ft = { 'markdown' },
+    -- cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && yarn install',
     init = function()
       vim.g.mkdp_browser = 'Firefox'
     end,
@@ -109,10 +111,10 @@ return {
   -- Auto save sessions
   {
     'rmagatti/auto-session',
-    lazy = false,
-    dependencies = {
-      'nvim-telescope/telescope.nvim', -- Only needed if you want to use sesssion lens
-    },
+    cmd = 'SessionRestore',
+    -- dependencies = {
+    --   'nvim-telescope/telescope.nvim', -- Only needed if you want to use sesssion lens
+    -- },
     config = function()
       require('auto-session').setup {
         close_unsupported_windows = true,
@@ -125,6 +127,7 @@ return {
   -- View CSV files
   {
     'theKnightsOfRohan/csvlens.nvim',
+    ft = { 'csv' },
     dependencies = {
       'akinsho/toggleterm.nvim',
     },
@@ -136,6 +139,7 @@ return {
   -- Find and replace
   {
     'nvim-pack/nvim-spectre',
+    cmd = 'Spectre',
     opts = {},
   },
 
@@ -215,7 +219,8 @@ return {
   {
     {
       'mikavilpas/yazi.nvim',
-      event = 'VeryLazy',
+      cmd = 'Yazi',
+      -- event = 'VeryLazy',
       keys = {
         {
           '\\',
@@ -338,7 +343,6 @@ return {
   -- Note taking and todo list
   {
     'nvim-orgmode/orgmode',
-    event = 'VeryLazy',
     ft = { 'org' },
     config = function()
       -- Setup orgmode

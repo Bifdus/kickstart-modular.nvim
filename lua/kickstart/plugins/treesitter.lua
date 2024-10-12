@@ -13,6 +13,7 @@ return {
   -- Highlight, edit, navigate code
   {
     'nvim-treesitter/nvim-treesitter',
+    event = 'BufReadPost',
     build = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/playground',

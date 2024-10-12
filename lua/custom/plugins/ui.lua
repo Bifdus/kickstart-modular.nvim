@@ -49,7 +49,7 @@ return {
   -- Statusline
   {
     'nvim-lualine/lualine.nvim',
-    lazy = false,
+    lazy = 'VeryLazy',
     dependencies = 'nvim-tree/nvim-web-devicons',
     opts = function()
       local utils = require 'custom.functions.utils'

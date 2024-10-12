@@ -1,7 +1,7 @@
 return {
   {
     'eldritch-theme/eldritch.nvim',
-    lazy = false,
+    event = 'ColorSchemePre',
     priority = 1000,
     opts = {},
   },

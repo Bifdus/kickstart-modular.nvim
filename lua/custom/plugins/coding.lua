@@ -87,8 +87,7 @@ return {
   },
   {
     'akinsho/git-conflict.nvim',
-    lazy = false,
-    event = 'BufRead',
+    event = 'BufReadPost',
     version = '*',
     config = function()
       vim.api.nvim_create_autocmd('User', {
@@ -122,7 +121,8 @@ return {
   --- Better Visual for help files
   {
     'OXY2DEV/helpview.nvim',
-    lazy = false, -- Recommended
+    -- lazy = false, -- Recommended
+    ft = 'help',
 
     -- In case you still want to lazy load
     -- ft = "help",
@@ -160,9 +160,8 @@ return {
   -- LSP Diagnostics and quickfix
   {
     'folke/trouble.nvim',
-    event = 'VeryLazy',
-    opts = {},
     cmd = 'Trouble',
+    opts = {},
 
     keys = {
       {
@@ -274,6 +273,7 @@ return {
   -- Lsp Saga
   {
     'nvimdev/lspsaga.nvim',
+    event = { 'LspAttach' },
     opts = {
       lightbulb = {
         enable = false,
@@ -339,17 +339,6 @@ return {
       { '<leader>cvs', '<cmd>VenvSelect<cr>' },
       { '<leader>cvc', '<cmd>VenvSelectCached<cr>' },
     },
-  },
-
-  -----------------------------------------------------------------------------
-  -- Support for latex
-  {
-    'lervag/vimtex',
-    lazy = false, -- we don't want to lazy load VimTeX
-    init = function()
-      -- VimTeX configuration goes here, e.g.
-      vim.g.vimtex_view_method = 'zathura'
-    end,
   },
 
   -----------------------------------------------------------------------------

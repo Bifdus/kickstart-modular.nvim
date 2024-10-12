@@ -2,8 +2,7 @@
 return {
   {
     'folke/todo-comments.nvim',
-    lazy = false,
-    event = 'BufEnter',
+    event = 'BufReadPost',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
       signs = true,

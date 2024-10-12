@@ -1,7 +1,8 @@
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
+    cmd = 'Telescope',
+    -- event = 'VimEnter',
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -17,7 +18,8 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
       {
         'nvim-orgmode/telescope-orgmode.nvim',
-        event = 'VeryLazy',
+        -- event = 'VeryLazy',
+        after = { 'telescope.nvim', 'orgmode' },
         dependencies = {
           'nvim-orgmode/orgmode',
           'nvim-telescope/telescope.nvim',
