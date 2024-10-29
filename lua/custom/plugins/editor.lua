@@ -78,9 +78,11 @@ return {
           'less',
           'stylus',
           'javascript',
+          'javascriptreact',
           'tmux',
-          'typescript',
           'json',
+          'typescript',
+          'typescriptreact',
         },
         excludes = { 'lazy', 'mason', 'help' },
       },
@@ -452,5 +454,11 @@ return {
     },
   },
   { 'nvchad/volt', lazy = false },
-  { 'nvchad/minty', lazy = false },
+  {
+    'nvchad/minty',
+    opts = { filetypes = { 'css', 'html', 'typescript', 'javascript', 'tsx', 'ts', 'jsx' } },
+    config = function(_, opts)
+      require('minty').setup(opts)
+    end,
+  },
 }

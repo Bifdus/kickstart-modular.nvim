@@ -214,13 +214,9 @@ end, { silent = true, desc = 'Previous Todo' })
 
 -----------------------------------------------------------------------------
 --- Minty color picker
-vim.keymap.set('n', '<leader>pc', function()
-  require('minty.huefy').open()
-end)
+vim.keymap.set('n', '<leader>pc', '<cmd>Huefy<cr>')
 
-vim.keymap.set('n', '<leader>ps', function()
-  require('minty.shades').open()
-end)
+vim.keymap.set('n', '<leader>ps', '<cmd>Shades<cr>')
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`
 
