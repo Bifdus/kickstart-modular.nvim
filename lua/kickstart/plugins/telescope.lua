@@ -1,7 +1,7 @@
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
-    lazy = true,
+    lazy = false,
     cmd = 'Telescope',
     keys = {
       { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = '[S]earch [H]elp' },
@@ -137,6 +137,7 @@ return {
       vim.api.nvim_set_keymap('n', 'gu.', '<cmd>TextCaseOpenTelescope<CR>', { desc = 'Telescope' })
       vim.api.nvim_set_keymap('v', 'gu.', '<cmd>TextCaseOpenTelescope<CR>', { desc = 'Telescope' })
 
+      local builtin = require 'telescope.builtin'
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.

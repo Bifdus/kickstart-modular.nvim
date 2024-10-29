@@ -65,7 +65,6 @@ return {
   { 'ethanholz/nvim-lastplace', opts = {} },
   {
     'uga-rosa/ccc.nvim',
-    event = { 'BufNewFile' },
     opts = {
       highlighter = {
         auto_enable = true,
@@ -81,6 +80,7 @@ return {
           'javascript',
           'tmux',
           'typescript',
+          'json',
         },
         excludes = { 'lazy', 'mason', 'help' },
       },
@@ -451,6 +451,6 @@ return {
       -- buffer_leader_key = 'm', -- Per Buffer Mappings
     },
   },
-  { 'nvchad/volt', lazy = true },
-  { 'nvchad/minty', lazy = true },
+  { 'nvchad/volt', lazy = false },
+  { 'nvchad/minty', lazy = false },
 }

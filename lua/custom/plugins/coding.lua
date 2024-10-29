@@ -246,7 +246,7 @@ return {
   -- Better typescript lsp
   {
     'pmizio/typescript-tools.nvim',
-    ft = { 'html', 'css', 'javascript', 'typescript' },
+    ft = { 'html', 'css', 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' },
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
       on_attach = function(client, bufnr)
