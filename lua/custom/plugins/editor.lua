@@ -461,4 +461,5 @@ return {
       require('minty').setup(opts)
     end,
   },
+  { 'chrisgrieser/nvim-spider', lazy = true },
 }
