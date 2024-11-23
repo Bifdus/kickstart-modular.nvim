@@ -51,6 +51,15 @@ return {
           lsp_format = lsp_format_opt,
         }
       end,
+      -- Add custom formatters here
+      formatters = {
+        sqlfluff = {
+          command = 'sqlfluff',
+          args = { 'fix', '--dialect', 'tsql', '-' },
+          stdin = true,
+          tempfile_postfix = '.sql',
+        },
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'black' },
@@ -63,7 +72,7 @@ return {
         html = { 'prettierd', 'prettier' },
         json = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
-        -- Add additional formatters as needed
+        sql = { 'sqlfluff' },
       },
     },
   },
