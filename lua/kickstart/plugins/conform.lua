@@ -1,3 +1,8 @@
+-- For toggling formatting
+if vim.g.formatting_enabled == nil then
+  vim.g.formatting_enabled = true
+end
+
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
@@ -12,13 +17,28 @@ return {
         mode = '',
         desc = '[F]ormat buffer',
       },
+      {
+        '<leader>tc',
+        function()
+          vim.g.formatting_enabled = not vim.g.formatting_enabled
+          if vim.g.formatting_enabled then
+            vim.notify('Autoformatting enabled', vim.log.levels.INFO)
+          else
+            vim.notify('Autoformatting disabled', vim.log.levels.WARN)
+          end
+        end,
+        mode = '',
+        desc = '[F]ormat Toggle (Autoformatting on save)',
+      },
     },
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
+        -- Check if formatting is enabled
+        if not vim.g.formatting_enabled then
+          return false
+        end
+        -- Disable "format_on_save lsp_fallback" for specific languages
         local disable_filetypes = { c = true, cpp = true, php = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
@@ -43,11 +63,7 @@ return {
         html = { 'prettierd', 'prettier' },
         json = { 'prettierd', 'prettier' },
         yaml = { 'prettierd', 'prettier' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        -- Add additional formatters as needed
       },
     },
   },
