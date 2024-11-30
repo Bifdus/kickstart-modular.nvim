@@ -354,7 +354,9 @@ return {
         org_id_method = 'ts',
         org_agenda_span = 'week',
         org_agenda_files = '~/orgfiles/**/*',
+        org_archive_location = '~/orgfiles/archive.org::/From %s',
         org_default_notes_file = '~/orgfiles/refile.org',
+        org_refile_target_files = '~/orgfiles/archive.org',
         win_split_mode = function(name)
           -- Make sure it's not a scratch buffer by passing false as 2nd argument
           local bufnr = vim.api.nvim_create_buf(false, false)
