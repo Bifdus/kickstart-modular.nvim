@@ -123,6 +123,12 @@ return {
             },
           },
           orgmode = {},
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = 'smart_case',
+          },
         },
       }
 
@@ -138,6 +144,32 @@ return {
       vim.api.nvim_set_keymap('v', 'gu.', '<cmd>TextCaseOpenTelescope<CR>', { desc = 'Telescope' })
 
       local builtin = require 'telescope.builtin'
+
+      local function live_grep_with_exclusions()
+        -- Prompt for the exclusion patterns
+        vim.ui.input({ prompt = 'Exclude patterns (comma-separated, e.g., *.txt,*.log): ' }, function(exclude_patterns)
+          local additional_args = {}
+
+          if exclude_patterns and exclude_patterns ~= '' then
+            -- Split the exclude_input string by commas and add to additional_args
+            for pattern in string.gmatch(exclude_patterns, '([^,]+)') do
+              table.insert(additional_args, '--glob')
+              table.insert(additional_args, '!' .. pattern)
+            end
+          end
+
+          -- Execute the live_grep function without a predefined search term
+          builtin.live_grep {
+            prompt_title = 'Live Grep (Exclusions Applied)',
+            additional_args = function()
+              return additional_args
+            end,
+          }
+        end)
+      end
+
+      vim.keymap.set('n', '<leader>se', live_grep_with_exclusions, { desc = '[S]earch with [E]xclusions' })
+
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
