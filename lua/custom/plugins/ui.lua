@@ -135,12 +135,12 @@ return {
     },
       -- stylua: ignore
       keys = {
-              { '<leader>sn', '', desc = '+noice' },
-              { '<S-Enter>', function() require('noice').redirect(tostring(vim.fn.getcmdline())) end, mode = 'c', desc = 'Redirect Cmdline' },
-              { '<leader>snl', function() require('noice').cmd('last') end, desc = 'Noice Last Message' },
-              { '<leader>snh', function() require('noice').cmd('history') end, desc = 'Noice History' },
-              { '<leader>sna', function() require('noice').cmd('all') end, desc = 'Noice All' },
-              { '<leader>snt', function() require('noice').cmd('pick') end, desc = 'Noice Picker (Telescope/FzfLua)' },
+              -- { '<leader>sn', '', desc = '+noice' },
+              -- { '<S-Enter>', function() require('noice').redirect(tostring(vim.fn.getcmdline())) end, mode = 'c', desc = 'Redirect Cmdline' },
+              -- { '<leader>snl', function() require('noice').cmd('last') end, desc = 'Noice Last Message' },
+              -- { '<leader>snh', function() require('noice').cmd('history') end, desc = 'Noice History' },
+              -- { '<leader>sna', function() require('noice').cmd('all') end, desc = 'Noice All' },
+              -- { '<leader>snt', function() require('noice').cmd('pick') end, desc = 'Noice Picker (Telescope/FzfLua)' },
       },
     ---@type NoiceConfig
     opts = {
