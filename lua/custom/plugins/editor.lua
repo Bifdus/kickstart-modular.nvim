@@ -110,6 +110,30 @@ return {
   },
 
   -----------------------------------------------------------------------------
+  -- Preview Markdown
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons', -- Optional: Only include if you use icons
+    },
+    opts = {
+      auto_open = true,
+      auto_close = true,
+      -- Add more options based on the plugin's documentation
+    },
+    config = function(_, opts)
+      require('render-markdown').setup(opts)
+    end,
+    -- Optional: Lazy-load based on file type
+    ft = { 'markdown', 'md' },
+    -- Optional: Add keybindings specific to markdown rendering
+    keys = {
+      { '<leader>mr', '<cmd>RenderMarkdown<CR>', desc = 'Render Markdown' },
+    },
+  },
+
+  -----------------------------------------------------------------------------
   -- Auto save sessions
   {
     'rmagatti/auto-session',
@@ -280,9 +304,10 @@ return {
       vim.keymap.set('n', '<M-leftmouse>', mc.handleMouse)
 
       -- Add a cursor and jump to the next word under cursor.
-      vim.keymap.set({ 'n', 'v' }, '<c-a>', function()
-        mc.addCursor '*'
-      end)
+      -- TODO: Find a good replacement
+      -- vim.keymap.set({ 'n', 'v' }, '<c-a>', function()
+      --   mc.addCursor '*'
+      -- end)
 
       -- Jump to the next word under cursor but do not add a cursor.
       vim.keymap.set({ 'n', 'v' }, '<c-n>', function()
@@ -408,81 +433,36 @@ return {
       }
     end,
   },
-  --
+
   {
     'lukas-reineke/headlines.nvim',
-    ft = { 'org', 'neorg', 'markdown' },
+    ft = { 'org', 'markdown' },
     config = function()
+      -- Colors for orgmode headlines
+      vim.cmd [[highlight Headline1 guibg=#21262d]]
+      -- vim.cmd [[highlight Headline2 guibg=#21262d]]
+
+      local bullet_highlighs = {
+        '@markup.heading.1.markdown',
+        '@markup.heading.2.markdown',
+        '@markup.heading.3.markdown',
+        '@markup.heading.4.markdown',
+        '@markup.heading.5.markdown',
+        '@markup.heading.6.markdown',
+      }
       require('headlines').setup {
         org = {
-          headline_highlights = { 'Headline1', 'Headline2' },
+          headline_highlights = { 'Headline1' },
+          bullets = { '◉', '○', '✸', '✿' },
+          bullet_highlighs = bullet_highlighs,
         },
+        -- markdown = {
+        --   headline_highlights = { 'Headline1' },
+        --   bullets = { '◉', '○', '✸', '✿' },
+        --   bullet_highlighs = bullet_highlighs,
+        -- },
       }
     end,
-  },
-  -- Knowledge Base (notes etc)
-  -- {
-  --   'chipsenkbeil/org-roam.nvim',
-  --   ft = { 'org' },
-  --   tag = '0.1.0',
-  --   dependencies = {
-  --     {
-  --       'nvim-orgmode/orgmode',
-  --       tag = '0.3.4',
-  --     },
-  --   },
-  --   config = function()
-  --     require('org-roam').setup {
-  --       directory = '~/orgfiles',
-  --     }
-  --   end,
-  -- },
-  -- Toggle list to checkbox
-  -- {
-  --   'massix/org-checkbox.nvim',
-  --   config = function()
-  --     require('orgcheckbox').setup { lhs = '<leader>oT' }
-  --   end,
-  -- },
-  --
-
-  -----------------------------------------------------------------------------
-  -- Note Taking
-  {
-    'nvim-neorg/neorg',
-    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-    version = '*', -- Pin Neorg to the latest stable release
-    build = ':Neorg sync-parsers',
-    config = function()
-      require('neorg').setup {
-        load = {
-          ['core.defaults'] = {},
-          ['core.concealer'] = { config = { icon_preset = 'diamond' } },
-          ['core.dirman'] = {
-            config = {
-              workspaces = {
-                notes = '~/notes',
-              },
-              default_workspace = 'notes',
-            },
-          },
-          ['core.integrations.nvim-cmp'] = {},
-          ['core.completion'] = { config = { engine = 'nvim-cmp', name = '[Norg]' } },
-          ['core.integrations.telescope'] = {},
-          ['core.highlights'] = {},
-          ['core.ui.calendar'] = {},
-        },
-      }
-      vim.wo.foldlevel = 99
-      vim.wo.conceallevel = 2
-    end,
-    dependencies = {
-      'nvim-neorg/neorg-telescope',
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'nvim-cmp',
-      'nvim-lua/plenary.nvim',
-    },
   },
 
   -----------------------------------------------------------------------------
