@@ -123,22 +123,15 @@ return {
           end
 
           -- Tailwind Keymaps
-          if client and client.name == 'tailwindcss' then
-            local opts = { noremap = true, silent = true }
-            map('n', '<leader>Tc', '<cmd>TailwindConcealToggle<CR>', opts)
-            map('n', '<leader>Th', '<cmd>TailwindColorToggle<CR>', opts)
-            map('n', '<leader>Ts', '<cmd>TailwindSort<CR>', opts)
-            map('x', '<leader>s', '<cmd>TailwindSortSelection<CR>', opts)
-            map('n', '<leader>tn', '<cmd>TailwindNextClass<CR>', opts)
-            map('n', '<leader>tN', '<cmd>TailwindPrevClass<CR>', opts)
-          end
-
-          -- Phpactor keymaps
-          if client and client.name == 'phpactor' then
-            map('<leader>pm', '<cmd>PhpactorContextMenu<CR>', 'PHPActor Context Menu')
-            map('<leader>pn', '<cmd>PhpactorClassNew<CR>', 'PHPActor New Class')
-            -- Add more PHPActor-specific mappings as needed
-          end
+          -- if client and client.name == 'tailwindcss' then
+          --   local opts = { noremap = true, silent = true }
+          --   map('n', '<leader>Tc', '<cmd>TailwindConcealToggle<CR>', opts)
+          --   map('n', '<leader>Th', '<cmd>TailwindColorToggle<CR>', opts)
+          --   map('n', '<leader>Ts', '<cmd>TailwindSort<CR>', opts)
+          --   map('x', '<leader>s', '<cmd>TailwindSortSelection<CR>', opts)
+          --   map('n', '<leader>tn', '<cmd>TailwindNextClass<CR>', opts)
+          --   map('n', '<leader>tN', '<cmd>TailwindPrevClass<CR>', opts)
+          -- end
 
           -- The following autocommand is used to enable inlay hints in your
           -- The following code creates a keymap to toggle inlay hints in your
@@ -211,21 +204,25 @@ return {
           },
         },
         phpactor = {
-
-          filetypes = {
-            'php',
-          },
-          init_options = function()
-            return {
-              ['language_server_phpstan.enabled'] = false,
-              ['language_server_psalm.enabled'] = false,
-              ['symfony.enabled'] = true,
-              ['symfony.app_dir'] = 'apps',
-              ['symfony.src_dir'] = 'lib',
-              ['symfony.var_dir'] = 'cache',
-              ['composer.autoloader_path'] = vim.fn.getcwd() .. '/vendor/autoload.php',
-            }
+          cmd = { 'intelephense', '--stdio' },
+          filetypes = { 'php' },
+          root_dir = function(fname)
+            return vim.lsp.util.root_pattern('ProjectConfiguration.class.php', '.git', 'index.php')(fname) or vim.loop.cwd()
           end,
+          settings = {
+            intelephense = {
+              environment = {
+                includePaths = { '../symfony/lib', './lib/model' },
+              },
+              files = {
+                exclude = {
+                  '**/cache/**',
+                  '**/vendor/**',
+                },
+              },
+              stubs = { 'pdo', 'xml', 'curl', 'spl' },
+            },
+          },
         },
         clangd = {
           filetypes = {
