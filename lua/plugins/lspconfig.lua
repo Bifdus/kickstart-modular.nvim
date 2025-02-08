@@ -9,6 +9,7 @@ return {
       library = {
         -- Load luvit types when the `vim.uv` word is found
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = 'snacks.nvim', words = { 'Snacks' } },
       },
     },
   },
@@ -74,8 +75,8 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
           -- LSP Saga Mappings
-          map('gd', '<cmd>Lspsaga goto_definition<CR>', '[G]oto [D]efinition')
-          map('gr', '<cmd>Lspsaga finder<CR>', '[G]oto [R]eferences')
+          -- map('gd', '<cmd>Lspsaga goto_definition<CR>', '[G]oto [D]efinition')
+          -- map('gr', '<cmd>Lspsaga finder<CR>', '[G]oto [R]eferences')
           map('<leader>D', '<cmd>Lspsaga peek_type_definition<CR>', 'Type [D]efinition')
           map('<leader>rn', '<cmd>Lspsaga rename<CR>', '[R]e[n]ame')
           map('<leader>ca', '<cmd>Lspsaga code_action<CR>', '[C]ode [A]ction', { 'n', 'x' })
@@ -85,9 +86,9 @@ return {
           map('go', '<cmd>Lspsaga outline<CR>', 'Goto outline')
 
           -- Telescope mappings
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          -- map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          -- map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          -- map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.

@@ -19,6 +19,7 @@ return {
       'nvim-treesitter/playground',
       'HiPhish/rainbow-delimiters.nvim',
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'folke/snacks.nvim',
     },
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`

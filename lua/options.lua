@@ -4,17 +4,17 @@
 --  For more options, you can see `:help option-list`
 --
 -- Neovide config
-if vim.g.neovide then
-  vim.g.neovide_profiler = false
-  vim.g.neovide_cursor_animation_length = 0.05
-  vim.g.neovide_cursor_trail_size = 0.8
-  vim.opt.guifont = 'FiraCode Nerd Font:h14'
-  vim.g.neovide_remember_window_size = true
-  vim.g.neovide_padding_top = 0
-  vim.g.neovide_padding_bottom = 0
-  vim.g.neovide_padding_right = 0
-  vim.g.neovide_padding_left = 0
-end
+-- if vim.g.neovide then
+--   vim.g.neovide_profiler = false
+--   vim.g.neovide_cursor_animation_length = 0.05
+--   vim.g.neovide_cursor_trail_size = 0.8
+--   vim.opt.guifont = 'FiraCode Nerd Font:h14'
+--   vim.g.neovide_remember_window_size = true
+--   vim.g.neovide_padding_top = 0
+--   vim.g.neovide_padding_bottom = 0
+--   vim.g.neovide_padding_right = 0
+--   vim.g.neovide_padding_left = 0
+-- end
 
 -- sets filetype to bigfile when larger than 1.5mb
 -- disables some plugins to help with speed

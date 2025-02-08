@@ -26,28 +26,6 @@ vim.keymap.set({ 'n', 'x' }, 'S', '<Nop>')
 vim.keymap.set({ 'n', 'x', 'o' }, ';', '<Nop>')
 vim.keymap.set({ 'n', 'x', 'o' }, ',', '<Nop>')
 
--- Source nvim file to reload without quitting
-vim.keymap.set('n', '<leader>sv', function()
-  vim.cmd [[
-      update $MYVIMRC
-      source $MYVIMRC
-    ]]
-  vim.notify('Nvim config successfully reloaded!', vim.log.levels.INFO, { title = 'nvim-config' })
-end, {
-  silent = true,
-  desc = 'source vim init.lua',
-})
-
--- Edit config in new tab
-vim.keymap.set('n', '<leader>ec', function()
-  -- open new tab
-  vim.api.nvim_command 'tabnew'
-  -- open config file
-  vim.api.nvim_command('edit ' .. vim.fn.stdpath 'config' .. '/init.lua')
-  -- change cwd
-  vim.cmd('tcd ' .. vim.fn.stdpath 'config')
-end, { desc = 'Edit Neovim config in a new tab' })
-
 -- Reselect the text that has just been pasted, see also https://stackoverflow.com/a/4317090/6064933.
 vim.keymap.set('n', '<leader>v', "printf('`[%s`]', getregtype()[0])", {
   expr = true,
@@ -195,11 +173,6 @@ vim.keymap.set('n', '<leader>clc', '<cmd>lua require("chainsaw").clearLog()<CR>'
 vim.keymap.set('n', '<leader>clr', '<cmd>lua require("chainsaw").removeLogs()<CR>', { noremap = true, silent = true, desc = '[c]hainsaw [l]og [r]emove' })
 
 -----------------------------------------------------------------------------
-
--- Surrounding add to visual select
--- vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
-
------------------------------------------------------------------------------
 -- Cycle through todo comments
 vim.keymap.set('n', ']t', function()
   require('todo-comments').jump_next()
@@ -207,10 +180,6 @@ end, { silent = true, desc = 'Next Todo' })
 vim.keymap.set('n', '[t', function()
   require('todo-comments').jump_prev()
 end, { silent = true, desc = 'Previous Todo' })
-
--- FIX: - Implement this
--- vim.keymap.set('n', '[t', "<cmd>lua", { silent = true, desc = 'Telescope TODOS' })
---
 
 -----------------------------------------------------------------------------
 --- Minty color picker

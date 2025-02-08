@@ -7,7 +7,7 @@ return {
     build = ':TSUpdate html',
     cmd = 'Leet',
     dependencies = {
-      'nvim-telescope/telescope.nvim',
+      -- 'nvim-telescope/telescope.nvim',
       'nvim-lua/plenary.nvim', -- required by telescope
       'MunifTanjim/nui.nvim',
 
@@ -98,6 +98,7 @@ return {
       })
 
       require('git-conflict').setup {
+        debug = true,
         default_mappings = true, -- disable buffer local mapping created by this plugin
         default_commands = true, -- disable commands created by this plugin
         disable_diagnostics = true, -- This will disable the diagnostics in a buffer whilst it is conflicted
@@ -229,18 +230,18 @@ return {
 
   -----------------------------------------------------------------------------
   -- Tailwind extra lsp tools
-  {
-    'luckasRanarison/tailwind-tools.nvim',
-    name = 'tailwind-tools',
-    build = ':UpdateRemotePlugins',
-    ft = { 'html', 'css', 'javascript', 'typescript' },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-telescope/telescope.nvim', -- optional
-      'neovim/nvim-lspconfig', -- optional
-    },
-    opts = {},
-  },
+  -- {
+  --   'luckasRanarison/tailwind-tools.nvim',
+  --   name = 'tailwind-tools',
+  --   build = ':UpdateRemotePlugins',
+  --   ft = { 'html', 'css', 'javascript', 'typescript' },
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --     -- 'nvim-telescope/telescope.nvim', -- optional
+  --     'neovim/nvim-lspconfig', -- optional
+  --   },
+  --   opts = {},
+  -- },
 
   -----------------------------------------------------------------------------
   -- Better typescript lsp
@@ -327,7 +328,7 @@ return {
       'neovim/nvim-lspconfig',
       'mfussenegger/nvim-dap',
       'mfussenegger/nvim-dap-python', --optional
-      { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+      -- { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     },
     lazy = true,
     ft = 'python',
@@ -347,7 +348,7 @@ return {
     'luckasRanarison/nvim-devdocs',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
+      -- 'nvim-telescope/telescope.nvim',
       'nvim-treesitter/nvim-treesitter',
     },
     keys = {
@@ -357,7 +358,7 @@ return {
     opts = {},
   },
 
-  -----------------------------------------------------------------------------
+  ---------------------------------------------------------------------------
   -- Improved yanking
   {
     'gbprod/yanky.nvim',
@@ -478,37 +479,38 @@ return {
   },
   {
     'nosduco/remote-sshfs.nvim',
-    dependencies = { 'nvim-telescope/telescope.nvim' },
+    -- dependencies = { 'nvim-telescope/telescope.nvim' },
     opts = {
       -- Refer to the configuration section below
       -- or leave empty for defaults
     },
   },
-  {
-    'rmagatti/goto-preview',
-    config = function()
-      require('goto-preview').setup {
-        width = 120, -- Width of the floating window
-        height = 15, -- Height of the floating window
-        border = { '↖', '─', '┐', '│', '┘', '─', '└', '│' }, -- Border characters of the floating window
-        default_mappings = true,
-        debug = false, -- Print debug information
-        opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        resizing_mappings = false, -- Binds arrow keys to resizing the floating window.
-        post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
-        references = { -- Configure the telescope UI for slowing the references cycling window.
-          telescope = require('telescope.themes').get_dropdown { hide_preview = false },
-        },
-        -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
-        focus_on_open = true, -- Focus the floating window when opening it.
-        dismiss_on_move = false, -- Dismiss the floating window when moving the cursor.
-        force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
-        bufhidden = 'wipe', -- the bufhidden option to set on the floating window. See :h bufhidden
-        stack_floating_preview_windows = true, -- Whether to nest floating windows
-        preview_window_title = { enable = true, position = 'left' }, -- Whether
-      }
-    end,
-  },
+  -- TODO: Remove
+  -- {
+  --   'rmagatti/goto-preview',
+  --   config = function()
+  --     require('goto-preview').setup {
+  --       width = 120, -- Width of the floating window
+  --       height = 15, -- Height of the floating window
+  --       border = { '↖', '─', '┐', '│', '┘', '─', '└', '│' }, -- Border characters of the floating window
+  --       default_mappings = true,
+  --       debug = false, -- Print debug information
+  --       opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
+  --       resizing_mappings = false, -- Binds arrow keys to resizing the floating window.
+  --       post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+  --       references = { -- Configure the telescope UI for slowing the references cycling window.
+  --         telescope = require('telescope.themes').get_dropdown { hide_preview = false },
+  --       },
+  --       -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
+  --       focus_on_open = true, -- Focus the floating window when opening it.
+  --       dismiss_on_move = false, -- Dismiss the floating window when moving the cursor.
+  --       force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
+  --       bufhidden = 'wipe', -- the bufhidden option to set on the floating window. See :h bufhidden
+  --       stack_floating_preview_windows = true, -- Whether to nest floating windows
+  --       preview_window_title = { enable = true, position = 'left' }, -- Whether
+  --     }
+  --   end,
+  -- },
 
   {
     'ThePrimeagen/refactoring.nvim',

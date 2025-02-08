@@ -150,46 +150,11 @@ return {
   },
 
   -----------------------------------------------------------------------------
-  -- View CSV files
-  {
-    'theKnightsOfRohan/csvlens.nvim',
-    ft = { 'csv' },
-    dependencies = {
-      'akinsho/toggleterm.nvim',
-    },
-    config = true,
-    opts = {},
-  },
-
-  -----------------------------------------------------------------------------
   -- Find and replace
   {
     'nvim-pack/nvim-spectre',
     cmd = 'Spectre',
     opts = {},
-  },
-
-  -----------------------------------------------------------------------------
-  -- Terminal window
-  {
-    'akinsho/toggleterm.nvim',
-    event = 'VeryLazy',
-    version = '*',
-    opts = {
-      size = 20,
-      open_mapping = [[<c-\>]],
-      hide_numbers = true,
-      shade_filetypes = {},
-      shade_terminals = true,
-      shading_factor = '1',
-      start_in_insert = true,
-      insert_mappings = true,
-      terminal_mappings = true,
-      persist_size = true,
-      direction = 'horizontal',
-      close_on_exit = true,
-      shell = vim.o.shell,
-    },
   },
 
   -----------------------------------------------------------------------------
@@ -456,11 +421,6 @@ return {
           bullets = { '◉', '○', '✸', '✿' },
           bullet_highlighs = bullet_highlighs,
         },
-        -- markdown = {
-        --   headline_highlights = { 'Headline1' },
-        --   bullets = { '◉', '○', '✸', '✿' },
-        --   bullet_highlighs = bullet_highlighs,
-        -- },
       }
     end,
   },
@@ -484,4 +444,62 @@ return {
     end,
   },
   { 'chrisgrieser/nvim-spider', lazy = true },
+
+  -- Better increase/descrease
+  {
+    'monaqa/dial.nvim',
+    -- stylua: ignore
+    keys = {
+      { "<C-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
+      { "<C-x>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
+    },
+    config = function()
+      local augend = require 'dial.augend'
+      require('dial.config').augends:register_group {
+        default = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.date.alias['%Y/%m/%d'],
+          augend.constant.alias.bool,
+          augend.semver.alias.semver,
+          augend.constant.new { elements = { 'let', 'const' } },
+        },
+      }
+    end,
+  },
+
+  --
+  --     -- terminal
+  --     { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
+  --
+  --     init = function()
+  --         vim.api.nvim_create_autocmd("User", {
+  --           pattern = "VeryLazy",
+  --           callback = function()
+  --             -- Setup some globals for debugging (lazy-loaded)
+  --             _G.dd = function(...)
+  --               Snacks.debug.inspect(...)
+  --             end
+  --             _G.bt = function()
+  --               Snacks.debug.backtrace()
+  --             end
+  --             vim.print = _G.dd -- Override print to use snacks for `:=` command
+  --
+  --             -- Create some toggle mappings
+  --             Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+  --             Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+  --             Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+  --             Snacks.toggle.diagnostics():map("<leader>ud")
+  --             Snacks.toggle.line_number():map("<leader>ul")
+  --             Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
+  --             Snacks.toggle.treesitter():map("<leader>uT")
+  --             Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
+  --             Snacks.toggle.inlay_hints():map("<leader>uh")
+  --             Snacks.toggle.indent():map("<leader>ug")
+  --             Snacks.toggle.dim():map("<leader>uD")
+  --           end,
+  --         })
+  --       end,
+  --         },
+  -- },
 }
