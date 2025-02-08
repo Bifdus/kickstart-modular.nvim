@@ -1,21 +1,10 @@
----@class lazyvim.util.root
----@overload fun(): string
 local M = setmetatable({}, {
   __call = function(m, ...)
     return m.get(...)
   end,
 })
 
----@class LazyRoot
----@field paths string[]
----@field spec LazyRootSpec
-
----@alias LazyRootFn fun(buf: number): (string|string[])
-
----@alias LazyRootSpec string|string[]|LazyRootFn
-
----@type LazyRootSpec[]
-M.spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
+M.spec = { { '.git', 'lua' }, 'cwd' }
 
 M.detectors = {}
 
@@ -79,11 +68,9 @@ function M.realpath(path)
     return nil
   end
   path = vim.uv.fs_realpath(path) or path
-  return LazyVim.norm(path)
+  return LazyVim.util.norm(path)
 end
 
----@param spec LazyRootSpec
----@return LazyRootFn
 function M.resolve(spec)
   if M.detectors[spec] then
     return M.detectors[spec]
@@ -95,12 +82,11 @@ function M.resolve(spec)
   end
 end
 
----@param opts? { buf?: number, spec?: LazyRootSpec[], all?: boolean }
 function M.detect(opts)
   opts = opts or {}
+
   opts.spec = opts.spec or type(vim.g.root_spec) == 'table' and vim.g.root_spec or M.spec
   opts.buf = (opts.buf == nil or opts.buf == 0) and vim.api.nvim_get_current_buf() or opts.buf
-
   local ret = {} ---@type LazyRoot[]
   for _, spec in ipairs(opts.spec) do
     local paths = M.resolve(spec)(opts.buf)
@@ -156,21 +142,14 @@ function M.setup()
   -- FIX: doesn't properly clear cache in neo-tree `set_root` (which should happen presumably on `DirChanged`),
   -- probably because the event is triggered in the neo-tree buffer, therefore add `BufEnter`
   -- Maybe this is too frequent on `BufEnter` and something else should be done instead??
-  vim.api.nvim_create_autocmd({ 'LspAttach', 'BufWritePost', 'DirChanged', 'BufEnter' }, {
-    group = vim.api.nvim_create_augroup('lazyvim_root_cache', { clear = true }),
-    callback = function(event)
-      M.cache[event.buf] = nil
-    end,
-  })
+  -- vim.api.nvim_create_autocmd({ 'LspAttach', 'BufWritePost', 'DirChanged', 'BufEnter' }, {
+  --   group = vim.api.nvim_create_augroup('lazyvim_root_cache', { clear = true }),
+  --   callback = function(event)
+  --     M.cache[event.buf] = nil
+  --   end,
+  -- })
 end
 
--- returns the root directory based on:
--- * lsp workspace folders
--- * lsp root_dir
--- * root pattern of filename of the current buffer
--- * root pattern of cwd
----@param opts? {normalize?:boolean, buf?:number}
----@return string
 function M.get(opts)
   opts = opts or {}
   local buf = opts.buf or vim.api.nvim_get_current_buf()
