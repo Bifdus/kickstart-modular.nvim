@@ -1,3 +1,4 @@
+-- Functions Copied from Lazyvim - https://github.com/LazyVim/LazyVim?tab=readme-ov-file
 local M = {}
 
 -- taken from MiniExtra.gen_ai_spec.buffer

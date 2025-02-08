@@ -4,6 +4,7 @@ return {
     bigfile = { enabled = true },
     scroll = { enabled = false },
     terminal = { enabled = true },
+    scratch = { enabled = true },
     explorer = { enabled = false },
     words = {
       enabled = true,

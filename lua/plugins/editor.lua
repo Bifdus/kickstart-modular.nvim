@@ -1,95 +1,6 @@
 return {
 
   -----------------------------------------------------------------------------
-  -- Improved jumps
-  {
-    'folke/flash.nvim',
-    event = 'VeryLazy',
-    ---@type Flash.Config
-    opts = {
-      modes = {
-        char = {
-          enabled = true,
-        },
-      },
-    },
-    -- stylua: ignore
-    keys = {
-      {';', mode ={'n', 'x', 'o'}, false},
-      {',', mode ={'n', 'x', 'o'}, false},
-      {
-        's',
-        mode = { 'n', 'x', 'o' },
-        function()
-          require('flash').jump()
-        end,
-        desc = 'flash',
-      },
-      -- {
-      --   't',
-      --   mode = { 'n', 'x', 'o' },
-      --   function()
-      --     require('flash').treesitter_search()
-      --   end,
-      --   desc = 'flash treesitter',
-      -- },
-      {
-        'r',
-        mode = 'o',
-        function()
-          require('flash').remote()
-        end,
-        desc = 'Remote Flash',
-      },
-      {
-        'S',
-        mode = { 'o', 'x' },
-        function()
-          require('flash').treesitter_search()
-        end,
-        desc = 'Treesitter Search',
-      },
-      {
-        '<leader>tf',
-        mode = { 'n' },
-        function()
-          require('flash').toggle()
-        end,
-        desc = 'Toggle Flash Search',
-      },
-    },
-  },
-
-  -----------------------------------------------------------------------------
-  -- Returns you to last place in file when reopening
-  { 'ethanholz/nvim-lastplace', opts = {} },
-  {
-    'uga-rosa/ccc.nvim',
-    opts = {
-      highlighter = {
-        auto_enable = true,
-        lsp = true,
-        filetypes = {
-          'html',
-          'lua',
-          'css',
-          'scss',
-          'sass',
-          'less',
-          'stylus',
-          'javascript',
-          'javascriptreact',
-          'tmux',
-          'json',
-          'typescript',
-          'typescriptreact',
-        },
-        excludes = { 'lazy', 'mason', 'help' },
-      },
-    },
-  },
-
-  -----------------------------------------------------------------------------
   -- Swap textobjects
   {
     'mizlan/iswap.nvim',
@@ -340,6 +251,8 @@ return {
       -- Setup orgmode
       require('orgmode').setup {
         calendar = { round_min_with_hours = true, min_big_step = 15, min_small_step = 1 },
+        org_use_property_inheritance = true,
+
         org_log_repeat = 'time',
         org_id_method = 'ts',
         org_agenda_span = 'week',
@@ -444,29 +357,6 @@ return {
     end,
   },
   { 'chrisgrieser/nvim-spider', lazy = true },
-
-  -- Better increase/descrease
-  {
-    'monaqa/dial.nvim',
-    -- stylua: ignore
-    keys = {
-      { "<C-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
-      { "<C-x>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
-    },
-    config = function()
-      local augend = require 'dial.augend'
-      require('dial.config').augends:register_group {
-        default = {
-          augend.integer.alias.decimal,
-          augend.integer.alias.hex,
-          augend.date.alias['%Y/%m/%d'],
-          augend.constant.alias.bool,
-          augend.semver.alias.semver,
-          augend.constant.new { elements = { 'let', 'const' } },
-        },
-      }
-    end,
-  },
 
   --
   --     -- terminal

@@ -1,7 +1,4 @@
 return {
-
-  -----------------------------------------------------------------------------
-  -- Statusline
   {
     'nvim-lualine/lualine.nvim',
     lazy = 'VeryLazy',

@@ -4,9 +4,6 @@ return {
   opts = {
     picker = {
       enabled = true,
-      layout = {
-        preset = 'ivy',
-      },
     },
   },
   -- stylua: ignore
