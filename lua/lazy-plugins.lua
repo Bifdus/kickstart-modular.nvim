@@ -3,11 +3,17 @@ require('lazy').setup({
   require 'plugins.colorscheme.dracula',
 
   -- import rest of plugins
+  --
+  require 'plugins/lsp/gitsigns',
+  require 'plugins/editor/which-key',
+  require 'plugins/lsp/lspconfig',
+  require 'plugins/lsp/conform',
+  require 'plugins/lsp/cmp',
+  require 'plugins/lsp.lint',
+  { import = 'plugins.lsp' },
   { import = 'plugins' },
-  { import = 'plugins.snacks' },
   { import = 'plugins.coding' },
   { import = 'plugins.editor' },
-  { import = 'plugins.lsp' },
   { import = 'plugins.ui' },
 }, {
   ui = {
