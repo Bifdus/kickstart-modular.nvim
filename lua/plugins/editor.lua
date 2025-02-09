@@ -109,7 +109,7 @@ return {
       end, desc = "Peek Fold", },
     },
     opts = {
-      fold_virt_text_handler = require('custom.functions.utils').fold_handler,
+      -- fold_virt_text_handler = require('custom.functions.utils').fold_handler,
     },
     config = function(_, opts)
       require('ufo').setup(opts)

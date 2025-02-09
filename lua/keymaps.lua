@@ -3,6 +3,7 @@
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
+--
 
 -----------------------------------------------------------------------------
 -- NOTE: If you aren't using colemak, comment these out
@@ -67,10 +68,10 @@ vim.keymap.set('t', '<Esc><Esc>', function()
 end, { expr = true, nowait = true, desc = 'which_key_ignore' })
 
 -- TODO: Configure Lazygit current file history (see lazyvim.lazygit)
-vim.keymap.set('n', '<leader>lf', function()
-  local git_path = vim.api.nvim_buf_get_name(0)
-  require 'custom.functions.lazygit' { args = { '-f', vim.trim(git_path) } }
-end, { desc = 'Lazygit Current File History' })
+-- vim.keymap.set('n', '<leader>lf', function()
+--   local git_path = vim.api.nvim_buf_get_name(0)
+--   require 'custom.functions.lazygit' { args = { '-f', vim.trim(git_path) } }
+-- end, { desc = 'Lazygit Current File History' })
 
 -- Shift tab to dedent
 vim.keymap.set('i', '<S-Tab>', '<C-d>', { noremap = true, silent = true })
@@ -126,6 +127,26 @@ vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({sele
 vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
   desc = 'Search on current file',
 })
+
+-- Toggle Options
+--
+-- lazyvim.format.snacks_toggle():map '<leader>uf'
+-- lazyvim.format.snacks_toggle(true):map '<leader>uf'
+Snacks.toggle.option('spell', { name = 'spelling' }):map '<leader>us'
+Snacks.toggle.option('wrap', { name = 'wrap' }):map '<leader>uw'
+Snacks.toggle.option('relativenumber', { name = 'relative number' }):map '<leader>ul'
+Snacks.toggle.indent():map '<leader>ug'
+Snacks.toggle.diagnostics():map '<leader>ud'
+Snacks.toggle.line_number():map '<leader>ul'
+Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = 'conceal level' }):map '<leader>uc'
+Snacks.toggle.option('showtabline', { off = 0, on = vim.o.showtabline > 0 and vim.o.showtabline or 2, name = 'tabline' }):map '<leader>ua'
+Snacks.toggle.treesitter():map '<leader>ut'
+Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'dark background' }):map '<leader>ub'
+Snacks.toggle.dim():map '<leader>ud'
+Snacks.toggle.animate():map '<leader>ua'
+Snacks.toggle.scroll():map '<leader>us'
+Snacks.toggle.profiler():map '<leader>dpp'
+Snacks.toggle.profiler_highlights():map '<leader>dph'
 
 -----------------------------------------------------------------------------
 -- Chainsaw logging Plugin

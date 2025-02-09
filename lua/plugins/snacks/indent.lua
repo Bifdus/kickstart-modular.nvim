@@ -16,8 +16,4 @@ return {
       },
     },
   },
-  -- stylua: ignore
-  keys = {
-    { '<leader>ug', function() Snacks.toggle.indent():toggle() end, desc = 'Toggle Indent'},
-  },
 }

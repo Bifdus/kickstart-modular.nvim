@@ -4,8 +4,12 @@ return {
     bigfile = { enabled = true },
     scroll = { enabled = false },
     terminal = { enabled = true },
+    notifier = { enabled = true },
     scratch = { enabled = true },
     explorer = { enabled = false },
+    scope = { enabled = true },
+    statuscolumn = { enabled = true },
+    zen = { enabled = true },
     words = {
       enabled = true,
       debounce = 200, -- time in ms to wait before updating
