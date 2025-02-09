@@ -150,6 +150,16 @@ Snacks.toggle.profiler_highlights():map '<leader>dph'
 Snacks.toggle.zoom():map('<leader>wm'):map '<leader>uZ'
 Snacks.toggle.zen():map '<leader>uz'
 
+
+-- floating terminal
+--
+-- stylua: ignore
+vim.keymap.set("n", "<c-\\>", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
+-- TODO: fix this
+-- vim.keymap.set("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root.get() }) end, { desc = "Terminal (Root Dir)" })
+-- vim.keymap.set("n", "<c-/>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
+-- vim.keymap.set("n", "<c-_>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
+
 -----------------------------------------------------------------------------
 -- Chainsaw logging Plugin
 
