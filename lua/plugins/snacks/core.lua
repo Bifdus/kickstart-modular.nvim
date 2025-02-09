@@ -7,7 +7,7 @@ return {
     notifier = { enabled = true },
     scratch = { enabled = true },
     explorer = { enabled = false },
-    scope = { enabled = true },
+    scope = { enabled = false },
     statuscolumn = { enabled = true },
     zen = { enabled = true },
     words = {

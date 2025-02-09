@@ -147,6 +147,8 @@ Snacks.toggle.animate():map '<leader>ua'
 Snacks.toggle.scroll():map '<leader>us'
 Snacks.toggle.profiler():map '<leader>dpp'
 Snacks.toggle.profiler_highlights():map '<leader>dph'
+Snacks.toggle.zoom():map('<leader>wm'):map '<leader>uZ'
+Snacks.toggle.zen():map '<leader>uz'
 
 -----------------------------------------------------------------------------
 -- Chainsaw logging Plugin
