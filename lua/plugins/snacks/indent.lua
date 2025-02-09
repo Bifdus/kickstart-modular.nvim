@@ -3,11 +3,13 @@ return {
   opts = {
     indent = {
       indent = {
-        char = '▎',
+        char = '│',
       },
       scope = {
-        char = '▎',
+        char = '│',
         only_current = true,
+        underline = false,
+        hl = 'DraculaComment',
       },
       animate = {
         enabled = false,
