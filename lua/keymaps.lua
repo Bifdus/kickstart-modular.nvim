@@ -149,6 +149,8 @@ Snacks.toggle.profiler():map '<leader>dpp'
 Snacks.toggle.profiler_highlights():map '<leader>dph'
 Snacks.toggle.zoom():map('<leader>wm'):map '<leader>uZ'
 Snacks.toggle.zen():map '<leader>uz'
+Snacks.toggle.treesitter():map '<leader>uT'
+Snacks.toggle.diagnostics():map '<leader>ud'
 
 
 -- floating terminal
