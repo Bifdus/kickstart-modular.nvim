@@ -1,20 +1,16 @@
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  require 'plugins.colorscheme.dracula',
 
   -- import rest of plugins
   --
-  require 'plugins/lsp/gitsigns',
-  require 'plugins/editor/which-key',
-  require 'plugins/lsp/lspconfig',
-  require 'plugins/lsp/conform',
-  require 'plugins/lsp/cmp',
-  require 'plugins/lsp.lint',
-  { import = 'plugins.lsp' },
+  -- require 'plugins/lsp/gitsigns',
+  -- require 'plugins/lsp/lspconfig',
+  -- require 'plugins/lsp/conform',
+  -- require 'plugins/lsp/cmp',
+  -- require 'plugins/lsp.lint',
+  { import = 'plugins.setup' },
   { import = 'plugins' },
-  { import = 'plugins.coding' },
-  { import = 'plugins.editor' },
-  { import = 'plugins.ui' },
+  { import = 'plugins.snacks' },
 }, {
   ui = {
     -- Icons if nerd font found
