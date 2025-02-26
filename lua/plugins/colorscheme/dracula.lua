@@ -1,7 +1,6 @@
 -- Check if Dracula Pro theme is available, otherwise use Tokyonight
 return (function()
-  local dracula_path = vim.fn.has 'linux' and vim.fn.expand '~/.local/share/nvim/site/pack/themes/start/dracula_pro'
-    or vim.fn.expand 'C:/dracula_pro_2.1/themes/vim'
+  local dracula_path = vim.fn.expand '~/dracula_pro'
 
   if vim.fn.isdirectory(dracula_path) == 1 then
     return {
