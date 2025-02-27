@@ -8,7 +8,16 @@ require('lazy').setup({
   -- require 'plugins/lsp/conform',
   -- require 'plugins/lsp/cmp',
   -- require 'plugins/lsp.lint',
-  { import = 'plugins.setup' },
+  -- { import = 'plugins.config' },
+  require 'plugins.setup.lspconfig',
+  require 'plugins.setup.gitsigns',
+  require 'plugins.setup.cmp',
+  require 'plugins.setup.conform',
+  require 'plugins.setup.which-key',
+  require 'plugins.setup.lspconfig',
+  require 'plugins.setup.dracula',
+
+  { import = 'plugins.languages'},
   { import = 'plugins' },
   { import = 'plugins.snacks' },
 }, {

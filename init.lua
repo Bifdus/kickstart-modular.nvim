@@ -27,6 +27,8 @@ require 'lazy-plugins'
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
+require 'config'
+
 _G.LazyVim = require 'util'
 
 -- The line beneath this is called `modeline`. See `:help modeline`

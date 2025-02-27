@@ -17,25 +17,12 @@ return {
         mode = '',
         desc = '[F]ormat buffer',
       },
-      {
-        '<leader>tc',
-        function()
-          vim.g.formatting_enabled = not vim.g.formatting_enabled
-          if vim.g.formatting_enabled then
-            vim.notify('Autoformatting enabled', vim.log.levels.INFO)
-          else
-            vim.notify('Autoformatting disabled', vim.log.levels.WARN)
-          end
-        end,
-        mode = '',
-        desc = '[F]ormat Toggle (Autoformatting on save)',
-      },
     },
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
         -- Check if formatting is enabled
-        if not vim.g.formatting_enabled then
+        if not vim.g.autoformat then
           return false
         end
         -- Disable "format_on_save lsp_fallback" for specific languages
