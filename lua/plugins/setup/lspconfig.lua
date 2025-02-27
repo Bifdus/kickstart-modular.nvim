@@ -20,38 +20,22 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+      { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      --  This function gets run when an LSP attaches to a particular buffer.
-      --    That is to say, every time a new file is opened that is associated with
-      --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-      --    function will be executed to configure the current buffer
+      -- This autocommand runs whenever an LSP attaches to a buffer.
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-          -- to define small helper and utility functions so you don't have to repeat yourself.
-          --
-          -- In this case, we create a function that lets us more easily define mappings specific
-          -- for LSP related items. It sets the mode, buffer and description for us each time.
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
-          -- LSP Saga Mappings
-          -- map('gd', '<cmd>Lspsaga goto_definition<CR>', '[G]oto [D]efinition')
-          -- map('gr', '<cmd>Lspsaga finder<CR>', '[G]oto [R]eferences')
+
           map('<leader>D', '<cmd>Lspsaga peek_type_definition<CR>', 'Type [D]efinition')
           map('<leader>rn', '<cmd>Lspsaga rename<CR>', '[R]e[n]ame')
           map('<leader>ca', '<cmd>Lspsaga code_action<CR>', '[C]ode [A]ction', { 'n', 'x' })
@@ -61,7 +45,6 @@ return {
           map('gp', '<cmd>Lspsaga peek_definition<CR>', 'Peek Definition')
           map('go', '<cmd>Lspsaga outline<CR>', 'Goto outline')
 
-          -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -70,13 +53,11 @@ return {
               group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
-
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
-
             vim.api.nvim_create_autocmd('LspDetach', {
               group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
               callback = function(event2)
@@ -90,7 +71,6 @@ return {
             map('<leader>lh', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch Source/Header')
           end
 
-          -- Tailwind Keymaps
           if client and client.name == 'tailwindcss' then
             local opts = { noremap = true, silent = true }
             map('n', '<leader>Tc', '<cmd>TailwindConcealToggle<CR>', opts)
@@ -101,11 +81,6 @@ return {
             map('n', '<leader>tN', '<cmd>TailwindPrevClass<CR>', opts)
           end
 
-          -- The following autocommand is used to enable inlay hints in your
-          -- The following code creates a keymap to toggle inlay hints in your
-          -- code, if the language server you are using supports them
-          --
-          -- This may be unwanted, since they displace some of your code
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
@@ -114,22 +89,11 @@ return {
         end,
       })
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+      -- Create the LSP capabilities, enhancing them with cmp_nvim_lsp.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      -- Define server-specific settings.
       local servers = {
         basedpyright = {
           settings = {
@@ -143,12 +107,11 @@ return {
             },
           },
         },
-        jsonls = {
-          filetypes = { 'json' },
+        jsonls = { filetypes = { 'json' } },
+        sqlls = {
+          filetypes = { 'sql', 'mysql' },
+          connections = { driver = 'mssql' },
         },
-        sqlls = { filetypes = { 'sql', 'mysql' }, connections = {
-          driver = 'mssql',
-        } },
         omnisharp = {
           enable_roslyn_analysers = true,
           enable_import_completion = true,
@@ -158,30 +121,18 @@ return {
         },
         jdtls = {},
         lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
           settings = {
             Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              completion = { callSnippet = 'Replace' },
             },
           },
         },
         phpactor = {
           cmd = { 'intelephense', '--stdio' },
           filetypes = { 'php' },
-          root_dir = function(fname)
-            return vim.lsp.util.root_pattern('ProjectConfiguration.class.php', '.git', 'index.php')(fname) or vim.loop.cwd()
-          end,
           settings = {
             intelephense = {
-              environment = {
-                includePaths = { '../symfony/lib', './lib/model' },
-              },
+              environment = { includePaths = { '../symfony/lib', './lib/model' } },
               files = {
                 exclude = {
                   '**/cache/**',
@@ -193,44 +144,29 @@ return {
           },
         },
         clangd = {
-          filetypes = {
-            'c',
-            'cpp',
-            'objc',
-            'objcpp',
-            'cuda',
-          },
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
         },
-        tailwindcss = {},
       }
 
-      -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      --
-      --  You can press `g?` for help in this menu.
+      -- Define default options that apply to all servers.
+      local default_opts = {
+        root_dir = require('lspconfig').util.root_pattern '.git',
+        capabilities = capabilities,
+      }
+
+      -- Setup Mason and ensure required tools are installed.
       require('mason').setup()
-
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-        -- 'markdownlint',
-      })
+      vim.list_extend(ensure_installed, { 'stylua' })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
       require('mason-lspconfig').setup()
 
+      -- Setup each server by merging default options with server-specific overrides.
       require('mason-lspconfig').setup_handlers {
         function(server_name)
-          local server = servers[server_name] or {}
-          -- This handles overriding only values explicitly passed
-          -- by the server configuration above. Useful when disabling
-          -- certain features of an LSP (for example, turning off formatting for tsserver)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
+          local server_opts = servers[server_name] or {}
+          local opts = vim.tbl_deep_extend('force', {}, default_opts, server_opts)
+          require('lspconfig')[server_name].setup(opts)
         end,
       }
     end,
