@@ -246,13 +246,12 @@ return {
   -- Note taking and todo list
   {
     'nvim-orgmode/orgmode',
-    ft = { 'org' },
     config = function()
       -- Setup orgmode
       require('orgmode').setup {
         calendar = { round_min_with_hours = true, min_big_step = 15, min_small_step = 1 },
+        hyperlinks={sources={}},
         org_use_property_inheritance = true,
-
         org_log_repeat = 'time',
         org_id_method = 'ts',
         org_agenda_span = 'week',

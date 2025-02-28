@@ -318,6 +318,7 @@ return {
         'latex',
         'markdown_inline',
       },
+      ignore_install = { 'org' },
       auto_install = true,
       -- ignore_install = { 'org' },
       highlight = {
@@ -502,5 +503,9 @@ return {
         desc = 'Quickfix list (Trouble)',
       },
     },
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    opts = {},
   },
 }
