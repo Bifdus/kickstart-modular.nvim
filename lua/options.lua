@@ -15,9 +15,12 @@
 --   vim.g.neovide_padding_right = 0
 --   vim.g.neovide_padding_left = 0
 -- end
+--
+vim.g.lazyvim_picker = 'snacks'
 
 -- sets filetype to bigfile when larger than 1.5mb
 -- disables some plugins to help with speed
+vim.g.autoformat = true
 vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
 -- configure lazygit theme based on active colorscheme

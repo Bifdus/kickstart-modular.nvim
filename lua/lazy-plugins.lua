@@ -17,7 +17,7 @@ require('lazy').setup({
   require 'plugins.setup.lspconfig',
   require 'plugins.setup.dracula',
 
-  { import = 'plugins.languages'},
+  { import = 'plugins.languages' },
   { import = 'plugins' },
   { import = 'plugins.snacks' },
 }, {
