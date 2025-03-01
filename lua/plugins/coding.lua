@@ -448,15 +448,6 @@ return {
           [''] = 'rainbow-delimiters',
           latex = 'rainbow-blocks',
         },
-        -- highlight = {
-        --   'RainbowDelimiterRed   ',
-        --   'RainbowDelimiterYellow',
-        --   'RainbowDelimiterBlue  ',
-        --   'RainbowDelimiterOrange',
-        --   'RainbowDelimiterGreen ',
-        --   'RainbowDelimiterViolet',
-        --   'RainbowDelimiterCyan  ',
-        -- },
         blacklist = { 'c', 'cpp' },
       }
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
@@ -507,5 +498,38 @@ return {
   {
     'windwp/nvim-ts-autotag',
     opts = {},
+  },
+  {
+    '2kabhishek/exercism.nvim',
+    cmd = {
+      'ExercismLanguages',
+      'ExercismList',
+      'ExercismSubmit',
+      'ExercismTest',
+    },
+    keys = {
+      { '<leader>exa', '<cmd>ExercismList<CR>', desc = 'ExercismLanguages' },
+      { '<leader>exl', '<cmd>ExercismLanguages<CR>', desc = 'ExercismList' },
+      { '<leader>ext', '<cmd>ExercismTest<CR>', desc = 'ExercismTest' },
+      { '<leader>exs', '<cmd>ExercismSubmit<CR>', desc = 'ExercismSubmit' },
+    },
+    dependencies = {
+      {
+        '2kabhishek/utils.nvim',
+        opts = {
+          fuzzy_provider = 'snacks',
+        },
+      },
+      '2kabhishek/termim.nvim', -- optional, better UX for running tests
+    },
+    -- Add your custom configs here, keep it blank for default configs (required)
+    opts = {
+      exercism_workspace = '~/exercism',
+      default_language = 'typescript',
+      add_default_keybindings = false,
+    },
+    config = function(_, opts)
+      require('exercism').setup(opts)
+    end,
   },
 }
