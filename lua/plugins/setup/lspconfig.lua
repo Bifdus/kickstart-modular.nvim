@@ -72,13 +72,12 @@ return {
           end
 
           if client and client.name == 'tailwindcss' then
-            local opts = { noremap = true, silent = true }
-            map('n', '<leader>Tc', '<cmd>TailwindConcealToggle<CR>', opts)
-            map('n', '<leader>Th', '<cmd>TailwindColorToggle<CR>', opts)
-            map('n', '<leader>Ts', '<cmd>TailwindSort<CR>', opts)
-            map('x', '<leader>s', '<cmd>TailwindSortSelection<CR>', opts)
-            map('n', '<leader>tn', '<cmd>TailwindNextClass<CR>', opts)
-            map('n', '<leader>tN', '<cmd>TailwindPrevClass<CR>', opts)
+            map('<leader>Tc', '<cmd>TailwindConcealToggle<CR>', 'Toggle Conceal')
+            map('<leader>Th', '<cmd>TailwindColorToggle<CR>', 'Toggle Colors')
+            map('<leader>Ts', '<cmd>TailwindSort<CR>', 'Tailwind sort')
+            map('<leader>s', '<cmd>TailwindSortSelection<CR>', 'Sort selection')
+            map('<leader>tn', '<cmd>TailwindNextClass<CR>', 'NextClass')
+            map('<leader>tN', '<cmd>TailwindPrevClass<CR>', 'Previous class')
           end
 
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
@@ -145,6 +144,9 @@ return {
         },
         clangd = {
           filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+        },
+        tailwindcss = {
+          filetypes = { 'javascriptreact', 'typescriptreact' },
         },
       }
 
