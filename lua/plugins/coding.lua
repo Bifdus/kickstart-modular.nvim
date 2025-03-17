@@ -495,10 +495,7 @@ return {
       },
     },
   },
-  {
-    'windwp/nvim-ts-autotag',
-    opts = {},
-  },
+
   {
     '2kabhishek/exercism.nvim',
     cmd = {
@@ -508,8 +505,8 @@ return {
       'ExercismTest',
     },
     keys = {
-      { '<leader>exa', '<cmd>ExercismList<CR>', desc = 'ExercismLanguages' },
-      { '<leader>exl', '<cmd>ExercismLanguages<CR>', desc = 'ExercismList' },
+      { '<leader>exa', '<cmd>ExercismList<CR>', desc = 'Exercism All exercises' },
+      { '<leader>exl', '<cmd>ExercismLanguages<CR>', desc = 'Exercism Languages' },
       { '<leader>ext', '<cmd>ExercismTest<CR>', desc = 'ExercismTest' },
       { '<leader>exs', '<cmd>ExercismSubmit<CR>', desc = 'ExercismSubmit' },
     },

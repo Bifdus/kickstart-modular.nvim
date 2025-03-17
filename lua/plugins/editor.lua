@@ -250,7 +250,7 @@ return {
       -- Setup orgmode
       require('orgmode').setup {
         calendar = { round_min_with_hours = true, min_big_step = 15, min_small_step = 1 },
-        hyperlinks={sources={}},
+        hyperlinks = { sources = {} },
         org_use_property_inheritance = true,
         org_log_repeat = 'time',
         org_id_method = 'ts',
@@ -293,6 +293,7 @@ return {
   },
   {
     'akinsho/org-bullets.nvim',
+    ft = 'org',
     config = function()
       require('org-bullets').setup {
         concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible
@@ -337,6 +338,94 @@ return {
     end,
   },
 
+  -- {
+  --   'epwalsh/obsidian.nvim',
+  --   version = '*',
+  --   -- lazy = true,
+  --   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+  --   -- event = {
+  --   --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+  --   --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+  --   --   -- refer to `:h file-pattern` for more examples
+  --   --   "BufReadPre path/to/my-vault/*.md",
+  --   --   "BufNewFile path/to/my-vault/*.md",
+  --   -- },
+  --   --
+  --   dependencies = {
+  --     -- Required.
+  --     'nvim-lua/plenary.nvim',
+  --   },
+  --   opts = {
+  --     workspaces = {
+  --       {
+  --         name = 'vault',
+  --         path = '~/vaults/Code',
+  --       },
+  --     },
+  --   },
+  --   daily_notes = {
+  --     folder = 'dailies',
+  --     -- Optional, if you want to change the date format for the ID of daily notes.
+  --     date_format = '%Y-%m-%d',
+  --     alias_format = '%B %-d, %Y',
+  --     template = nil,
+  --   },
+  --
+  --   mappings = {
+  --     -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+  --     ['gf'] = {
+  --       action = function()
+  --         return require('obsidian').util.gf_passthrough()
+  --       end,
+  --       opts = { noremap = false, expr = true, buffer = true },
+  --     },
+  --     -- Toggle check-boxes.
+  --     ['<leader>ch'] = {
+  --       action = function()
+  --         return require('obsidian').util.toggle_checkbox()
+  --       end,
+  --       opts = { buffer = true },
+  --     },
+  --     -- Smart action depending on context, either follow link or toggle checkbox.
+  --     ['<cr>'] = {
+  --       action = function()
+  --         return require('obsidian').util.smart_action()
+  --       end,
+  --       opts = { buffer = true },
+  --     },
+  --   },
+  --   ui = {
+  --     enable = true,
+  --     checkboxes = {
+  --       [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
+  --       ['x'] = { char = '', hl_group = 'ObsidianDone' },
+  --       ['>'] = { char = '', hl_group = 'ObsidianRightArrow' },
+  --       ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
+  --     },
+  --     bullets = { char = '•', hl_group = 'ObsidianBullet' },
+  --     external_link_icon = { char = '', hl_group = 'ObsidianExtLinkIcon' },
+  --     -- Replace the above with this if you don't have a patched font:
+  --     -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
+  --     reference_text = { hl_group = 'ObsidianRefText' },
+  --     highlight_text = { hl_group = 'ObsidianHighlightText' },
+  --     tags = { hl_group = 'ObsidianTag' },
+  --     block_ids = { hl_group = 'ObsidianBlockID' },
+  --     hl_groups = {
+  --       -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
+  --       ObsidianTodo = { bold = true, fg = '#f78c6c' },
+  --       ObsidianDone = { bold = true, fg = '#89ddff' },
+  --       ObsidianRightArrow = { bold = true, fg = '#f78c6c' },
+  --       ObsidianTilde = { bold = true, fg = '#ff5370' },
+  --       ObsidianBullet = { bold = true, fg = '#89ddff' },
+  --       ObsidianRefText = { underline = true, fg = '#c792ea' },
+  --       ObsidianExtLinkIcon = { fg = '#c792ea' },
+  --       ObsidianTag = { italic = true, fg = '#89ddff' },
+  --       ObsidianBlockID = { italic = true, fg = '#89ddff' },
+  --       ObsidianHighlightText = { bg = '#75662e' },
+  --     },
+  --   },
+  -- },
+  --
   -----------------------------------------------------------------------------
   -- Marks
   {
@@ -357,42 +446,6 @@ return {
   },
   { 'chrisgrieser/nvim-spider', lazy = true },
 
-  --
-  --     -- terminal
-  --     { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
-  --
-  --     init = function()
-  --         vim.api.nvim_create_autocmd("User", {
-  --           pattern = "VeryLazy",
-  --           callback = function()
-  --             -- Setup some globals for debugging (lazy-loaded)
-  --             _G.dd = function(...)
-  --               Snacks.debug.inspect(...)
-  --             end
-  --             _G.bt = function()
-  --               Snacks.debug.backtrace()
-  --             end
-  --             vim.print = _G.dd -- Override print to use snacks for `:=` command
-  --
-  --             -- Create some toggle mappings
-  --             Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
-  --             Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
-  --             Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
-  --             Snacks.toggle.diagnostics():map("<leader>ud")
-  --             Snacks.toggle.line_number():map("<leader>ul")
-  --             Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
-  --             Snacks.toggle.treesitter():map("<leader>uT")
-  --             Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
-  --             Snacks.toggle.inlay_hints():map("<leader>uh")
-  --             Snacks.toggle.indent():map("<leader>ug")
-  --             Snacks.toggle.dim():map("<leader>uD")
-  --           end,
-  --         })
-  --       end,
-  --         },
-  -- },
-  --
-  --
   {
     'monaqa/dial.nvim',
     recommended = true,
@@ -653,24 +706,30 @@ return {
       },
     },
   },
+
+  -- auto pairs
   {
-    'echasnovski/mini.pairs',
+    'windwp/nvim-autopairs',
     event = 'VeryLazy',
     opts = {
-      modes = { insert = true, command = true, terminal = false },
-      -- skip autopair when next character is one of these
-      skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-      -- skip autopair when the cursor is inside these treesitter nodes
-      skip_ts = { 'string' },
-      -- skip autopair when next character is closing pair
-      -- and there are more closing pairs than opening pairs
-      skip_unbalanced = true,
-      -- better deal with markdown code blocks
-      markdown = true,
+      enable_check_bracket_line = false,
+      ignored_next_char = '[%w%.]',
+      check_ts = true,
+      ts_config = {
+        lua = { 'string' },
+        javascript = { 'template_string' },
+        java = false,
+      },
     },
     config = function(_, opts)
-      LazyVim.mini.pairs(opts)
+      require('nvim-autopairs').setup { opts }
     end,
+  },
+  -- Tags typescript
+  {
+    'windwp/nvim-ts-autotag',
+    event = 'VeryLazy',
+    opts = {},
   },
 
   -- Trailing whitespace highlight and remove
@@ -682,5 +741,13 @@ return {
 			{ '<Leader>cw', '<cmd>lua MiniTrailspace.trim()<CR>', desc = 'Erase Whitespace' },
 		},
     opts = {},
+  },
+  -- Window handling
+  {
+    'nvim-focus/focus.nvim',
+    version = false,
+    config = function()
+      require('focus').setup()
+    end,
   },
 }
