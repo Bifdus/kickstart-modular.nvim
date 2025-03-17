@@ -25,6 +25,16 @@ return {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
       'hrsh7th/cmp-nvim-lsp',
+      {
+        'ray-x/lsp_signature.nvim',
+        event = 'InsertEnter',
+        opts = {
+          bind = true,
+          handler_opts = {
+            border = 'rounded',
+          },
+        },
+      },
     },
     config = function()
       -- This autocommand runs whenever an LSP attaches to a buffer.
@@ -35,6 +45,8 @@ return {
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
+
+          -- require('lsp_signature').on_attach(_, event.buf)
 
           map('<leader>D', '<cmd>Lspsaga peek_type_definition<CR>', 'Type [D]efinition')
           map('<leader>rn', '<cmd>Lspsaga rename<CR>', '[R]e[n]ame')
