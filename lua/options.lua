@@ -31,6 +31,14 @@ vim.opt.termguicolors = true
 -- Make line numbers default
 vim.opt.number = true
 
+-- Virtual diagnostic lines
+vim.diagnostic.config {
+  virtual_text = true,
+  virtual_lines = { current_line = true },
+  underline = true,
+  update_in_insert = false,
+}
+
 -- No Wrap
 vim.opt.wrap = false
 
