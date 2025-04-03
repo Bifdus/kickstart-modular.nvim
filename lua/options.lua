@@ -21,7 +21,7 @@ vim.g.lazyvim_picker = 'snacks'
 -- sets filetype to bigfile when larger than 1.5mb
 -- disables some plugins to help with speed
 vim.g.autoformat = true
-vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+-- vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
 -- configure lazygit theme based on active colorscheme
 vim.g.lazygit_config = true
@@ -30,9 +30,6 @@ vim.opt.termguicolors = true
 
 -- Make line numbers default
 vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
 
 -- No Wrap
 vim.opt.wrap = false
