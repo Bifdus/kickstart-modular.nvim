@@ -25,16 +25,16 @@ return {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
       'hrsh7th/cmp-nvim-lsp',
-      {
-        'ray-x/lsp_signature.nvim',
-        event = 'InsertEnter',
-        opts = {
-          bind = true,
-          handler_opts = {
-            border = 'rounded',
-          },
-        },
-      },
+      -- {
+      --   'ray-x/lsp_signature.nvim',
+      --   event = 'InsertEnter',
+      --   opts = {
+      --     bind = true,
+      --     handler_opts = {
+      --       border = 'rounded',
+      --     },
+      --   },
+      -- },
     },
     config = function()
       -- This autocommand runs whenever an LSP attaches to a buffer.
@@ -160,6 +160,7 @@ return {
         tailwindcss = {
           filetypes = { 'javascriptreact', 'typescriptreact' },
         },
+        lemminx = {},
       }
 
       -- Define default options that apply to all servers.
