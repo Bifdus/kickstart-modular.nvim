@@ -18,6 +18,8 @@ vim.keymap.set('n', 'gc', '<Nop>', { silent = true })
 -- [[ Setting options ]]
 require 'options'
 
+require 'autocmds'
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 require 'lazy-bootstrap'
 
