@@ -14,13 +14,34 @@ return {
     },
   },
   { 'Bilal2453/luvit-meta', lazy = true },
+  -- C# LSP
+  {
+    'seblyng/roslyn.nvim',
+    ft = 'cs',
+    opts = { -- defaults are fine if you'll install via Mason
+      -- leave empty unless you need custom `cmd` or `config`
+    },
+  },
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
     cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
-      { 'williamboman/mason.nvim', config = true },
+      {
+        'Hoffs/omnisharp-extended-lsp.nvim',
+        lazy = true,
+      },
+      {
+        'williamboman/mason.nvim',
+        config = true,
+        opts = {
+          registries = {
+            'github:mason-org/mason-registry', -- core registry
+            'github:Crashdummyy/mason-registry', -- adds roslyn & rzls packages
+          },
+        },
+      },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
@@ -37,6 +58,7 @@ return {
       -- },
     },
     config = function()
+      local util = require 'lspconfig.util'
       -- This autocommand runs whenever an LSP attaches to a buffer.
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -125,13 +147,6 @@ return {
           filetypes = { 'sql', 'mysql' },
           connections = { driver = 'mssql' },
         },
-        omnisharp = {
-          enable_roslyn_analysers = true,
-          enable_import_completion = true,
-          organize_imports_on_format = true,
-          enable_decompilation_support = true,
-          filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props', 'csx', 'targets' },
-        },
         jdtls = {},
         lua_ls = {
           settings = {
@@ -174,7 +189,7 @@ return {
       -- Setup Mason and ensure required tools are installed.
       require('mason').setup()
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, { 'stylua' })
+      vim.list_extend(ensure_installed, { 'stylua', 'roslyn' })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
       require('mason-lspconfig').setup()
 
