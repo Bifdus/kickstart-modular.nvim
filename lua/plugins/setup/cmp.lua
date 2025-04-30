@@ -27,6 +27,7 @@ return {
           },
         },
       },
+      { 'kdheepak/cmp-latex-symbols' },
       'saadparwaiz1/cmp_luasnip',
 
       -- Adds other completion capabilities.
@@ -168,6 +169,10 @@ return {
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'orgmode' },
+          { name = 'vimtex' },
+          { name = 'latex_symbols' },
+          { name = 'latex_symbol' },
+          { name = 'lua-latex-symbols' },
         },
       }
     end,
