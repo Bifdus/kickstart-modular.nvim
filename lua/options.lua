@@ -156,27 +156,27 @@ vim.opt.title = true
 ------------ [[ Clipboard ]]
 -- Immediately set clipboard on Windows, to not delay startup time
 -- Taken from /usr/local/share/nvim/runtime/autoload/provider/clipboard.vim
-if vim.fn.has 'wsl' == 1 then
-  local win32yank = vim.fn.exepath 'win32yank.exe'
-  if win32yank and #win32yank > 0 then
-    if vim.fn.getftype(win32yank) == 'link' then
-      win32yank = vim.fn.resolve(win32yank)
-    end
-    vim.g.clipboard = {
-      name = 'win32yank-wsl',
-      copy = {
-        ['+'] = { win32yank, '-i', '--crlf' },
-        ['*'] = { win32yank, '-i', '--crlf' },
-      },
-      paste = {
-        ['+'] = { win32yank, '-o', '--lf' },
-        ['*'] = { win32yank, '-o', '--lf' },
-      },
-      cache_enabled = 1,
-    }
-  else
-    print 'No win32yank'
-  end
-end
+-- if vim.fn.has 'wsl' == 1 then
+--   local win32yank = vim.fn.exepath 'win32yank.exe'
+--   if win32yank and #win32yank > 0 then
+--     if vim.fn.getftype(win32yank) == 'link' then
+--       win32yank = vim.fn.resolve(win32yank)
+--     end
+--     vim.g.clipboard = {
+--       name = 'win32yank-wsl',
+--       copy = {
+--         ['+'] = { win32yank, '-i', '--crlf' },
+--         ['*'] = { win32yank, '-i', '--crlf' },
+--       },
+--       paste = {
+--         ['+'] = { win32yank, '-o', '--lf' },
+--         ['*'] = { win32yank, '-o', '--lf' },
+--       },
+--       cache_enabled = 1,
+--     }
+--   else
+--     print 'No win32yank'
+--   end
+-- end
 
 -- vim: ts=2 sts=2 sw=2 et
