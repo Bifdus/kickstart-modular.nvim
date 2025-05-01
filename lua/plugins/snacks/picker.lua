@@ -10,10 +10,9 @@ return {
       -- Top Pickers & Explorer
       { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
       { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-      { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
       { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
-      -- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
       -- find
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
