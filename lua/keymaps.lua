@@ -20,12 +20,9 @@ vim.keymap.set('n', 'k', '<c-w>j', { noremap = true })
 
 -----------------------------------------------------------------------------
 
--- Disable default s functionality as it conflicts with mini surround
+-- Disable default s functionality as it conflicts with Flash
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 vim.keymap.set({ 'n', 'x' }, 'S', '<Nop>')
--- Janky fix, couldn't get flash unbinds to work
-vim.keymap.set({ 'n', 'x', 'o' }, ';', '<Nop>')
-vim.keymap.set({ 'n', 'x', 'o' }, ',', '<Nop>')
 
 -- Reselect the text that has just been pasted, see also https://stackoverflow.com/a/4317090/6064933.
 vim.keymap.set('n', '<leader>v', "printf('`[%s`]', getregtype()[0])", {
@@ -91,10 +88,6 @@ vim.keymap.set('n', '<leader>-', '<C-W>v', { desc = 'Split Window Below', remap 
 vim.keymap.set('n', '<leader>|', '<C-W>s', { desc = 'Split Window Right', remap = true })
 vim.keymap.set('n', '<leader>wc', '<cmd>windo diffthis<cr>', { desc = '[c]ompare [w]indows' })
 
--- Resize window using <ctrl> arrow keys
--- vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
--- vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
--- vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- tabs
 vim.keymap.set('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
@@ -158,10 +151,6 @@ require('util.format').snacks_toggle():map '<leader>uf'
 --
 -- stylua: ignore
 vim.keymap.set("n", "<c-\\>", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
--- TODO: fix this
--- vim.keymap.set("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root.get() }) end, { desc = "Terminal (Root Dir)" })
--- vim.keymap.set("n", "<c-/>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
--- vim.keymap.set("n", "<c-_>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
 
 -----------------------------------------------------------------------------
 -- Chainsaw logging Plugin
