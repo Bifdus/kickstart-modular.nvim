@@ -197,6 +197,8 @@ vim.keymap.set('n', '<leader>clc', '<cmd>lua require("chainsaw").clearLog()<CR>'
 -- remove all log statements created by chainsaw
 vim.keymap.set('n', '<leader>clr', '<cmd>lua require("chainsaw").removeLogs()<CR>', { noremap = true, silent = true, desc = '[c]hainsaw [l]og [r]emove' })
 
+vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
+
 -----------------------------------------------------------------------------
 -- Cycle through todo comments
 vim.keymap.set('n', ']t', function()
