@@ -32,12 +32,12 @@ vim.opt.termguicolors = true
 vim.opt.number = true
 
 -- Virtual diagnostic lines
-vim.diagnostic.config {
-  virtual_text = true,
-  virtual_lines = { current_line = true },
-  underline = true,
-  update_in_insert = false,
-}
+-- vim.diagnostic.config {
+--   virtual_text = true,
+--   virtual_lines = { current_line = true },
+--   underline = true,
+--   update_in_insert = false,
+-- }
 
 -- No Wrap
 vim.opt.wrap = false
