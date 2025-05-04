@@ -47,12 +47,12 @@ return {
       },
       -- Document existing key chains
       spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' }, icon = { icon = '', color = 'blue' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>s', group = '[S]earch', icon = { icon = '', color = 'green' } },
+        { '<leader>w', group = '[W]indow', icon = { icon = '', color = 'green' } },
+        { '<leader>u', group = '[T]oggle', icon = { icon = '', color = 'green' } },
         { '<leader>l', group = '[L]azy' },
         { '<leader><tab>', group = 'Tabs' },
         { '<leader>x', group = 'Trouble Diagnostics' },

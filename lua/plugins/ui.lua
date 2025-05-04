@@ -115,7 +115,7 @@ return {
     dependencies = { 'SmiteshP/nvim-navic', 'nvim-tree/nvim-web-devicons' },
     keys = {
       {
-        '<Leader>tB',
+        '<Leader>uB',
         function()
           local off = vim.b['barbecue_entries'] == nil
           require('barbecue.ui').toggle(off and true or nil)

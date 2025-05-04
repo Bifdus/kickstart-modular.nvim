@@ -17,6 +17,7 @@ return {
   {
     'numToStr/Comment.nvim',
     dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+    ft = {"javascriptreact", "typescriptreact"},
     keys = {
       { '<Leader>V', '<Plug>(comment_toggle_blockwise_current)', mode = 'n', desc = 'Comment' },
       { '<Leader>V', '<Plug>(comment_toggle_blockwise_visual)', mode = 'x', desc = 'Comment' },
@@ -111,7 +112,7 @@ return {
     },
     --stylua: ignore start
     keys = {
-      { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'Lazygit' },
+      { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'Lazygit'  },
     },
   },
   {
@@ -469,7 +470,7 @@ return {
         blacklist = { 'c', 'cpp' },
       }
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      vim.keymap.set('n', '<leader>tH', '<CMD>TSPlaygroundToggle<CR>', { desc = '[t]oggle treesitter playground [h]ighlight groups', silent = true })
+      vim.keymap.set('n', '<leader>uH', '<CMD>TSPlaygroundToggle<CR>', { desc = '[t]oggle treesitter playground [h]ighlight groups', silent = true })
     end,
   },
 

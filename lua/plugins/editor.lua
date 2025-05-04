@@ -181,7 +181,7 @@ return {
 
       -- Add a cursor and jump to the next word under cursor.
       -- TODO: Find a good replacement
-      -- vim.keymap.set({ 'n', 'v' }, '<c-a>', function()
+      -- vim.keymap.set({ 'n', 'v' }, '<M-n>', function()
       --   mc.addCursor '*'
       -- end)
 
@@ -653,7 +653,7 @@ return {
         desc = 'Treesitter Search',
       },
       {
-        '<leader>tf',
+        '<leader>uF',
         mode = { 'n' },
         function()
           require('flash').toggle()
@@ -742,18 +742,18 @@ return {
 		},
     opts = {},
   },
-  -- Window handling
+  -- Rest interface
   {
     'mistweaverco/kulala.nvim',
     keys = {
-      { '<leader>Rs', desc = 'Send request' },
-      { '<leader>Ra', desc = 'Send all requests' },
-      { '<leader>Ro', desc = 'Open scratchpad' },
+      { '<leader>Rs', desc = 'Send request', ft = { 'http', 'rest' } },
+      { '<leader>Ra', desc = 'Send all requests', ft = { 'http', 'rest' } },
+      { '<leader>Ro', desc = 'Open scratchpad', ft = { 'http', 'rest' } },
     },
-    ft = { 'http', 'rest' },
+    ft = { 'http', 'rest', 'html' },
     opts = {
       -- your configuration comes here
-      global_keymaps = true,
+      global_keymaps = false,
     },
   },
   {
