@@ -524,10 +524,10 @@ return {
       'ExercismTest',
     },
     keys = {
-      { '<leader>pxa', '<cmd>ExercismList<CR>', desc = 'Exercism All exercises' },
-      { '<leader>pxl', '<cmd>ExercismLanguages<CR>', desc = 'Exercism Languages' },
-      { '<leader>pxt', '<cmd>ExercismTest<CR>', desc = 'ExercismTest' },
-      { '<leader>pxs', '<cmd>ExercismSubmit<CR>', desc = 'ExercismSubmit' },
+      { '<leader>lxa', '<cmd>ExercismList<CR>', desc = 'Exercism All exercises' },
+      { '<leader>lxl', '<cmd>ExercismLanguages<CR>', desc = 'Exercism Languages' },
+      { '<leader>lxt', '<cmd>ExercismTest<CR>', desc = 'ExercismTest' },
+      { '<leader>lxs', '<cmd>ExercismSubmit<CR>', desc = 'ExercismSubmit' },
     },
     dependencies = {
       {

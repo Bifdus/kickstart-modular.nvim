@@ -49,8 +49,8 @@ return {
       spec = {
         { '<leader><tab>', group = 'Tabs' },
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' }, icon = { icon = '', color = 'blue' } },
-        { '<leader>e', group = '[E]xercism', mode = { 'n', 'x' }, icon = { icon = '', color = 'blue' } },
-        { '<leader>ex', group = 'E[x]ercism', mode = { 'n', 'x' }, icon = { icon = '', color = 'blue' } },
+        { '<leader>l', group = '[L]earning', mode = { 'n', 'x' }, icon = { icon = '', color = 'blue' } },
+        { '<leader>lx', group = 'E[x]ercism', mode = { 'n', 'x' } },
         { '<leader>g', group = '[G]it', icon = { icon = '', color = 'green' } },
         { '<leader>gc', group = '[G]it [C]onflict', icon = { icon = '', color = 'green' } },
         { '<leader>cl', group = '[C]hainsaw [L]og', icon = { icon = '🪚', color = 'green' } },
