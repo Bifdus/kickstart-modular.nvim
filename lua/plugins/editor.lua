@@ -2,11 +2,11 @@ return {
 
   -----------------------------------------------------------------------------
   -- Swap textobjects
-  {
-    'mizlan/iswap.nvim',
-    cmd = { 'ISwap', 'ISwapWith', 'ISwapNode', 'ISwapNodeWith' },
-    -- event = 'VeryLazy',
-  },
+  -- {
+  --   'mizlan/iswap.nvim',
+  --   cmd = { 'ISwap', 'ISwapWith', 'ISwapNode', 'ISwapNodeWith' },
+  --   -- event = 'VeryLazy',
+  -- },
 
   -----------------------------------------------------------------------------
   -- Preview Markdown
@@ -40,7 +40,7 @@ return {
     ft = { 'markdown', 'md' },
     -- Optional: Add keybindings specific to markdown rendering
     keys = {
-      { '<leader>mr', '<cmd>RenderMarkdown<CR>', desc = 'Render Markdown' },
+      { '<leader>rm', '<cmd>RenderMarkdown<CR>', desc = 'Render Markdown' },
     },
   },
 
@@ -191,7 +191,7 @@ return {
       end)
 
       -- Delete the main cursor.
-      vim.keymap.set({ 'n', 'v' }, '<leader>z', mc.deleteCursor)
+      -- vim.keymap.set({ 'n', 'v' }, '<leader>z', mc.deleteCursor)
 
       vim.keymap.set({ 'n', 'v' }, '<c-q>', function()
         if mc.cursorsEnabled() then

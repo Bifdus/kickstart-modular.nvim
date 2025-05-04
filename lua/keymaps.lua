@@ -100,15 +100,15 @@ vim.keymap.set('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' 
 vim.keymap.set('n', '<leader><tab>p', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
 -- Run Lua code
-vim.keymap.set('n', '<leader>lr', '<cmd>.lua<CR>', { desc = 'Run current line as Lua code' })
-vim.keymap.set('v', '<leader>lR', [[<Esc><cmd>'<,'>lua<CR>]], { desc = 'Run selected lines as Lua code' })
+vim.keymap.set('n', '<leader>rl', '<cmd>.lua<CR>', { desc = 'Run current line as Lua code' })
+vim.keymap.set('v', '<leader>rL', [[<Esc><cmd>'<,'>lua<CR>]], { desc = 'Run selected lines as Lua code' })
 
 -----------------------------------------------------------------------------
 -- Iswap - swap parameters or textobjects
-vim.keymap.set('n', '<leader>is', ':ISwapWith<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>in', ':ISwapNodeWith<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>ih', ':ISwapNode<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>io', ':ISwap<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>is', ':ISwapWith<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>in', ':ISwapNodeWith<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>ih', ':ISwapNode<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>io', ':ISwap<CR>', { noremap = true, silent = true })
 
 -----------------------------------------------------------------------------
 -- Spectre find and replace
