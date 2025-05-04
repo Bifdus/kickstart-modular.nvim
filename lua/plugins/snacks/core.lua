@@ -6,7 +6,7 @@ return {
     terminal = { enabled = true },
     notifier = { enabled = true },
     scratch = { enabled = true },
-    explorer = { enabled = false },
+    explorer = {enabled = true},
     scope = { enabled = false },
     statuscolumn = { enabled = true },
     zen = { enabled = true },

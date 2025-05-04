@@ -4,6 +4,20 @@ return {
     picker = {
       enabled = true,
     },
+    matcher = {
+      fuzzy = true,
+      smartcase = true,
+      ignorecase = true,
+      sort_empty = true,
+      filename_bonus = true,
+      file_pos = true,
+      cwd_bonus = false,
+      frecency = false,
+      history_bonus = false,
+    },
+    -- sort = {
+    --   fields = { '#text', 'score:desc', 'idx' },
+    -- },
   },
   -- stylua: ignore
   keys = {
@@ -21,6 +35,9 @@ return {
       { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
       { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+      -- explorer
+      { "<leader>e", function() Snacks.picker.explorer() end, desc = "Explorer" },
+      { "<leader>E", function() Snacks.picker.explorer({cwd = LazyVim.root.cwd()}) end, desc = "Explorer" },
       -- git
       { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
       { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },

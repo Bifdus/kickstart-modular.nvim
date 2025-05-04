@@ -17,10 +17,10 @@ return {
   {
     'numToStr/Comment.nvim',
     dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
-    ft = {"javascriptreact", "typescriptreact"},
+    ft = { 'javascriptreact', 'typescriptreact' },
     keys = {
-      { '<Leader>V', '<Plug>(comment_toggle_blockwise_current)', mode = 'n', desc = 'Comment' },
-      { '<Leader>V', '<Plug>(comment_toggle_blockwise_visual)', mode = 'x', desc = 'Comment' },
+      { '<Leader>V', '<Plug>(comment_toggle_blockwise_current)', mode = 'n', desc = 'Comment', ft = { 'typescriptreact', 'javascriptreact' } },
+      { '<Leader>V', '<Plug>(comment_toggle_blockwise_visual)', mode = 'x', desc = 'Comment', ft = { 'typescriptreact', 'javascriptreact' } },
     },
     opts = function(_, opts)
       local ok, tcc = pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
@@ -524,10 +524,10 @@ return {
       'ExercismTest',
     },
     keys = {
-      { '<leader>exa', '<cmd>ExercismList<CR>', desc = 'Exercism All exercises' },
-      { '<leader>exl', '<cmd>ExercismLanguages<CR>', desc = 'Exercism Languages' },
-      { '<leader>ext', '<cmd>ExercismTest<CR>', desc = 'ExercismTest' },
-      { '<leader>exs', '<cmd>ExercismSubmit<CR>', desc = 'ExercismSubmit' },
+      { '<leader>pxa', '<cmd>ExercismList<CR>', desc = 'Exercism All exercises' },
+      { '<leader>pxl', '<cmd>ExercismLanguages<CR>', desc = 'Exercism Languages' },
+      { '<leader>pxt', '<cmd>ExercismTest<CR>', desc = 'ExercismTest' },
+      { '<leader>pxs', '<cmd>ExercismSubmit<CR>', desc = 'ExercismSubmit' },
     },
     dependencies = {
       {

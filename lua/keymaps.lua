@@ -4,7 +4,7 @@
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 --
-local wk = require('which-key')
+local wk = require 'which-key'
 
 -----------------------------------------------------------------------------
 -- NOTE: If you aren't using colemak, comment these out
@@ -87,8 +87,7 @@ vim.keymap.set('n', '<leader>w-', '<C-W>v', { desc = 'Split Window Below', remap
 vim.keymap.set('n', '<leader>w|', '<C-W>s', { desc = 'Split Window Right', remap = true })
 vim.keymap.set('n', '<leader>-', '<C-W>v', { desc = 'Split Window Below', remap = true })
 vim.keymap.set('n', '<leader>|', '<C-W>s', { desc = 'Split Window Right', remap = true })
-wk.add({ '<leader>wc',  '<cmd>windo diffthis<cr>',  desc = '[c]ompare [w]indows', mode='n', icon = {icon='󰆊', color="green"}})
-
+wk.add { '<leader>wc', '<cmd>windo diffthis<cr>', desc = '[c]ompare [w]indows', mode = 'n', icon = { icon = '󰆊', color = 'green' } }
 
 -- tabs
 vim.keymap.set('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
@@ -121,37 +120,6 @@ vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({sele
 vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
   desc = 'Search on current file',
 })
-
--- Toggle Options
---
--- lazyvim.format.snacks_toggle():map '<leader>uf'
--- lazyvim.format.snacks_toggle(true):map '<leader>uf'
-Snacks.toggle.option('spell', { name = 'spelling' }):map '<leader>us'
-Snacks.toggle.option('wrap', { name = 'wrap' }):map '<leader>uw'
-Snacks.toggle.option('relativenumber', { name = 'relative number' }):map '<leader>ul'
-Snacks.toggle.indent():map '<leader>ug'
-Snacks.toggle.diagnostics():map '<leader>ud'
-Snacks.toggle.line_number():map '<leader>ul'
-Snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = 'conceal level' }):map '<leader>uc'
-Snacks.toggle.option('showtabline', { off = 0, on = vim.o.showtabline > 0 and vim.o.showtabline or 2, name = 'tabline' }):map '<leader>ua'
-Snacks.toggle.treesitter():map '<leader>ut'
--- Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'dark background' }):map '<leader>ub'
-Snacks.toggle.dim():map '<leader>ud'
-Snacks.toggle.animate():map '<leader>ua'
-Snacks.toggle.scroll():map '<leader>us'
-Snacks.toggle.profiler():map '<leader>upp'
-Snacks.toggle.profiler_highlights():map '<leader>uph'
-Snacks.toggle.zoom():map '<leader>uZ'
-Snacks.toggle.zen():map '<leader>uz'
-Snacks.toggle.treesitter():map '<leader>uT'
-Snacks.toggle.diagnostics():map '<leader>ud'
-require('util.format').snacks_toggle():map '<leader>uf'
-
-
--- floating terminal
---
--- stylua: ignore
-vim.keymap.set("n", "<c-\\>", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
 
 -----------------------------------------------------------------------------
 -- Chainsaw logging Plugin
