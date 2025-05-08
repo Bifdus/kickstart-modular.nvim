@@ -1,5 +1,18 @@
 return {
 
+  {
+    'vhyrro/luarocks.nvim',
+    priority = 1001, -- this plugin needs to run before anything else
+    opts = {
+      rocks = { 'magick' },
+    },
+  },
+  {
+    '3rd/image.nvim',
+    dependencies = { 'luarocks.nvim' },
+    opts = {},
+  },
+
   -----------------------------------------------------------------------------
   -- Swap textobjects
   -- {
@@ -259,29 +272,7 @@ return {
         org_archive_location = '~/orgfiles/archive.org::/From %s',
         org_default_notes_file = '~/orgfiles/refile.org',
         org_refile_target_files = '~/orgfiles/archive.org',
-        win_split_mode = function(name)
-          -- Make sure it's not a scratch buffer by passing false as 2nd argument
-          local bufnr = vim.api.nvim_create_buf(false, false)
-          --- Setting buffer name is required
-          vim.api.nvim_buf_set_name(bufnr, name)
-
-          local fill = 0.8
-          local width = math.floor((vim.o.columns * fill))
-          local height = math.floor((vim.o.lines * fill))
-          local row = math.floor((((vim.o.lines - height) / 2) - 1))
-          local col = math.floor(((vim.o.columns - width) / 2))
-
-          vim.api.nvim_open_win(bufnr, true, {
-            relative = 'editor',
-            width = width,
-            height = height,
-            row = row,
-            col = col,
-            style = 'minimal',
-            border = 'rounded',
-          })
-        end,
-
+        win_split_mode = 'vertical',
         mappings = {
           global = {
             org_agenda = '<leader>oa',
@@ -291,6 +282,59 @@ return {
       }
     end,
   },
+  {
+    'nvim-neorg/neorg',
+    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = '*', -- Pin Neorg to the latest stable release
+    config = function()
+      require('neorg').setup {
+        load = {
+          ['core.defaults'] = {},
+          ['core.completion'] = {
+            config = {
+              engine = 'nvim-cmp',
+            },
+          },
+          ['core.integrations.nvim-cmp'] = {},
+          ['core.concealer'] = {},
+          ['core.dirman'] = {
+            config = {
+              workspaces = {
+                notes = '~/neorg',
+              },
+              default_workspace = 'notes',
+            },
+          },
+        },
+      }
+      vim.wo.foldlevel = 90
+      vim.wo.conceallevel = 2
+    end,
+  },
+  -- {
+  --   'chipsenkbeil/org-roam.nvim',
+  --   tag = '0.1.1',
+  --   dependencies = {
+  --     {
+  --       'nvim-orgmode/orgmode',
+  --       tag = '0.3.7',
+  --     },
+  --   },
+  --   config = function()
+  --     require('org-roam').setup {
+  --       directory = '~/orgfiles/roam',
+  --       -- optional
+  --       org_files = {
+  --         '~/orgfiles/**/*',
+  --       },
+  --       mappings = {
+  --         capture = {
+  --           org_capture_finalize = '<C-c><C-c>',
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     'akinsho/org-bullets.nvim',
     ft = 'org',

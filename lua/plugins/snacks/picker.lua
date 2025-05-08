@@ -26,7 +26,7 @@ return {
       { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-      { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+      { "<leader>sn", function() Snacks.picker.notifications() end, desc = "Notification History" },
       -- find
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -52,6 +52,8 @@ return {
       { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader>sG", function() Snacks.picker.grep({ignored = true }) end, desc = "Grep Including Ignored" },
       { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+      -- Org Roam Notes
+      {"<leader>so", function() Snacks.picker.grep{cwd = vim.fn.expand("~/orgfiles/roam"), glob = "*.org"} end, {desc = "Roam: Grep"}},
       -- search
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
       { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },

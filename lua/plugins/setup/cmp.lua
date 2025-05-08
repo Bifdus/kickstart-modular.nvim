@@ -169,6 +169,7 @@ return {
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'orgmode' },
+          { name = 'neorg' },
           { name = 'vimtex' },
           { name = 'latex_symbols' },
           { name = 'latex_symbol' },
