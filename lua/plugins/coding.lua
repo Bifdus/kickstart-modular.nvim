@@ -335,6 +335,7 @@ return {
         'vim',
         'vimdoc',
         'regex',
+        'norg',
         'markdown_inline',
       },
       ignore_install = { 'org' },
