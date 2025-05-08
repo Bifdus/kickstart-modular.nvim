@@ -28,15 +28,15 @@ return {
             -- it will be laggy and will take time for the initial load
             only_render_image_at_cursor = true,
             -- markdown extensions (ie. quarto) can go here
-            filetypes = { 'markdown', 'vimwiki', 'html' },
+            filetypes = { 'markdown', 'vimwiki', 'html', 'md' },
           },
-          neorg = {
-            enabled = true,
-            clear_in_insert_mode = false,
-            download_remote_images = true,
-            only_render_image_at_cursor = true,
-            filetypes = { 'norg' },
-          },
+          -- neorg = {
+          --   enabled = true,
+          --   clear_in_insert_mode = false,
+          --   download_remote_images = true,
+          --   only_render_image_at_cursor = true,
+          --   filetypes = { 'norg' },
+          -- },
           -- This is disabled by default
           -- Detect and render images referenced in HTML files
           -- Make sure you have an html treesitter parser installed
@@ -104,14 +104,6 @@ return {
   },
 
   -----------------------------------------------------------------------------
-  -- Swap textobjects
-  -- {
-  --   'mizlan/iswap.nvim',
-  --   cmd = { 'ISwap', 'ISwapWith', 'ISwapNode', 'ISwapNodeWith' },
-  --   -- event = 'VeryLazy',
-  -- },
-
-  -----------------------------------------------------------------------------
   -- Preview Markdown
   {
     'iamcco/markdown-preview.nvim',
@@ -124,24 +116,35 @@ return {
   },
 
   -----------------------------------------------------------------------------
-  -- Preview Markdown
+  -- Render Markdown
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons', -- Optional: Only include if you use icons
+      'nvim-tree/nvim-web-devicons',
     },
     opts = {
       auto_open = true,
       auto_close = true,
       -- Add more options based on the plugin's documentation
+      heading = {
+        enabled = true,
+        foregrounds = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      },
     },
     config = function(_, opts)
       require('render-markdown').setup(opts)
     end,
     -- Optional: Lazy-load based on file type
     ft = { 'markdown', 'md' },
-    -- Optional: Add keybindings specific to markdown rendering
     keys = {
       { '<leader>rm', '<cmd>RenderMarkdown<CR>', desc = 'Render Markdown' },
     },
@@ -372,215 +375,205 @@ return {
       }
     end,
   },
-  {
-    'nvim-neorg/neorg',
-    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-    version = '*', -- Pin Neorg to the latest stable release
-    build = ':Neorg sync-parsers',
-    dependencies = {
-      {
-        'juniorsundar/neorg-extras',
-      },
-      'folke/snacks.nvim',
-    },
-    config = function()
-      require('neorg').setup {
-        load = {
-          ['core.defaults'] = {},
-          ['core.completion'] = {
-            config = {
-              engine = 'nvim-cmp',
-            },
-          },
-          ['core.integrations.nvim-cmp'] = {},
-          ['core.concealer'] = {
-            config = {
-              icon_preset = 'basic',
-              icons = {
-                code_block = {
-                  icon = '',
-                  conceal = true,
-                  content_only = true,
-                },
-              },
-
-              -- directive = {
-              --   icon = '',
-              --   nodes = { 'directive_image' },
-              --   render = require('neorg.modules.core.concealer').public.icon_renderers.on_left,
-              -- },
-            },
-          },
-          ['core.dirman'] = {
-            config = {
-              workspaces = {
-                notes = '~/neorg',
-              },
-              default_workspace = 'notes',
-            },
-          },
-          ['external.many-mans'] = {
-            config = {
-              metadata_fold = true, -- If want @data property ... @end to fold
-              code_fold = true, -- If want @code ... @end to fold
-            },
-          },
-          -- OPTIONAL
-          ['external.agenda'] = {
-            config = {
-              workspace = nil, -- or set to "tasks_workspace" to limit agenda search to just that workspace
-            },
-          },
-          ['external.roam'] = {
-            config = {
-              fuzzy_finder = 'Snacks', -- OR "Fzf" OR "Snacks". Defaults to "Telescope"
-              fuzzy_backlinks = false, -- Set to "true" for backlinks in fuzzy finder instead of buffer
-              roam_base_directory = '', -- Directory in current workspace to store roam nodes
-              node_name_randomiser = false, -- Tokenise node name suffix for more randomisation
-              node_name_snake_case = false, -- snake_case the names if node_name_randomiser = false
-            },
-          },
-        },
-      }
-      vim.wo.foldlevel = 90
-      vim.wo.conceallevel = 2
-    end,
-  },
-  {
-    'akinsho/org-bullets.nvim',
-    ft = 'org',
-    config = function()
-      require('org-bullets').setup {
-        concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible
-        symbols = {
-          -- list symbol
-          list = '•',
-          -- headlines can be a list
-          headlines = { '◉', '○', '✸', '✿' },
-          checkboxes = {
-            half = { '', '@org.checkbox.halfchecked' },
-            done = { '✓', '@org.keyword.done' },
-            todo = { '˟', '@org.keyword.todo' },
-          },
-        },
-      }
-    end,
-  },
-
-  {
-    'lukas-reineke/headlines.nvim',
-    ft = { 'markdown' },
-    config = function()
-      -- Colors for orgmode headlines
-      vim.cmd [[highlight Headline1 guibg=#21262d]]
-      -- vim.cmd [[highlight Headline2 guibg=#21262d]]
-
-      local bullet_highlighs = {
-        '@markup.heading.1.markdown',
-        '@markup.heading.2.markdown',
-        '@markup.heading.3.markdown',
-        '@markup.heading.4.markdown',
-        '@markup.heading.5.markdown',
-        '@markup.heading.6.markdown',
-      }
-      require('headlines').setup {
-        org = {
-          headline_highlights = { 'Headline1' },
-          bullets = { '◉', '○', '✸', '✿' },
-          bullet_highlighs = bullet_highlighs,
-        },
-      }
-    end,
-  },
+  -- {
+  --   'nvim-neorg/neorg',
+  --   lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+  --   version = '*', -- Pin Neorg to the latest stable release
+  --   build = ':Neorg sync-parsers',
+  --   dependencies = {
+  --     {
+  --       'juniorsundar/neorg-extras',
+  --     },
+  --     'folke/snacks.nvim',
+  --   },
+  --   config = function()
+  --     require('neorg').setup {
+  --       load = {
+  --         ['core.defaults'] = {},
+  --         ['core.completion'] = {
+  --           config = {
+  --             engine = 'nvim-cmp',
+  --           },
+  --         },
+  --         ['core.integrations.nvim-cmp'] = {},
+  --         ['core.concealer'] = {
+  --           config = {
+  --             icon_preset = 'basic',
+  --             icons = {
+  --               code_block = {
+  --                 icon = '',
+  --                 conceal = true,
+  --                 content_only = true,
+  --               },
+  --             },
+  --
+  --             -- directive = {
+  --             --   icon = '',
+  --             --   nodes = { 'directive_image' },
+  --             --   render = require('neorg.modules.core.concealer').public.icon_renderers.on_left,
+  --             -- },
+  --           },
+  --         },
+  --         ['core.dirman'] = {
+  --           config = {
+  --             workspaces = {
+  --               notes = '~/neorg',
+  --             },
+  --             default_workspace = 'notes',
+  --           },
+  --         },
+  --         ['external.many-mans'] = {
+  --           config = {
+  --             metadata_fold = true, -- If want @data property ... @end to fold
+  --             code_fold = true, -- If want @code ... @end to fold
+  --           },
+  --         },
+  --         -- OPTIONAL
+  --         ['external.agenda'] = {
+  --           config = {
+  --             workspace = nil, -- or set to "tasks_workspace" to limit agenda search to just that workspace
+  --           },
+  --         },
+  --         ['external.roam'] = {
+  --           config = {
+  --             fuzzy_finder = 'Snacks', -- OR "Fzf" OR "Snacks". Defaults to "Telescope"
+  --             fuzzy_backlinks = false, -- Set to "true" for backlinks in fuzzy finder instead of buffer
+  --             roam_base_directory = '', -- Directory in current workspace to store roam nodes
+  --             node_name_randomiser = false, -- Tokenise node name suffix for more randomisation
+  --             node_name_snake_case = false, -- snake_case the names if node_name_randomiser = false
+  --           },
+  --         },
+  --       },
+  --     }
+  --     vim.wo.foldlevel = 90
+  --     vim.wo.conceallevel = 2
+  --   end,
+  -- },
+  -- {
+  --   'akinsho/org-bullets.nvim',
+  --   ft = 'org',
+  --   config = function()
+  --     require('org-bullets').setup {
+  --       concealcursor = false, -- If false then when the cursor is on a line underlying characters are visible
+  --       symbols = {
+  --         -- list symbol
+  --         list = '•',
+  --         -- headlines can be a list
+  --         headlines = { '◉', '○', '✸', '✿' },
+  --         checkboxes = {
+  --           half = { '', '@org.checkbox.halfchecked' },
+  --           done = { '✓', '@org.keyword.done' },
+  --           todo = { '˟', '@org.keyword.todo' },
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
 
   -- {
-  --   'epwalsh/obsidian.nvim',
-  --   version = '*',
-  --   -- lazy = true,
-  --   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  --   -- event = {
-  --   --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-  --   --   -- refer to `:h file-pattern` for more examples
-  --   --   "BufReadPre path/to/my-vault/*.md",
-  --   --   "BufNewFile path/to/my-vault/*.md",
-  --   -- },
-  --   --
-  --   dependencies = {
-  --     -- Required.
-  --     'nvim-lua/plenary.nvim',
-  --   },
-  --   opts = {
-  --     workspaces = {
-  --       {
-  --         name = 'vault',
-  --         path = '~/vaults/Code',
+  --   'lukas-reineke/headlines.nvim',
+  --   ft = { 'markdown' },
+  --   config = function()
+  --     -- Colors for orgmode headlines
+  --     vim.cmd [[highlight Headline1 guibg=#21262d]]
+  --     -- vim.cmd [[highlight Headline2 guibg=#21262d]]
+  --
+  --     local bullet_highlighs = {
+  --       '@markup.heading.1.markdown',
+  --       '@markup.heading.2.markdown',
+  --       '@markup.heading.3.markdown',
+  --       '@markup.heading.4.markdown',
+  --       '@markup.heading.5.markdown',
+  --       '@markup.heading.6.markdown',
+  --     }
+  --     require('headlines').setup {
+  --       org = {
+  --         headline_highlights = { 'Headline1' },
+  --         bullets = { '◉', '○', '✸', '✿' },
+  --         bullet_highlighs = bullet_highlighs,
   --       },
-  --     },
-  --   },
-  --   daily_notes = {
-  --     folder = 'dailies',
-  --     -- Optional, if you want to change the date format for the ID of daily notes.
-  --     date_format = '%Y-%m-%d',
-  --     alias_format = '%B %-d, %Y',
-  --     template = nil,
-  --   },
-  --
-  --   mappings = {
-  --     -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-  --     ['gf'] = {
-  --       action = function()
-  --         return require('obsidian').util.gf_passthrough()
-  --       end,
-  --       opts = { noremap = false, expr = true, buffer = true },
-  --     },
-  --     -- Toggle check-boxes.
-  --     ['<leader>ch'] = {
-  --       action = function()
-  --         return require('obsidian').util.toggle_checkbox()
-  --       end,
-  --       opts = { buffer = true },
-  --     },
-  --     -- Smart action depending on context, either follow link or toggle checkbox.
-  --     ['<cr>'] = {
-  --       action = function()
-  --         return require('obsidian').util.smart_action()
-  --       end,
-  --       opts = { buffer = true },
-  --     },
-  --   },
-  --   ui = {
-  --     enable = true,
-  --     checkboxes = {
-  --       [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
-  --       ['x'] = { char = '', hl_group = 'ObsidianDone' },
-  --       ['>'] = { char = '', hl_group = 'ObsidianRightArrow' },
-  --       ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
-  --     },
-  --     bullets = { char = '•', hl_group = 'ObsidianBullet' },
-  --     external_link_icon = { char = '', hl_group = 'ObsidianExtLinkIcon' },
-  --     -- Replace the above with this if you don't have a patched font:
-  --     -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-  --     reference_text = { hl_group = 'ObsidianRefText' },
-  --     highlight_text = { hl_group = 'ObsidianHighlightText' },
-  --     tags = { hl_group = 'ObsidianTag' },
-  --     block_ids = { hl_group = 'ObsidianBlockID' },
-  --     hl_groups = {
-  --       -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-  --       ObsidianTodo = { bold = true, fg = '#f78c6c' },
-  --       ObsidianDone = { bold = true, fg = '#89ddff' },
-  --       ObsidianRightArrow = { bold = true, fg = '#f78c6c' },
-  --       ObsidianTilde = { bold = true, fg = '#ff5370' },
-  --       ObsidianBullet = { bold = true, fg = '#89ddff' },
-  --       ObsidianRefText = { underline = true, fg = '#c792ea' },
-  --       ObsidianExtLinkIcon = { fg = '#c792ea' },
-  --       ObsidianTag = { italic = true, fg = '#89ddff' },
-  --       ObsidianBlockID = { italic = true, fg = '#89ddff' },
-  --       ObsidianHighlightText = { bg = '#75662e' },
-  --     },
-  --   },
+  --     }
+  --   end,
   -- },
-  --
+
+  {
+    'obsidian-nvim/obsidian.nvim',
+    version = '*',
+    lazy = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    opts = {
+      workspaces = {
+        {
+          name = 'vault',
+          path = '~/vaults/',
+        },
+      },
+    },
+    daily_notes = {
+      folder = 'dailies',
+      -- Optional, if you want to change the date format for the ID of daily notes.
+      date_format = '%Y-%m-%d',
+      alias_format = '%B %-d, %Y',
+      template = nil,
+    },
+
+    mappings = {
+      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+      ['gf'] = {
+        action = function()
+          return require('obsidian').util.gf_passthrough()
+        end,
+        opts = { noremap = false, expr = true, buffer = true },
+      },
+      -- Toggle check-boxes.
+      ['<leader>ch'] = {
+        action = function()
+          return require('obsidian').util.toggle_checkbox()
+        end,
+        opts = { buffer = true },
+      },
+      -- Smart action depending on context, either follow link or toggle checkbox.
+      ['<cr>'] = {
+        action = function()
+          return require('obsidian').util.smart_action()
+        end,
+        opts = { buffer = true },
+      },
+    },
+    ui = {
+      enable = true,
+      checkboxes = {
+        [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
+        ['x'] = { char = '', hl_group = 'ObsidianDone' },
+        ['>'] = { char = '', hl_group = 'ObsidianRightArrow' },
+        ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
+      },
+      bullets = { char = '•', hl_group = 'ObsidianBullet' },
+      external_link_icon = { char = '', hl_group = 'ObsidianExtLinkIcon' },
+      -- Replace the above with this if you don't have a patched font:
+      -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
+      reference_text = { hl_group = 'ObsidianRefText' },
+      highlight_text = { hl_group = 'ObsidianHighlightText' },
+      tags = { hl_group = 'ObsidianTag' },
+      block_ids = { hl_group = 'ObsidianBlockID' },
+      hl_groups = {
+        -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
+        ObsidianTodo = { bold = true, fg = '#f78c6c' },
+        ObsidianDone = { bold = true, fg = '#89ddff' },
+        ObsidianRightArrow = { bold = true, fg = '#f78c6c' },
+        ObsidianTilde = { bold = true, fg = '#ff5370' },
+        ObsidianBullet = { bold = true, fg = '#89ddff' },
+        ObsidianRefText = { underline = true, fg = '#c792ea' },
+        ObsidianExtLinkIcon = { fg = '#c792ea' },
+        ObsidianTag = { italic = true, fg = '#89ddff' },
+        ObsidianBlockID = { italic = true, fg = '#89ddff' },
+        ObsidianHighlightText = { bg = '#75662e' },
+      },
+    },
+  },
+
   -----------------------------------------------------------------------------
   -- Marks
   {
