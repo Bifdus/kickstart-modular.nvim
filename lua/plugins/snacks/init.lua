@@ -5,7 +5,7 @@ return {
   import = 'plugins.snacks',
   keys = {
     -- stylua: ignore
-    { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal"} 
+    { "<c-\\>",      function() Snacks.terminal() end, desc = "Toggle Terminal"}
   },
   init = function()
     vim.api.nvim_create_autocmd('User', {
