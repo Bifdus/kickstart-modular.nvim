@@ -25,6 +25,7 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+    version = "1.32.0",
     event = { 'BufReadPre', 'BufNewFile' },
     cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
@@ -34,6 +35,7 @@ return {
       },
       {
         'williamboman/mason.nvim',
+        version = "1.11.0",
         config = true,
         opts = {
           registries = {
@@ -42,7 +44,7 @@ return {
           },
         },
       },
-      'williamboman/mason-lspconfig.nvim',
+      {'williamboman/mason-lspconfig.nvim', version = "1.32.0"},
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
       'hrsh7th/cmp-nvim-lsp',
