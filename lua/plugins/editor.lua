@@ -641,4 +641,26 @@ return {
     end,
   },
   { 'vuciv/golf' },
+  {
+    'leath-dub/snipe.nvim',
+    keys = {
+      {
+        'gb',
+        function()
+          require('snipe').open_buffer_menu()
+        end,
+        desc = 'Open Snipe buffer menu',
+      },
+    },
+    opts = {},
+  },
+
+  {
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('bufferline').setup {}
+    end,
+  },
 }
