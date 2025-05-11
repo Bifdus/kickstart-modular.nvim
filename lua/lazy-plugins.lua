@@ -2,20 +2,14 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- import rest of plugins
-  --
-  -- require 'plugins/lsp/gitsigns',
-  -- require 'plugins/lsp/lspconfig',
-  -- require 'plugins/lsp/conform',
-  -- require 'plugins/lsp/cmp',
-  -- require 'plugins/lsp.lint',
-  -- { import = 'plugins.config' },
-  require 'plugins.setup.lspconfig',
-  require 'plugins.setup.gitsigns',
-  require 'plugins.setup.cmp',
-  require 'plugins.setup.conform',
-  require 'plugins.setup.which-key',
-  require 'plugins.setup.lspconfig',
-  require 'plugins.setup.dracula',
+  require 'plugins.core.lspconfig',
+  require 'plugins.core.gitsigns',
+  require 'plugins.core.cmp',
+  require 'plugins.core.conform',
+  require 'plugins.core.which-key',
+  require 'plugins.core.lspconfig',
+  require 'plugins.core.dracula',
+  require 'plugins.core.treesitter',
 
   { import = 'plugins.languages' },
   { import = 'plugins' },

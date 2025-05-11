@@ -3,6 +3,11 @@ return {
   opts = {
     picker = {
       enabled = true,
+      explorer = {
+        win = {
+
+        }
+      },
     },
     matcher = {
       fuzzy = true,
