@@ -180,6 +180,9 @@ return {
           filetypes = { 'javascriptreact', 'typescriptreact' },
         },
         lemminx = {},
+        marksman = {
+          filetypes = {'markdown'},
+        },
       }
 
       -- Define default options that apply to all servers.
