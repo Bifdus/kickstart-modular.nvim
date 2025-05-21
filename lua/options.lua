@@ -42,7 +42,7 @@ vim.opt.number = true
 -- No Wrap
 vim.opt.wrap = false
 
-vim.opt.conceallevel = 1
+-- vim.opt.conceallevel = 1
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
