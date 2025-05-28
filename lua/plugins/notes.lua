@@ -109,6 +109,7 @@ return {
           },
         },
         mappings = {
+          default = false,
           -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
           ['gf'] = {
             action = function()
@@ -132,6 +133,7 @@ return {
           },
         },
         daily_notes = {
+          workdays_only = false,
           default = {},
           folder = 'dailies',
           -- Optional, if you want to change the date format for the ID of daily notes.
