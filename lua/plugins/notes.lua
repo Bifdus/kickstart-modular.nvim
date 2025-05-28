@@ -109,7 +109,6 @@ return {
           },
         },
         mappings = {
-          default = false,
           -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
           ['gf'] = {
             action = function()
@@ -125,7 +124,7 @@ return {
             opts = { buffer = true },
           },
           -- Smart action depending on context, either follow link or toggle checkbox.
-          ['<cr>'] = {
+          ['<CR>'] = {
             action = function()
               return require('obsidian').util.smart_action()
             end,
@@ -189,7 +188,27 @@ return {
           return tostring(os.time()) .. '-' .. suffix
         end,
       }
-      vim.wo.conceallevel = 1
+      -- vim.wo.conceallevel = 1
+    end,
+  },
+  {
+    'hamidi-dev/org-list.nvim',
+    dependencies = {
+      'tpope/vim-repeat', -- for repeatable actions with '.'
+    },
+    config = function()
+      require('org-list').setup {
+        mapping = {
+          key = '<leader>lt',
+          desc = 'Toggle: Cycle through list types',
+        },
+        checkbox_toggle = {
+          enabled = true,
+          key = 'tc',
+          desc = 'Toggle checkbox state',
+          filetypes = { 'org', 'markdown' },
+        },
+      }
     end,
   },
 
