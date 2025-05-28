@@ -65,18 +65,12 @@ vim.keymap.set('t', '<Esc><Esc>', function()
   end
 end, { expr = true, nowait = true, desc = 'which_key_ignore' })
 
--- TODO: Configure Lazygit current file history (see lazyvim.lazygit)
--- vim.keymap.set('n', '<leader>lf', function()
---   local git_path = vim.api.nvim_buf_get_name(0)
---   require 'custom.functions.lazygit' { args = { '-f', vim.trim(git_path) } }
--- end, { desc = 'Lazygit Current File History' })
+-- General Mappings
 
 -- Shift tab to dedent
 vim.keymap.set('i', '<S-Tab>', '<C-d>', { noremap = true, silent = true })
-
 -- save file
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
-
 -- Quit
 vim.keymap.set('n', '<leader>qa', '<cmd>qa<cr>', { desc = 'Quit All' })
 
@@ -165,8 +159,10 @@ vim.keymap.set('n', '<leader>clc', '<cmd>lua require("chainsaw").clearLog()<CR>'
 
 -- remove all log statements created by chainsaw
 vim.keymap.set('n', '<leader>clr', '<cmd>lua require("chainsaw").removeLogs()<CR>', { noremap = true, silent = true, desc = '[c]hainsaw [l]og [r]emove' })
-
 vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
+
+-----------------------------------------------------------------------------
+--- End Chainsaw mappings
 
 -----------------------------------------------------------------------------
 -- Cycle through todo comments
@@ -180,7 +176,6 @@ end, { silent = true, desc = 'Previous Todo' })
 -----------------------------------------------------------------------------
 --- Minty color picker
 vim.keymap.set('n', '<leader>pc', '<cmd>Huefy<cr>')
-
 vim.keymap.set('n', '<leader>ps', '<cmd>Shades<cr>')
 
 -----------------------------------------------------------------------------
@@ -188,6 +183,8 @@ vim.keymap.set('n', '<leader>ps', '<cmd>Shades<cr>')
 vim.keymap.set({ 'n', 'o', 'x' }, 'w', "<cmd>lua require('spider').motion('w')<CR>", { desc = 'Spider-w' })
 vim.keymap.set({ 'n', 'o', 'x' }, 'e', "<cmd>lua require('spider').motion('e')<CR>", { desc = 'Spider-e' })
 vim.keymap.set({ 'n', 'o', 'x' }, 'b', "<cmd>lua require('spider').motion('b')<CR>", { desc = 'Spider-b' })
+
+
 -- Autocommands go below ----
 --  See `:help lua-guide-autocommands`
 
